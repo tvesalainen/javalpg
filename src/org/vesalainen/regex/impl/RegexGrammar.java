@@ -27,14 +27,15 @@ import org.vesalainen.parser.annotation.Rules;
 import org.vesalainen.parser.annotation.Terminal;
 import org.vesalainen.regex.Regex.Option;
 import java.lang.Character.UnicodeBlock;
-import org.vesalainen.parser.GenClassFactory;
+import java.util.HashSet;
+import java.util.Set;
 import org.vesalainen.parser.annotation.GenClassname;
+import org.vesalainen.parser.util.VisitSet;
 import org.vesalainen.regex.Quantifier;
 import org.vesalainen.regex.Range;
 import org.vesalainen.regex.RangeSet;
 import static org.vesalainen.regex.RegexParserFactory.RegexParserClass;
 import org.vesalainen.regex.RegexParserIntf;
-import org.vesalainen.regex.TinyExpressionParser;
 
 /**
  * This Parser class parses regular expression making an NFA
@@ -202,10 +203,11 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
         }
         else
         {
+            Set<NFAState<T>> skippers = new HashSet<>();
             for (int ii=quantifier.getMin();ii<quantifier.getMax();ii++)
             {
                 NFA<T> r = new NFA<>(factory, atom);
-                r.opt();
+                skippers.add(r.getFirst());
                 if (result == null)
                 {
                     result = r;
@@ -214,6 +216,10 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
                 {
                     result.concat(r);
                 }
+            }
+            for (NFAState<T> s : skippers)
+            {
+                s.addEpsilon(result.getLast());
             }
         }
         return result;
