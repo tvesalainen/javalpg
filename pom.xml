@@ -28,11 +28,16 @@
 		  	<scope>test</scope>
             <version>4.11</version>
 		</dependency>
-	    	<dependency>
+	    <dependency>
 		  <groupId>org.vesalainen</groupId>
 		  <artifactId>bcc</artifactId>
 		  <version>0.0.1-SNAPSHOT</version>
 		</dependency>
+        <dependency>
+          <groupId>org.vesalainen</groupId>
+          <artifactId>lpg</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
+        </dependency>
   </dependencies>
 
     <build>
