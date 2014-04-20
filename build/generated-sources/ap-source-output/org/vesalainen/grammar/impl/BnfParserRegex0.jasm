@@ -1,0 +1,175 @@
+<init>()V
+0:  aload_0 // LocalVariable{type=org.vesalainen.bcc.ClassFile$ClassType@3d7a247b, simpleName=this}
+1:  invokespecial 9 // <init> ()V
+4:  aload_0 // LocalVariable{type=org.vesalainen.bcc.ClassFile$ClassType@3d7a247b, simpleName=this}
+5:  iconst_0
+6:  putfield 13
+9:  aload_0 // LocalVariable{type=org.vesalainen.bcc.ClassFile$ClassType@3d7a247b, simpleName=this}
+10:  ldc 15
+12:  putfield 19
+15:  aload_0 // LocalVariable{type=org.vesalainen.bcc.ClassFile$ClassType@3d7a247b, simpleName=this}
+16:  iconst_1
+17:  putfield 23
+20:  aload_0 // LocalVariable{type=org.vesalainen.bcc.ClassFile$ClassType@3d7a247b, simpleName=this}
+21:  ldc 24
+23:  putfield 27
+26:  return
+match(Lorg/vesalainen/parser/util/InputReader;)I
+[start]:
+0:  iconst_m1
+1:  istore_2 // LocalVariable{type=int, simpleName=cc}
+2:  iconst_m1
+3:  istore_3 // LocalVariable{type=int, simpleName=accepted}
+[S0]:
+4:  iconst_m1
+5:  istore_3 // LocalVariable{type=int, simpleName=accepted}
+6:  aload_1 // arg0
+7:  invokevirtual 38 // read ()I
+10:  istore_2 // LocalVariable{type=int, simpleName=cc}
+11:  iload_2 // LocalVariable{type=int, simpleName=cc}
+12:  iflt 96 //[eof]
+15:  iload_2 // LocalVariable{type=int, simpleName=cc}
+16:  iconst_0
+17:  if_icmplt 79 //[error]
+20:  iload_2 // LocalVariable{type=int, simpleName=cc}
+21:  ldc 39
+23:  if_icmpge 79 //[error]
+26:  goto  29 //[S(1)]
+[S(1)]:
+29:  iconst_1
+30:  istore_3 // LocalVariable{type=int, simpleName=accepted}
+31:  aload_1 // arg0
+32:  invokevirtual 38 // read ()I
+35:  istore_2 // LocalVariable{type=int, simpleName=cc}
+36:  iload_2 // LocalVariable{type=int, simpleName=cc}
+37:  iflt 96 //[eof]
+40:  iload_2 // LocalVariable{type=int, simpleName=cc}
+41:  iconst_0
+42:  if_icmplt 79 //[error]
+45:  iload_2 // LocalVariable{type=int, simpleName=cc}
+46:  ldc 39
+48:  if_icmpge 79 //[error]
+51:  goto  54 //[S(2)]
+[S(2)]:
+54:  iconst_1
+55:  istore_3 // LocalVariable{type=int, simpleName=accepted}
+56:  aload_1 // arg0
+57:  invokevirtual 38 // read ()I
+60:  istore_2 // LocalVariable{type=int, simpleName=cc}
+61:  iload_2 // LocalVariable{type=int, simpleName=cc}
+62:  iflt 96 //[eof]
+65:  iload_2 // LocalVariable{type=int, simpleName=cc}
+66:  iconst_0
+67:  if_icmplt 79 //[error]
+70:  iload_2 // LocalVariable{type=int, simpleName=cc}
+71:  ldc 39
+73:  if_icmpge 79 //[error]
+76:  goto  54 //[S(2)]
+[error]:
+79:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+80:  iconst_m1
+81:  if_icmpne 86 //[pushback]
+84:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+85:  ireturn
+[pushback]:
+86:  aload_1 // arg0
+87:  iload_2 // LocalVariable{type=int, simpleName=cc}
+88:  invokevirtual 43 // unread (I)V
+91:  goto  94 //[exit]
+[exit]:
+94:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+95:  ireturn
+[eof]:
+96:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+97:  iconst_m1
+98:  if_icmpne 103 //[eofacc]
+101:  iconst_0
+102:  ireturn
+[eofacc]:
+103:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+104:  ireturn
+find(Lorg/vesalainen/parser/util/InputReader;)I
+[start]:
+0:  iconst_m1
+1:  istore_2 // LocalVariable{type=int, simpleName=cc}
+2:  iconst_m1
+3:  istore_3 // LocalVariable{type=int, simpleName=accepted}
+[S0]:
+4:  aload_1 // arg0
+5:  invokevirtual 38 // read ()I
+8:  istore_2 // LocalVariable{type=int, simpleName=cc}
+9:  iload_2 // LocalVariable{type=int, simpleName=cc}
+10:  iflt 121 //[eof]
+13:  iload_2 // LocalVariable{type=int, simpleName=cc}
+14:  iconst_0
+15:  if_icmplt 100 //[error]
+18:  iload_2 // LocalVariable{type=int, simpleName=cc}
+19:  ldc 39
+21:  if_icmpge 100 //[error]
+24:  aload_1 // arg0
+25:  iconst_1
+26:  invokevirtual 55 // setAcceptStart (I)V
+29:  goto  32 //[S(1)]
+[S(1)]:
+32:  iconst_1
+33:  istore_3 // LocalVariable{type=int, simpleName=accepted}
+34:  aload_1 // arg0
+35:  invokevirtual 58 // findAccept ()V
+38:  aload_1 // arg0
+39:  invokevirtual 38 // read ()I
+42:  istore_2 // LocalVariable{type=int, simpleName=cc}
+43:  iload_2 // LocalVariable{type=int, simpleName=cc}
+44:  iflt 121 //[eof]
+47:  iload_2 // LocalVariable{type=int, simpleName=cc}
+48:  iconst_0
+49:  if_icmplt 100 //[error]
+52:  iload_2 // LocalVariable{type=int, simpleName=cc}
+53:  ldc 39
+55:  if_icmpge 100 //[error]
+58:  aload_1 // arg0
+59:  iconst_1
+60:  invokevirtual 55 // setAcceptStart (I)V
+63:  goto  66 //[S(2)]
+[S(2)]:
+66:  iconst_1
+67:  istore_3 // LocalVariable{type=int, simpleName=accepted}
+68:  aload_1 // arg0
+69:  invokevirtual 58 // findAccept ()V
+72:  aload_1 // arg0
+73:  invokevirtual 38 // read ()I
+76:  istore_2 // LocalVariable{type=int, simpleName=cc}
+77:  iload_2 // LocalVariable{type=int, simpleName=cc}
+78:  iflt 121 //[eof]
+81:  iload_2 // LocalVariable{type=int, simpleName=cc}
+82:  iconst_0
+83:  if_icmplt 100 //[error]
+86:  iload_2 // LocalVariable{type=int, simpleName=cc}
+87:  ldc 39
+89:  if_icmpge 100 //[error]
+92:  aload_1 // arg0
+93:  iconst_2
+94:  invokevirtual 55 // setAcceptStart (I)V
+97:  goto  66 //[S(2)]
+[error]:
+100:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+101:  iconst_m1
+102:  if_icmpne 112 //[pushback]
+105:  aload_1 // arg0
+106:  invokevirtual 61 // findRecover ()V
+109:  goto  0 //[start]
+[pushback]:
+112:  aload_1 // arg0
+113:  invokevirtual 64 // findPushback ()V
+116:  goto  119 //[exit]
+[exit]:
+119:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+120:  ireturn
+[eof]:
+121:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+122:  iconst_m1
+123:  if_icmpne 128 //[eofacc]
+126:  iconst_0
+127:  ireturn
+[eofacc]:
+128:  iload_3 // LocalVariable{type=int, simpleName=accepted}
+129:  ireturn

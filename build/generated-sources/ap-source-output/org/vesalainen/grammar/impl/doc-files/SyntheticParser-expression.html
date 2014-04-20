@@ -1,0 +1,243 @@
+<html>
+<body>
+<h1>Grammar expression</h1>
+<p>
+This grammar is LALR(1)
+<p>
+Number of Rules 13
+<p>
+Number of Terminals 10
+<p>
+Number of Lr0 States12
+<p>
+Number of La States0
+<h1>BNF</h1>
+<a name="BNF"/>
+<a name="Accept"/>
+<p>
+<a name="rule0"/>
+Accept ::= <a href="#expression">expression</a><blockquote></blockquote>
+<a name="expression"/>
+<p>
+<a name="rule1"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#plainStar(type)">1: expression</a> ::= <a href="#expression">expression</a> '⊛'<blockquote></blockquote>
+<p>
+<a name="rule2"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#plainOpt(type)">2: expression</a> ::= <a href="#expression">expression</a> '¿'<blockquote></blockquote>
+<p>
+<a name="rule3"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#plainPlus(type)">3: expression</a> ::= <a href="#expression">expression</a> '⊕'<blockquote></blockquote>
+<p>
+<a name="rule4"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#plainSeq(typeList)">4: expression</a> ::= 'ϕ{' <a href="#seqList">seqList</a> '}'<blockquote></blockquote>
+<p>
+<a name="rule5"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#plainSymbol(symbol, g)">5: expression</a> ::= <a href="#symbol">symbol</a><blockquote></blockquote>
+<p>
+<a name="rule6"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#plainChoise(typeList)">6: expression</a> ::= 'Σ{' <a href="#choiseList">choiseList</a> '}'<blockquote></blockquote>
+<a name="seqList"/>
+<p>
+<a name="rule7"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#seqList(typeList, type)">7: seqList</a> ::= <a href="#seqList">seqList</a> <a href="#comma">comma</a> <a href="#expression">expression</a><blockquote></blockquote>
+<p>
+<a name="rule8"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#seqList(type)">8: seqList</a> ::= <a href="#expression">expression</a><blockquote></blockquote>
+<a name="symbol"/>
+<p>
+<a name="rule9"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#symbol(name)">9: symbol</a> ::= <a href="#symbolName">symbolName</a><blockquote></blockquote>
+<p>
+<a name="rule10"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#symbol(name)">10: symbol</a> ::= <a href="#anonymousTerminal">anonymousTerminal</a><blockquote></blockquote>
+<a name="choiseList"/>
+<p>
+<a name="rule11"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#choiseList(type)">11: choiseList</a> ::= <a href="#expression">expression</a><blockquote></blockquote>
+<p>
+<a name="rule12"/>
+<a href="../../../../../org/vesalainen/grammar/impl/SyntheticParser.html#choiseList(typeList, type)">12: choiseList</a> ::= <a href="#choiseList">choiseList</a> <a href="#pipe">pipe</a> <a href="#expression">expression</a><blockquote></blockquote>
+<h1>Terminals</h1>
+<a name="Terminals"/>
+<a name="anonymousTerminal"/>
+<p>
+anonymousTerminal = ''[^']+'|`[^´]+´'<blockquote></blockquote>
+<a name="symbolName"/>
+<p>
+symbolName = '[\x21-\x26\x2d-\x3e\x40-\x5f\x61-\x7b\x7e-\x7f\xC0-\xD6\xD8-\xF6]+'<blockquote></blockquote>
+<a name="pipe"/>
+<p>
+pipe = '\|'<blockquote></blockquote>
+<a name="comma"/>
+<p>
+comma = '\,'<blockquote></blockquote>
+<h1>States</h1>
+<a name="States"/>
+<a name="state1"/>
+<h2>State 1</h2>
+( )
+<p>
+<a href="#rule0">Accept</a>->.<a href="#expression">expression</a> <p>
+'Σ{' Shift <a href="#state2">2</a><p>
+'ϕ{' Shift <a href="#state3">3</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+<a href="#symbol">symbol</a> Gt/Rd <a href="#rule5">5</a><p>
+<a href="#expression">expression</a> Goto <a href="#state4">4</a><a name="state2"/>
+<h2>State 2</h2>
+(<a href="#state1"> 1</a><a href="#state2"> 2</a><a href="#state3"> 3</a><a href="#state9"> 9</a><a href="#state10"> 10</a> )
+<p>
+<a href="#rule6">expression</a>->'Σ{' .<a href="#choiseList">choiseList</a> '}' <p>
+'Σ{' Shift <a href="#state2">2</a><p>
+'ϕ{' Shift <a href="#state3">3</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+<a href="#choiseList">choiseList</a> Goto <a href="#state5">5</a><p>
+<a href="#symbol">symbol</a> Gt/Rd <a href="#rule5">5</a><p>
+<a href="#expression">expression</a> Goto <a href="#state6">6</a><a name="state3"/>
+<h2>State 3</h2>
+(<a href="#state1"> 1</a><a href="#state2"> 2</a><a href="#state3"> 3</a><a href="#state9"> 9</a><a href="#state10"> 10</a> )
+<p>
+<a href="#rule4">expression</a>->'ϕ{' .<a href="#seqList">seqList</a> '}' <p>
+'Σ{' Shift <a href="#state2">2</a><p>
+'ϕ{' Shift <a href="#state3">3</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+<a href="#seqList">seqList</a> Goto <a href="#state7">7</a><p>
+<a href="#symbol">symbol</a> Gt/Rd <a href="#rule5">5</a><p>
+<a href="#expression">expression</a> Goto <a href="#state8">8</a><a name="state4"/>
+<h2>State 4</h2>
+(<a href="#state1"> 1</a> )
+<p>
+<a href="#rule0">Accept</a>-><a href="#expression">expression</a> .<a href="#rule0"> (0)</a><p>
+<a href="#rule1">expression</a>-><a href="#expression">expression</a> .'⊛' <p>
+<a href="#rule2">expression</a>-><a href="#expression">expression</a> .'¿' <p>
+<a href="#rule3">expression</a>-><a href="#expression">expression</a> .'⊕' <p>
+<a href="#rule0">Accept</a>-><a href="#expression">expression</a> .<a href="#rule0"> (0)</a><p>
+'⊕' Sh/Rd <a href="#rule3">3</a><p>
+'¿' Sh/Rd <a href="#rule2">2</a><p>
+'⊛' Sh/Rd <a href="#rule1">1</a><p>
+Eof Reduce <a href="#rule0">0</a><a name="state5"/>
+<h2>State 5</h2>
+(<a href="#state2"> 2</a> )
+<p>
+<a href="#rule6">expression</a>->'Σ{' <a href="#choiseList">choiseList</a> .'}' <p>
+<a href="#rule12">choiseList</a>-><a href="#choiseList">choiseList</a> .<a href="#pipe">pipe</a> <a href="#expression">expression</a> <p>
+<a href="#pipe">pipe</a> Shift <a href="#state9">9</a><p>
+'}' Sh/Rd <a href="#rule6">6</a><a name="state6"/>
+<h2>State 6</h2>
+(<a href="#state2"> 2</a> )
+<p>
+<a href="#rule1">expression</a>-><a href="#expression">expression</a> .'⊛' <p>
+<a href="#rule2">expression</a>-><a href="#expression">expression</a> .'¿' <p>
+<a href="#rule3">expression</a>-><a href="#expression">expression</a> .'⊕' <p>
+<a href="#rule11">choiseList</a>-><a href="#expression">expression</a> .<a href="#rule11"> (11)</a><p>
+<a href="#rule11">choiseList</a>-><a href="#expression">expression</a> .<a href="#rule11"> (11)</a><p>
+'⊕' Sh/Rd <a href="#rule3">3</a><p>
+'¿' Sh/Rd <a href="#rule2">2</a><p>
+'⊛' Sh/Rd <a href="#rule1">1</a><p>
+'}' Reduce <a href="#rule11">11</a><p>
+<a href="#pipe">pipe</a> Reduce <a href="#rule11">11</a><a name="state7"/>
+<h2>State 7</h2>
+(<a href="#state3"> 3</a> )
+<p>
+<a href="#rule4">expression</a>->'ϕ{' <a href="#seqList">seqList</a> .'}' <p>
+<a href="#rule7">seqList</a>-><a href="#seqList">seqList</a> .<a href="#comma">comma</a> <a href="#expression">expression</a> <p>
+<a href="#comma">comma</a> Shift <a href="#state10">10</a><p>
+'}' Sh/Rd <a href="#rule4">4</a><a name="state8"/>
+<h2>State 8</h2>
+(<a href="#state3"> 3</a> )
+<p>
+<a href="#rule1">expression</a>-><a href="#expression">expression</a> .'⊛' <p>
+<a href="#rule2">expression</a>-><a href="#expression">expression</a> .'¿' <p>
+<a href="#rule3">expression</a>-><a href="#expression">expression</a> .'⊕' <p>
+<a href="#rule8">seqList</a>-><a href="#expression">expression</a> .<a href="#rule8"> (8)</a><p>
+<a href="#rule8">seqList</a>-><a href="#expression">expression</a> .<a href="#rule8"> (8)</a><p>
+'⊕' Sh/Rd <a href="#rule3">3</a><p>
+'¿' Sh/Rd <a href="#rule2">2</a><p>
+'⊛' Sh/Rd <a href="#rule1">1</a><p>
+'}' Reduce <a href="#rule8">8</a><p>
+<a href="#comma">comma</a> Reduce <a href="#rule8">8</a><a name="state9"/>
+<h2>State 9</h2>
+(<a href="#state5"> 5</a> )
+<p>
+<a href="#rule12">choiseList</a>-><a href="#choiseList">choiseList</a> <a href="#pipe">pipe</a> .<a href="#expression">expression</a> <p>
+'Σ{' Shift <a href="#state2">2</a><p>
+'ϕ{' Shift <a href="#state3">3</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+<a href="#symbol">symbol</a> Gt/Rd <a href="#rule5">5</a><p>
+<a href="#expression">expression</a> Goto <a href="#state11">11</a><a name="state10"/>
+<h2>State 10</h2>
+(<a href="#state7"> 7</a> )
+<p>
+<a href="#rule7">seqList</a>-><a href="#seqList">seqList</a> <a href="#comma">comma</a> .<a href="#expression">expression</a> <p>
+'Σ{' Shift <a href="#state2">2</a><p>
+'ϕ{' Shift <a href="#state3">3</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+<a href="#symbol">symbol</a> Gt/Rd <a href="#rule5">5</a><p>
+<a href="#expression">expression</a> Goto <a href="#state12">12</a><a name="state11"/>
+<h2>State 11</h2>
+(<a href="#state9"> 9</a> )
+<p>
+<a href="#rule1">expression</a>-><a href="#expression">expression</a> .'⊛' <p>
+<a href="#rule2">expression</a>-><a href="#expression">expression</a> .'¿' <p>
+<a href="#rule3">expression</a>-><a href="#expression">expression</a> .'⊕' <p>
+<a href="#rule12">choiseList</a>-><a href="#choiseList">choiseList</a> <a href="#pipe">pipe</a> <a href="#expression">expression</a> .<a href="#rule12"> (12)</a><p>
+<a href="#rule12">choiseList</a>-><a href="#choiseList">choiseList</a> <a href="#pipe">pipe</a> <a href="#expression">expression</a> .<a href="#rule12"> (12)</a><p>
+'⊕' Sh/Rd <a href="#rule3">3</a><p>
+'¿' Sh/Rd <a href="#rule2">2</a><p>
+'⊛' Sh/Rd <a href="#rule1">1</a><p>
+'}' Reduce <a href="#rule12">12</a><p>
+<a href="#pipe">pipe</a> Reduce <a href="#rule12">12</a><a name="state12"/>
+<h2>State 12</h2>
+(<a href="#state10"> 10</a> )
+<p>
+<a href="#rule1">expression</a>-><a href="#expression">expression</a> .'⊛' <p>
+<a href="#rule2">expression</a>-><a href="#expression">expression</a> .'¿' <p>
+<a href="#rule3">expression</a>-><a href="#expression">expression</a> .'⊕' <p>
+<a href="#rule7">seqList</a>-><a href="#seqList">seqList</a> <a href="#comma">comma</a> <a href="#expression">expression</a> .<a href="#rule7"> (7)</a><p>
+<a href="#rule7">seqList</a>-><a href="#seqList">seqList</a> <a href="#comma">comma</a> <a href="#expression">expression</a> .<a href="#rule7"> (7)</a><p>
+'⊕' Sh/Rd <a href="#rule3">3</a><p>
+'¿' Sh/Rd <a href="#rule2">2</a><p>
+'⊛' Sh/Rd <a href="#rule1">1</a><p>
+'}' Reduce <a href="#rule7">7</a><p>
+<a href="#comma">comma</a> Reduce <a href="#rule7">7</a><h1>First Map for Nonterminals</h1>
+<a name="FirstMap"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; { 'ϕ\{' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a> 'Σ\{'}
+<p>
+<a href="#expression">expression</a> ==&gt;&gt; { 'ϕ\{' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a> 'Σ\{'}
+<p>
+<a href="#seqList">seqList</a> ==&gt;&gt; { 'ϕ\{' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a> 'Σ\{'}
+<p>
+<a href="#symbol">symbol</a> ==&gt;&gt; { <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a>}
+<p>
+<a href="#choiseList">choiseList</a> ==&gt;&gt; { 'ϕ\{' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a> 'Σ\{'}
+<h1>Closure for Nonterminals</h1>
+<a name="Closure"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; { <a href="#symbol">symbol</a> <a href="#expression">expression</a>}
+<p>
+<a href="#expression">expression</a> ==&gt;&gt; { <a href="#symbol">symbol</a>}
+<p>
+<a href="#seqList">seqList</a> ==&gt;&gt; { <a href="#symbol">symbol</a> <a href="#expression">expression</a>}
+<p>
+<a href="#symbol">symbol</a> ==&gt;&gt; {}
+<p>
+<a href="#choiseList">choiseList</a> ==&gt;&gt; { <a href="#symbol">symbol</a> <a href="#expression">expression</a>}
+<h1>Nullable Nonterminals</h1>
+<a name="Nullable"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; false
+<p>
+<a href="#expression">expression</a> ==&gt;&gt; false
+<p>
+<a href="#seqList">seqList</a> ==&gt;&gt; false
+<p>
+<a href="#symbol">symbol</a> ==&gt;&gt; false
+<p>
+<a href="#choiseList">choiseList</a> ==&gt;&gt; false
+</body>
+</html>

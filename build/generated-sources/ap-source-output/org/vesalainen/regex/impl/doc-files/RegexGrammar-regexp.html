@@ -1,0 +1,1392 @@
+<html>
+<body>
+<h1>Grammar regexp</h1>
+<p>
+This grammar is LALR(1)
+<p>
+Number of Rules 120
+<p>
+Number of Terminals 90
+<p>
+Number of Lr0 States33
+<p>
+Number of La States0
+<h1>BNF</h1>
+<a name="BNF"/>
+<a name="Accept"/>
+<p>
+<a name="rule0"/>
+Accept ::= <a href="#regexp">regexp</a><blockquote></blockquote>
+<a name="regexp"/>
+<p>
+<a name="rule1"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#regexp(branch, piece, factory, literal)">1: regexp</a> ::= <a href="#regexp">regexp</a> '|' <a href="#branch">branch</a><blockquote></blockquote>
+<p>
+<a name="rule2"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#regexp(branch)">2: regexp</a> ::= <a href="#branch">branch</a><blockquote></blockquote>
+<a name="branch"/>
+<p>
+<a name="rule3"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#branch(branch, piece)">3: branch</a> ::= <a href="#branch">branch</a> <a href="#piece">piece</a><blockquote></blockquote>
+<p>
+<a name="rule4"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#branch(piece)">4: branch</a> ::= <a href="#piece">piece</a><blockquote></blockquote>
+<a name="piece"/>
+<p>
+<a name="rule5"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#piece(atom, quantifier, factory, literal)">5: piece</a> ::= <a href="#atom">atom</a> <a href="#quantifier">quantifier</a><blockquote></blockquote>
+<p>
+<a name="rule6"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#piece(atom, quantifier, factory, literal)">6: piece</a> ::= '(' <a href="#regexp">regexp</a> ')' <a href="#quantifier">quantifier</a><blockquote></blockquote>
+<a name="atom"/>
+<p>
+<a name="rule7"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#atom(rs)">7: atom</a> ::= <a href="#boundaryMatcher">boundaryMatcher</a><blockquote></blockquote>
+<p>
+<a name="rule8"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#atom(rs)">8: atom</a> ::= <a href="#rangeDef">rangeDef</a><blockquote></blockquote>
+<p>
+<a name="rule9"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#atom(rs)">9: atom</a> ::= <a href="#charRange">charRange</a><blockquote></blockquote>
+<a name="quantifier"/>
+<p>
+<a name="rule10"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#quantifier(q)">10: quantifier</a> ::= <a href="#opt">opt</a><blockquote></blockquote>
+<p>
+<a name="rule11"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#quantifier(q)">11: quantifier</a> ::= <a href="#star">star</a><blockquote></blockquote>
+<p>
+<a name="rule12"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#quantifier(q)">12: quantifier</a> ::= <a href="#braceQ1">braceQ1</a><blockquote></blockquote>
+<p>
+<a name="rule13"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#quantifier(q)">13: quantifier</a> ::= <a href="#braceQ2">braceQ2</a><blockquote></blockquote>
+<p>
+<a name="rule14"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#quantifier(q)">14: quantifier</a> ::= <a href="#plus">plus</a><blockquote></blockquote>
+<p>
+<a name="rule15"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#quantifier()">15: quantifier</a> ::=<blockquote></blockquote>
+<a name="boundaryMatcher"/>
+<p>
+<a name="rule16"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">16: boundaryMatcher</a> ::= <a href="#endOfPreviousMatch">endOfPreviousMatch</a><blockquote></blockquote>
+<p>
+<a name="rule17"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">17: boundaryMatcher</a> ::= <a href="#endOfInput">endOfInput</a><blockquote></blockquote>
+<p>
+<a name="rule18"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">18: boundaryMatcher</a> ::= <a href="#beginningOfLine">beginningOfLine</a><blockquote></blockquote>
+<p>
+<a name="rule19"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">19: boundaryMatcher</a> ::= <a href="#beginningOfInput">beginningOfInput</a><blockquote></blockquote>
+<p>
+<a name="rule20"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">20: boundaryMatcher</a> ::= <a href="#endOfLine">endOfLine</a><blockquote></blockquote>
+<p>
+<a name="rule21"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">21: boundaryMatcher</a> ::= <a href="#endOfInputOrLine">endOfInputOrLine</a><blockquote></blockquote>
+<p>
+<a name="rule22"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">22: boundaryMatcher</a> ::= <a href="#wordBoundary">wordBoundary</a><blockquote></blockquote>
+<p>
+<a name="rule23"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#boundaryMatcher(range)">23: boundaryMatcher</a> ::= <a href="#nonWordBoundary">nonWordBoundary</a><blockquote></blockquote>
+<a name="rangeDef"/>
+<p>
+<a name="rule24"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rangeDef(rs)">24: rangeDef</a> ::= '[' <a href="#rs1">rs1</a> ']'<blockquote></blockquote>
+<a name="charRange"/>
+<p>
+<a name="rule25"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#charRange()">25: charRange</a> ::= '.'<blockquote></blockquote>
+<p>
+<a name="rule26"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#charRange(cc, options)">26: charRange</a> ::= <a href="#character">character</a><blockquote></blockquote>
+<p>
+<a name="rule27"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#charRange(rs)">27: charRange</a> ::= '' <a href="#characterClass">characterClass</a><blockquote></blockquote>
+<p>
+<a name="rule28"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#charRange(rs)">28: charRange</a> ::= '' 'p' <a href="#posixCharacterClass">posixCharacterClass</a><blockquote></blockquote>
+<a name="braceQ1"/>
+<p>
+<a name="rule29"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#braceQ1(i)">29: braceQ1</a> ::= '{' <a href="#digit">digit</a> '}'<blockquote></blockquote>
+<a name="braceQ2"/>
+<p>
+<a name="rule30"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#braceQ2(i)">30: braceQ2</a> ::= '{' <a href="#digit">digit</a> ',' '}'<blockquote></blockquote>
+<p>
+<a name="rule31"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#braceQ2(min, max)">31: braceQ2</a> ::= '{' <a href="#digit">digit</a> ',' <a href="#digit">digit</a> '}'<blockquote></blockquote>
+<a name="endOfPreviousMatch"/>
+<p>
+<a name="rule32"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#endOfPreviousMatch()">32: endOfPreviousMatch</a> ::= '' 'G'<blockquote></blockquote>
+<a name="endOfInput"/>
+<p>
+<a name="rule33"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#endOfInput()">33: endOfInput</a> ::= '' 'z'<blockquote></blockquote>
+<a name="beginningOfLine"/>
+<p>
+<a name="rule34"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#beginningOfLine()">34: beginningOfLine</a> ::= '^'<blockquote></blockquote>
+<a name="beginningOfInput"/>
+<p>
+<a name="rule35"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#beginningOfInput()">35: beginningOfInput</a> ::= '' 'A'<blockquote></blockquote>
+<a name="endOfLine"/>
+<p>
+<a name="rule36"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#endOfLine()">36: endOfLine</a> ::= '$'<blockquote></blockquote>
+<a name="endOfInputOrLine"/>
+<p>
+<a name="rule37"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#endOfInputOrLine()">37: endOfInputOrLine</a> ::= '' 'Z'<blockquote></blockquote>
+<a name="wordBoundary"/>
+<p>
+<a name="rule38"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#wordBoundary()">38: wordBoundary</a> ::= '' 'b'<blockquote></blockquote>
+<a name="nonWordBoundary"/>
+<p>
+<a name="rule39"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#nonWordBoundary()">39: nonWordBoundary</a> ::= '' 'B'<blockquote></blockquote>
+<a name="rs1"/>
+<p>
+<a name="rule40"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rs1(rs)">40: rs1</a> ::= <a href="#negRange">negRange</a><blockquote></blockquote>
+<p>
+<a name="rule41"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rs1(rs)">41: rs1</a> ::= <a href="#posRange">posRange</a><blockquote></blockquote>
+<p>
+<a name="rule42"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rs1(rs)">42: rs1</a> ::= <a href="#inclusiveRange">inclusiveRange</a><blockquote></blockquote>
+<p>
+<a name="rule43"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rs1(rs)">43: rs1</a> ::= <a href="#intersectRange">intersectRange</a><blockquote></blockquote>
+<a name="character"/>
+<p>
+<a name="rule44"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#character(cc)">44: character</a> ::= '' <a href="#escaped">escaped</a><blockquote></blockquote>
+<p>
+<a name="rule45"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#character(cc)">45: character</a> ::= <a href="#notRegexControl">notRegexControl</a><blockquote></blockquote>
+<a name="posixCharacterClass"/>
+<p>
+<a name="rule46"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">46: posixCharacterClass</a> ::= <a href="#unicodeLetter">unicodeLetter</a><blockquote></blockquote>
+<p>
+<a name="rule47"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">47: posixCharacterClass</a> ::= <a href="#posixDigit">posixDigit</a><blockquote></blockquote>
+<p>
+<a name="rule48"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">48: posixCharacterClass</a> ::= <a href="#posixGraph">posixGraph</a><blockquote></blockquote>
+<p>
+<a name="rule49"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">49: posixCharacterClass</a> ::= <a href="#posixLower">posixLower</a><blockquote></blockquote>
+<p>
+<a name="rule50"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">50: posixCharacterClass</a> ::= <a href="#javaWhitespace">javaWhitespace</a><blockquote></blockquote>
+<p>
+<a name="rule51"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">51: posixCharacterClass</a> ::= <a href="#posixAlnum">posixAlnum</a><blockquote></blockquote>
+<p>
+<a name="rule52"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">52: posixCharacterClass</a> ::= <a href="#posixASCII">posixASCII</a><blockquote></blockquote>
+<p>
+<a name="rule53"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">53: posixCharacterClass</a> ::= <a href="#posixCntrl">posixCntrl</a><blockquote></blockquote>
+<p>
+<a name="rule54"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">54: posixCharacterClass</a> ::= <a href="#posixUpper">posixUpper</a><blockquote></blockquote>
+<p>
+<a name="rule55"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">55: posixCharacterClass</a> ::= <a href="#javaLowerCase">javaLowerCase</a><blockquote></blockquote>
+<p>
+<a name="rule56"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">56: posixCharacterClass</a> ::= <a href="#posixBlank">posixBlank</a><blockquote></blockquote>
+<p>
+<a name="rule57"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">57: posixCharacterClass</a> ::= <a href="#posixPunct">posixPunct</a><blockquote></blockquote>
+<p>
+<a name="rule58"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">58: posixCharacterClass</a> ::= <a href="#unicodeBlock">unicodeBlock</a><blockquote></blockquote>
+<p>
+<a name="rule59"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">59: posixCharacterClass</a> ::= <a href="#posixAlpha">posixAlpha</a><blockquote></blockquote>
+<p>
+<a name="rule60"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">60: posixCharacterClass</a> ::= <a href="#posixPrint">posixPrint</a><blockquote></blockquote>
+<p>
+<a name="rule61"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">61: posixCharacterClass</a> ::= <a href="#javaUpperCase">javaUpperCase</a><blockquote></blockquote>
+<p>
+<a name="rule62"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">62: posixCharacterClass</a> ::= <a href="#unicodeCategory">unicodeCategory</a><blockquote></blockquote>
+<p>
+<a name="rule63"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">63: posixCharacterClass</a> ::= <a href="#javaMirrored">javaMirrored</a><blockquote></blockquote>
+<p>
+<a name="rule64"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">64: posixCharacterClass</a> ::= <a href="#posixXDigit">posixXDigit</a><blockquote></blockquote>
+<p>
+<a name="rule65"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posixCharacterClass(rs)">65: posixCharacterClass</a> ::= <a href="#posixSpace">posixSpace</a><blockquote></blockquote>
+<a name="negRange"/>
+<p>
+<a name="rule66"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#negRange(rs)">66: negRange</a> ::= '^' <a href="#rangeList">rangeList</a><blockquote></blockquote>
+<a name="posRange"/>
+<p>
+<a name="rule67"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#posRange(rs)">67: posRange</a> ::= <a href="#rangeList">rangeList</a><blockquote></blockquote>
+<a name="inclusiveRange"/>
+<p>
+<a name="rule68"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#inclusiveRange(rs1, rs2)">68: inclusiveRange</a> ::= <a href="#rangeList">rangeList</a> '[' <a href="#rs1">rs1</a> ']'<blockquote></blockquote>
+<a name="intersectRange"/>
+<p>
+<a name="rule69"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#intersectRange(rs1, rs2)">69: intersectRange</a> ::= <a href="#rangeList">rangeList</a> '&amp;&amp;' '[' <a href="#rs1">rs1</a> ']'<blockquote></blockquote>
+<a name="escaped"/>
+<p>
+<a name="rule70"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">70: escaped</a> ::= <a href="#nl">nl</a><blockquote></blockquote>
+<p>
+<a name="rule71"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">71: escaped</a> ::= <a href="#ff">ff</a><blockquote></blockquote>
+<p>
+<a name="rule72"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">72: escaped</a> ::= <a href="#esc">esc</a><blockquote></blockquote>
+<p>
+<a name="rule73"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">73: escaped</a> ::= <a href="#hex2">hex2</a><blockquote></blockquote>
+<p>
+<a name="rule74"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">74: escaped</a> ::= <a href="#tab">tab</a><blockquote></blockquote>
+<p>
+<a name="rule75"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">75: escaped</a> ::= <a href="#cr">cr</a><blockquote></blockquote>
+<p>
+<a name="rule76"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">76: escaped</a> ::= <a href="#regexControlCharacter">regexControlCharacter</a><blockquote></blockquote>
+<p>
+<a name="rule77"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">77: escaped</a> ::= <a href="#alert">alert</a><blockquote></blockquote>
+<p>
+<a name="rule78"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">78: escaped</a> ::= 'c' <a href="#control">control</a><blockquote></blockquote>
+<p>
+<a name="rule79"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">79: escaped</a> ::= <a href="#octal">octal</a><blockquote></blockquote>
+<p>
+<a name="rule80"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#escaped(cc)">80: escaped</a> ::= <a href="#hex">hex</a><blockquote></blockquote>
+<a name="unicodeBlock"/>
+<p>
+<a name="rule81"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#unicodeBlock(blockName)">81: unicodeBlock</a> ::= '{In' <a href="#blockName">blockName</a> '}'<blockquote></blockquote>
+<a name="unicodeCategory"/>
+<p>
+<a name="rule82"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#unicodeCategory(category)">82: unicodeCategory</a> ::= <a href="#category">category</a><blockquote></blockquote>
+<a name="rangeList"/>
+<p>
+<a name="rule83"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rangeList(rs)">83: rangeList</a> ::= <a href="#rangeListEntry">rangeListEntry</a><blockquote></blockquote>
+<p>
+<a name="rule84"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rangeList(rs1, rs2)">84: rangeList</a> ::= <a href="#rangeList">rangeList</a> <a href="#rangeListEntry">rangeListEntry</a><blockquote></blockquote>
+<a name="category"/>
+<p>
+<a name="rule85"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">85: category</a> ::= <a href="#mathSymbol">mathSymbol</a><blockquote></blockquote>
+<p>
+<a name="rule86"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">86: category</a> ::= <a href="#combiningSpacingMark">combiningSpacingMark</a><blockquote></blockquote>
+<p>
+<a name="rule87"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">87: category</a> ::= <a href="#dashPunctuation">dashPunctuation</a><blockquote></blockquote>
+<p>
+<a name="rule88"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">88: category</a> ::= <a href="#enclosingMark">enclosingMark</a><blockquote></blockquote>
+<p>
+<a name="rule89"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">89: category</a> ::= <a href="#letterNumber">letterNumber</a><blockquote></blockquote>
+<p>
+<a name="rule90"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">90: category</a> ::= <a href="#currencySymbol">currencySymbol</a><blockquote></blockquote>
+<p>
+<a name="rule91"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">91: category</a> ::= <a href="#privateUse">privateUse</a><blockquote></blockquote>
+<p>
+<a name="rule92"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">92: category</a> ::= <a href="#initialQuotePunctuation">initialQuotePunctuation</a><blockquote></blockquote>
+<p>
+<a name="rule93"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">93: category</a> ::= <a href="#finalQuotePunctuation">finalQuotePunctuation</a><blockquote></blockquote>
+<p>
+<a name="rule94"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">94: category</a> ::= <a href="#format">format</a><blockquote></blockquote>
+<p>
+<a name="rule95"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">95: category</a> ::= <a href="#lineSeparator">lineSeparator</a><blockquote></blockquote>
+<p>
+<a name="rule96"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">96: category</a> ::= <a href="#unassigned">unassigned</a><blockquote></blockquote>
+<p>
+<a name="rule97"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">97: category</a> ::= <a href="#decimalDigitNumber">decimalDigitNumber</a><blockquote></blockquote>
+<p>
+<a name="rule98"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">98: category</a> ::= <a href="#otherNumber">otherNumber</a><blockquote></blockquote>
+<p>
+<a name="rule99"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">99: category</a> ::= <a href="#endPunctuation">endPunctuation</a><blockquote></blockquote>
+<p>
+<a name="rule100"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">100: category</a> ::= <a href="#otherPunctuation">otherPunctuation</a><blockquote></blockquote>
+<p>
+<a name="rule101"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">101: category</a> ::= <a href="#paragraphSeparator">paragraphSeparator</a><blockquote></blockquote>
+<p>
+<a name="rule102"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">102: category</a> ::= <a href="#nonSpacingMark">nonSpacingMark</a><blockquote></blockquote>
+<p>
+<a name="rule103"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">103: category</a> ::= <a href="#lowercaseLetter">lowercaseLetter</a><blockquote></blockquote>
+<p>
+<a name="rule104"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">104: category</a> ::= <a href="#startPunctuation">startPunctuation</a><blockquote></blockquote>
+<p>
+<a name="rule105"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">105: category</a> ::= <a href="#otherLetter">otherLetter</a><blockquote></blockquote>
+<p>
+<a name="rule106"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">106: category</a> ::= <a href="#titleCaseLetter">titleCaseLetter</a><blockquote></blockquote>
+<p>
+<a name="rule107"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">107: category</a> ::= <a href="#otherSymbol">otherSymbol</a><blockquote></blockquote>
+<p>
+<a name="rule108"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">108: category</a> ::= <a href="#modifierSymbol">modifierSymbol</a><blockquote></blockquote>
+<p>
+<a name="rule109"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">109: category</a> ::= <a href="#modifierLetter">modifierLetter</a><blockquote></blockquote>
+<p>
+<a name="rule110"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">110: category</a> ::= <a href="#uppercaseLetter">uppercaseLetter</a><blockquote></blockquote>
+<p>
+<a name="rule111"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">111: category</a> ::= <a href="#spaceSeparator">spaceSeparator</a><blockquote></blockquote>
+<p>
+<a name="rule112"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">112: category</a> ::= <a href="#controlCategory">controlCategory</a><blockquote></blockquote>
+<p>
+<a name="rule113"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">113: category</a> ::= <a href="#connectorPunctuation">connectorPunctuation</a><blockquote></blockquote>
+<p>
+<a name="rule114"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#category(category)">114: category</a> ::= <a href="#surrogate">surrogate</a><blockquote></blockquote>
+<a name="rangeListEntry"/>
+<p>
+<a name="rule115"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rangeListEntry(rs)">115: rangeListEntry</a> ::= <a href="#charRange">charRange</a><blockquote></blockquote>
+<p>
+<a name="rule116"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rangeListEntry(rs)">116: rangeListEntry</a> ::= <a href="#negativeCharRange">negativeCharRange</a><blockquote></blockquote>
+<p>
+<a name="rule117"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#rangeListEntry(rs)">117: rangeListEntry</a> ::= <a href="#dashRange">dashRange</a><blockquote></blockquote>
+<a name="negativeCharRange"/>
+<p>
+<a name="rule118"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#negativeCharRange(rs)">118: negativeCharRange</a> ::= '' 'P' <a href="#posixCharacterClass">posixCharacterClass</a><blockquote></blockquote>
+<a name="dashRange"/>
+<p>
+<a name="rule119"/>
+<a href="../../../../../org/vesalainen/regex/impl/RegexGrammar.html#dashRange(from, to, options)">119: dashRange</a> ::= <a href="#character">character</a> '-' <a href="#character">character</a><blockquote></blockquote>
+<h1>Terminals</h1>
+<a name="Terminals"/>
+<a name="star"/>
+<p>
+star = '\*'<blockquote></blockquote>
+<a name="opt"/>
+<p>
+opt = '\?'<blockquote></blockquote>
+<a name="plus"/>
+<p>
+plus = '\+'<blockquote></blockquote>
+<a name="digit"/>
+<p>
+digit = '[0-9]+'<blockquote></blockquote>
+<a name="characterClass"/>
+<p>
+characterClass = '[dDsSwW]'<blockquote></blockquote>
+<a name="posixLower"/>
+<p>
+posixLower = '\{Lower\}'<blockquote></blockquote>
+<a name="posixUpper"/>
+<p>
+posixUpper = '\{Upper\}'<blockquote></blockquote>
+<a name="posixASCII"/>
+<p>
+posixASCII = '\{ASCII\}'<blockquote></blockquote>
+<a name="posixAlpha"/>
+<p>
+posixAlpha = '\{Alpha\}'<blockquote></blockquote>
+<a name="posixDigit"/>
+<p>
+posixDigit = '\{Digit\}'<blockquote></blockquote>
+<a name="posixAlnum"/>
+<p>
+posixAlnum = '\{Alnum\}'<blockquote></blockquote>
+<a name="posixPunct"/>
+<p>
+posixPunct = '\{Punct\}'<blockquote></blockquote>
+<a name="posixGraph"/>
+<p>
+posixGraph = '\{Graph\}'<blockquote></blockquote>
+<a name="posixPrint"/>
+<p>
+posixPrint = '\{Print\}'<blockquote></blockquote>
+<a name="posixBlank"/>
+<p>
+posixBlank = '\{Blank\}'<blockquote></blockquote>
+<a name="posixCntrl"/>
+<p>
+posixCntrl = '\{Cntrl\}'<blockquote></blockquote>
+<a name="posixXDigit"/>
+<p>
+posixXDigit = '\{XDigit\}'<blockquote></blockquote>
+<a name="posixSpace"/>
+<p>
+posixSpace = '\{Space\}'<blockquote></blockquote>
+<a name="javaLowerCase"/>
+<p>
+javaLowerCase = '\{javaLowerCase\}'<blockquote></blockquote>
+<a name="javaUpperCase"/>
+<p>
+javaUpperCase = '\{javaUpperCase\}'<blockquote></blockquote>
+<a name="javaWhitespace"/>
+<p>
+javaWhitespace = '\{javaWhitespace\}'<blockquote></blockquote>
+<a name="javaMirrored"/>
+<p>
+javaMirrored = '\{javaMirrored\}'<blockquote></blockquote>
+<a name="unicodeLetter"/>
+<p>
+unicodeLetter = '\{L\}|\{IsL\}'<blockquote></blockquote>
+<a name="combiningSpacingMark"/>
+<p>
+combiningSpacingMark = '\{Mc\}|\{IsMc\}'<blockquote></blockquote>
+<a name="connectorPunctuation"/>
+<p>
+connectorPunctuation = '\{Pc\}|\{IsPc\}'<blockquote></blockquote>
+<a name="controlCategory"/>
+<p>
+controlCategory = '\{Cc\}|\{IsCc\}'<blockquote></blockquote>
+<a name="currencySymbol"/>
+<p>
+currencySymbol = '\{Sc\}|\{IsSc\}'<blockquote></blockquote>
+<a name="dashPunctuation"/>
+<p>
+dashPunctuation = '\{Pd\}|\{IsPd\}'<blockquote></blockquote>
+<a name="decimalDigitNumber"/>
+<p>
+decimalDigitNumber = '\{Nd\}|\{IsNd\}'<blockquote></blockquote>
+<a name="enclosingMark"/>
+<p>
+enclosingMark = '\{Me\}|\{IsMe\}'<blockquote></blockquote>
+<a name="endPunctuation"/>
+<p>
+endPunctuation = '\{Pe\}|\{IsPe\}'<blockquote></blockquote>
+<a name="finalQuotePunctuation"/>
+<p>
+finalQuotePunctuation = '\{Pf\}|\{IsPf\}'<blockquote></blockquote>
+<a name="format"/>
+<p>
+format = '\{Cf\}|\{IsCf\}'<blockquote></blockquote>
+<a name="initialQuotePunctuation"/>
+<p>
+initialQuotePunctuation = '\{Pi\}|\{IsPi\}'<blockquote></blockquote>
+<a name="letterNumber"/>
+<p>
+letterNumber = '\{Nl\}|\{IsNl\}'<blockquote></blockquote>
+<a name="lineSeparator"/>
+<p>
+lineSeparator = '\{Zl\}|\{IsZl\}'<blockquote></blockquote>
+<a name="lowercaseLetter"/>
+<p>
+lowercaseLetter = '\{Ll\}|\{IsLl\}'<blockquote></blockquote>
+<a name="mathSymbol"/>
+<p>
+mathSymbol = '\{Sm\}|\{IsSm\}'<blockquote></blockquote>
+<a name="modifierLetter"/>
+<p>
+modifierLetter = '\{Lm\}|\{IsLm\}'<blockquote></blockquote>
+<a name="modifierSymbol"/>
+<p>
+modifierSymbol = '\{Sk\}|\{IsSk\}'<blockquote></blockquote>
+<a name="nonSpacingMark"/>
+<p>
+nonSpacingMark = '\{Mn\}|\{IsMn\}'<blockquote></blockquote>
+<a name="otherLetter"/>
+<p>
+otherLetter = '\{Lo\}|\{IsLo\}'<blockquote></blockquote>
+<a name="otherNumber"/>
+<p>
+otherNumber = '\{No\}|\{IsNo\}'<blockquote></blockquote>
+<a name="otherPunctuation"/>
+<p>
+otherPunctuation = '\{Po\}|\{IsPo\}'<blockquote></blockquote>
+<a name="otherSymbol"/>
+<p>
+otherSymbol = '\{So\}|\{IsSo\}'<blockquote></blockquote>
+<a name="paragraphSeparator"/>
+<p>
+paragraphSeparator = '\{Zp\}|\{IsZp\}'<blockquote></blockquote>
+<a name="privateUse"/>
+<p>
+privateUse = '\{Co\}|\{IsCo\}'<blockquote></blockquote>
+<a name="spaceSeparator"/>
+<p>
+spaceSeparator = '\{Zs\}|\{IsZs\}'<blockquote></blockquote>
+<a name="startPunctuation"/>
+<p>
+startPunctuation = '\{Ps\}|\{IsPs\}'<blockquote></blockquote>
+<a name="surrogate"/>
+<p>
+surrogate = '\{Cs\}|\{IsCs\}'<blockquote></blockquote>
+<a name="titleCaseLetter"/>
+<p>
+titleCaseLetter = '\{Lt\}|\{IsLt\}'<blockquote></blockquote>
+<a name="unassigned"/>
+<p>
+unassigned = '\{Cn\}|\{IsCn\}'<blockquote></blockquote>
+<a name="uppercaseLetter"/>
+<p>
+uppercaseLetter = '\{Lu\}|\{IsLu\}'<blockquote></blockquote>
+<a name="blockName"/>
+<p>
+blockName = '[a-zA-Z0-9_\- ]+'<blockquote></blockquote>
+<a name="notRegexControl"/>
+<p>
+notRegexControl = '[^\[\]\(\)\\\-\^\*\+\?\|\.\{\}\&amp;\$\,]'<blockquote></blockquote>
+<a name="regexControlCharacter"/>
+<p>
+regexControlCharacter = '[\[\]\(\)\\\-\^\*\+\?\|\.\{\}\&amp;\$\,]'<blockquote></blockquote>
+<a name="tab"/>
+<p>
+tab = 't'<blockquote></blockquote>
+<a name="nl"/>
+<p>
+nl = 'n'<blockquote></blockquote>
+<a name="cr"/>
+<p>
+cr = 'r'<blockquote></blockquote>
+<a name="ff"/>
+<p>
+ff = 'f'<blockquote></blockquote>
+<a name="alert"/>
+<p>
+alert = 'a'<blockquote></blockquote>
+<a name="esc"/>
+<p>
+esc = 'e'<blockquote></blockquote>
+<a name="octal"/>
+<p>
+octal = '0[0-7]|0[0-7]{2}|0[0-3][0-7]{2}'<blockquote></blockquote>
+<a name="hex"/>
+<p>
+hex = 'x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}'<blockquote></blockquote>
+<a name="hex2"/>
+<p>
+hex2 = 'x\{[0-9a-fA-F]+\}'<blockquote></blockquote>
+<a name="control"/>
+<p>
+control = '[A-Z\[\]\\\^_]'<blockquote></blockquote>
+<h1>States</h1>
+<a name="States"/>
+<a name="state1"/>
+<h2>State 1</h2>
+( )
+<p>
+<a href="#rule0">Accept</a>->.<a href="#regexp">regexp</a> <p>
+'(' Shift <a href="#state3">3</a><p>
+'$' Sh/Rd <a href="#rule36">36</a><p>
+'^' Sh/Rd <a href="#rule34">34</a><p>
+'[' Shift <a href="#state5">5</a><p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state6">6</a><p>
+<a href="#regexp">regexp</a> Goto <a href="#state2">2</a><p>
+<a href="#atom">atom</a> Goto <a href="#state4">4</a><p>
+<a href="#nonWordBoundary">nonWordBoundary</a> Gt/Rd <a href="#rule23">23</a><p>
+<a href="#wordBoundary">wordBoundary</a> Gt/Rd <a href="#rule22">22</a><p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> Gt/Rd <a href="#rule21">21</a><p>
+<a href="#endOfLine">endOfLine</a> Gt/Rd <a href="#rule20">20</a><p>
+<a href="#beginningOfInput">beginningOfInput</a> Gt/Rd <a href="#rule19">19</a><p>
+<a href="#beginningOfLine">beginningOfLine</a> Gt/Rd <a href="#rule18">18</a><p>
+<a href="#endOfInput">endOfInput</a> Gt/Rd <a href="#rule17">17</a><p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> Gt/Rd <a href="#rule16">16</a><p>
+<a href="#character">character</a> Gt/Rd <a href="#rule26">26</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule9">9</a><p>
+<a href="#rangeDef">rangeDef</a> Gt/Rd <a href="#rule8">8</a><p>
+<a href="#boundaryMatcher">boundaryMatcher</a> Gt/Rd <a href="#rule7">7</a><p>
+<a href="#piece">piece</a> Gt/Rd <a href="#rule4">4</a><p>
+<a href="#branch">branch</a> Goto <a href="#state7">7</a><a name="state2"/>
+<h2>State 2</h2>
+(<a href="#state1"> 1</a> )
+<p>
+<a href="#rule0">Accept</a>-><a href="#regexp">regexp</a> .<a href="#rule0"> (0)</a><p>
+<a href="#rule1">regexp</a>-><a href="#regexp">regexp</a> .'|' <a href="#branch">branch</a> <p>
+<a href="#rule0">Accept</a>-><a href="#regexp">regexp</a> .<a href="#rule0"> (0)</a><p>
+'|' Shift <a href="#state8">8</a><p>
+Eof Reduce <a href="#rule0">0</a><a name="state3"/>
+<h2>State 3</h2>
+(<a href="#state1"> 1</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state8"> 8</a><a href="#state18"> 18</a> )
+<p>
+<a href="#rule6">piece</a>->'(' .<a href="#regexp">regexp</a> ')' <a href="#quantifier">quantifier</a> <p>
+'(' Shift <a href="#state3">3</a><p>
+'$' Sh/Rd <a href="#rule36">36</a><p>
+'^' Sh/Rd <a href="#rule34">34</a><p>
+'[' Shift <a href="#state5">5</a><p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state6">6</a><p>
+<a href="#regexp">regexp</a> Goto <a href="#state9">9</a><p>
+<a href="#atom">atom</a> Goto <a href="#state4">4</a><p>
+<a href="#nonWordBoundary">nonWordBoundary</a> Gt/Rd <a href="#rule23">23</a><p>
+<a href="#wordBoundary">wordBoundary</a> Gt/Rd <a href="#rule22">22</a><p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> Gt/Rd <a href="#rule21">21</a><p>
+<a href="#endOfLine">endOfLine</a> Gt/Rd <a href="#rule20">20</a><p>
+<a href="#beginningOfInput">beginningOfInput</a> Gt/Rd <a href="#rule19">19</a><p>
+<a href="#beginningOfLine">beginningOfLine</a> Gt/Rd <a href="#rule18">18</a><p>
+<a href="#endOfInput">endOfInput</a> Gt/Rd <a href="#rule17">17</a><p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> Gt/Rd <a href="#rule16">16</a><p>
+<a href="#character">character</a> Gt/Rd <a href="#rule26">26</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule9">9</a><p>
+<a href="#rangeDef">rangeDef</a> Gt/Rd <a href="#rule8">8</a><p>
+<a href="#boundaryMatcher">boundaryMatcher</a> Gt/Rd <a href="#rule7">7</a><p>
+<a href="#piece">piece</a> Gt/Rd <a href="#rule4">4</a><p>
+<a href="#branch">branch</a> Goto <a href="#state7">7</a><a name="state4"/>
+<h2>State 4</h2>
+(<a href="#state1"> 1</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state8"> 8</a><a href="#state18"> 18</a> )
+<p>
+<a href="#rule5">piece</a>-><a href="#atom">atom</a> .<a href="#quantifier">quantifier</a> <p>
+<a href="#rule15">quantifier</a>->.<a href="#rule15"> (15)</a><p>
+<a href="#plus">plus</a> Sh/Rd <a href="#rule14">14</a><p>
+<a href="#star">star</a> Sh/Rd <a href="#rule11">11</a><p>
+<a href="#opt">opt</a> Sh/Rd <a href="#rule10">10</a><p>
+'{' Shift <a href="#state10">10</a><p>
+<a href="#quantifier">quantifier</a> Gt/Rd <a href="#rule5">5</a><p>
+<a href="#braceQ2">braceQ2</a> Gt/Rd <a href="#rule13">13</a><p>
+<a href="#braceQ1">braceQ1</a> Gt/Rd <a href="#rule12">12</a><p>
+'' Reduce <a href="#rule15">15</a><p>
+'^' Reduce <a href="#rule15">15</a><p>
+'$' Reduce <a href="#rule15">15</a><p>
+'[' Reduce <a href="#rule15">15</a><p>
+'.' Reduce <a href="#rule15">15</a><p>
+<a href="#notRegexControl">notRegexControl</a> Reduce <a href="#rule15">15</a><p>
+'(' Reduce <a href="#rule15">15</a><p>
+'|' Reduce <a href="#rule15">15</a><p>
+')' Reduce <a href="#rule15">15</a><p>
+Eof Reduce <a href="#rule15">15</a><a name="state5"/>
+<h2>State 5</h2>
+(<a href="#state1"> 1</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state8"> 8</a><a href="#state18"> 18</a> )
+<p>
+<a href="#rule24">rangeDef</a>->'[' .<a href="#rs1">rs1</a> ']' <p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state12">12</a><p>
+'^' Shift <a href="#state15">15</a><p>
+<a href="#rs1">rs1</a> Goto <a href="#state11">11</a><p>
+<a href="#intersectRange">intersectRange</a> Gt/Rd <a href="#rule43">43</a><p>
+<a href="#inclusiveRange">inclusiveRange</a> Gt/Rd <a href="#rule42">42</a><p>
+<a href="#posRange">posRange</a> Gt/Rd <a href="#rule41">41</a><p>
+<a href="#negRange">negRange</a> Gt/Rd <a href="#rule40">40</a><p>
+<a href="#rangeListEntry">rangeListEntry</a> Gt/Rd <a href="#rule83">83</a><p>
+<a href="#character">character</a> Goto <a href="#state13">13</a><p>
+<a href="#dashRange">dashRange</a> Gt/Rd <a href="#rule117">117</a><p>
+<a href="#negativeCharRange">negativeCharRange</a> Gt/Rd <a href="#rule116">116</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule115">115</a><p>
+<a href="#rangeList">rangeList</a> Goto <a href="#state14">14</a><a name="state6"/>
+<h2>State 6</h2>
+(<a href="#state1"> 1</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state8"> 8</a><a href="#state18"> 18</a> )
+<p>
+<a href="#rule27">charRange</a>->'' .<a href="#characterClass">characterClass</a> <p>
+<a href="#rule28">charRange</a>->'' .'p' <a href="#posixCharacterClass">posixCharacterClass</a> <p>
+<a href="#rule32">endOfPreviousMatch</a>->'' .'G' <p>
+<a href="#rule33">endOfInput</a>->'' .'z' <p>
+<a href="#rule35">beginningOfInput</a>->'' .'A' <p>
+<a href="#rule37">endOfInputOrLine</a>->'' .'Z' <p>
+<a href="#rule38">wordBoundary</a>->'' .'b' <p>
+<a href="#rule39">nonWordBoundary</a>->'' .'B' <p>
+<a href="#rule44">character</a>->'' .<a href="#escaped">escaped</a> <p>
+'B' Sh/Rd <a href="#rule39">39</a><p>
+'b' Sh/Rd <a href="#rule38">38</a><p>
+'Z' Sh/Rd <a href="#rule37">37</a><p>
+'A' Sh/Rd <a href="#rule35">35</a><p>
+'z' Sh/Rd <a href="#rule33">33</a><p>
+'G' Sh/Rd <a href="#rule32">32</a><p>
+'p' Shift <a href="#state16">16</a><p>
+<a href="#characterClass">characterClass</a> Sh/Rd <a href="#rule27">27</a><p>
+<a href="#hex">hex</a> Sh/Rd <a href="#rule80">80</a><p>
+<a href="#octal">octal</a> Sh/Rd <a href="#rule79">79</a><p>
+'c' Shift <a href="#state17">17</a><p>
+<a href="#alert">alert</a> Sh/Rd <a href="#rule77">77</a><p>
+<a href="#regexControlCharacter">regexControlCharacter</a> Sh/Rd <a href="#rule76">76</a><p>
+<a href="#cr">cr</a> Sh/Rd <a href="#rule75">75</a><p>
+<a href="#tab">tab</a> Sh/Rd <a href="#rule74">74</a><p>
+<a href="#hex2">hex2</a> Sh/Rd <a href="#rule73">73</a><p>
+<a href="#esc">esc</a> Sh/Rd <a href="#rule72">72</a><p>
+<a href="#ff">ff</a> Sh/Rd <a href="#rule71">71</a><p>
+<a href="#nl">nl</a> Sh/Rd <a href="#rule70">70</a><p>
+<a href="#escaped">escaped</a> Gt/Rd <a href="#rule44">44</a><a name="state7"/>
+<h2>State 7</h2>
+(<a href="#state1"> 1</a><a href="#state3"> 3</a> )
+<p>
+<a href="#rule2">regexp</a>-><a href="#branch">branch</a> .<a href="#rule2"> (2)</a><p>
+<a href="#rule3">branch</a>-><a href="#branch">branch</a> .<a href="#piece">piece</a> <p>
+<a href="#rule2">regexp</a>-><a href="#branch">branch</a> .<a href="#rule2"> (2)</a><p>
+'(' Shift <a href="#state3">3</a><p>
+'$' Sh/Rd <a href="#rule36">36</a><p>
+'^' Sh/Rd <a href="#rule34">34</a><p>
+'[' Shift <a href="#state5">5</a><p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state6">6</a><p>
+<a href="#piece">piece</a> Gt/Rd <a href="#rule3">3</a><p>
+<a href="#atom">atom</a> Goto <a href="#state4">4</a><p>
+<a href="#nonWordBoundary">nonWordBoundary</a> Gt/Rd <a href="#rule23">23</a><p>
+<a href="#wordBoundary">wordBoundary</a> Gt/Rd <a href="#rule22">22</a><p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> Gt/Rd <a href="#rule21">21</a><p>
+<a href="#endOfLine">endOfLine</a> Gt/Rd <a href="#rule20">20</a><p>
+<a href="#beginningOfInput">beginningOfInput</a> Gt/Rd <a href="#rule19">19</a><p>
+<a href="#beginningOfLine">beginningOfLine</a> Gt/Rd <a href="#rule18">18</a><p>
+<a href="#endOfInput">endOfInput</a> Gt/Rd <a href="#rule17">17</a><p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> Gt/Rd <a href="#rule16">16</a><p>
+<a href="#character">character</a> Gt/Rd <a href="#rule26">26</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule9">9</a><p>
+<a href="#rangeDef">rangeDef</a> Gt/Rd <a href="#rule8">8</a><p>
+<a href="#boundaryMatcher">boundaryMatcher</a> Gt/Rd <a href="#rule7">7</a><p>
+'|' Reduce <a href="#rule2">2</a><p>
+')' Reduce <a href="#rule2">2</a><p>
+Eof Reduce <a href="#rule2">2</a><a name="state8"/>
+<h2>State 8</h2>
+(<a href="#state2"> 2</a><a href="#state9"> 9</a> )
+<p>
+<a href="#rule1">regexp</a>-><a href="#regexp">regexp</a> '|' .<a href="#branch">branch</a> <p>
+'(' Shift <a href="#state3">3</a><p>
+'$' Sh/Rd <a href="#rule36">36</a><p>
+'^' Sh/Rd <a href="#rule34">34</a><p>
+'[' Shift <a href="#state5">5</a><p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state6">6</a><p>
+<a href="#piece">piece</a> Gt/Rd <a href="#rule4">4</a><p>
+<a href="#branch">branch</a> Goto <a href="#state18">18</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule9">9</a><p>
+<a href="#rangeDef">rangeDef</a> Gt/Rd <a href="#rule8">8</a><p>
+<a href="#boundaryMatcher">boundaryMatcher</a> Gt/Rd <a href="#rule7">7</a><p>
+<a href="#character">character</a> Gt/Rd <a href="#rule26">26</a><p>
+<a href="#nonWordBoundary">nonWordBoundary</a> Gt/Rd <a href="#rule23">23</a><p>
+<a href="#wordBoundary">wordBoundary</a> Gt/Rd <a href="#rule22">22</a><p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> Gt/Rd <a href="#rule21">21</a><p>
+<a href="#endOfLine">endOfLine</a> Gt/Rd <a href="#rule20">20</a><p>
+<a href="#beginningOfInput">beginningOfInput</a> Gt/Rd <a href="#rule19">19</a><p>
+<a href="#beginningOfLine">beginningOfLine</a> Gt/Rd <a href="#rule18">18</a><p>
+<a href="#endOfInput">endOfInput</a> Gt/Rd <a href="#rule17">17</a><p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> Gt/Rd <a href="#rule16">16</a><p>
+<a href="#atom">atom</a> Goto <a href="#state4">4</a><a name="state9"/>
+<h2>State 9</h2>
+(<a href="#state3"> 3</a> )
+<p>
+<a href="#rule1">regexp</a>-><a href="#regexp">regexp</a> .'|' <a href="#branch">branch</a> <p>
+<a href="#rule6">piece</a>->'(' <a href="#regexp">regexp</a> .')' <a href="#quantifier">quantifier</a> <p>
+')' Shift <a href="#state19">19</a><p>
+'|' Shift <a href="#state8">8</a><a name="state10"/>
+<h2>State 10</h2>
+(<a href="#state4"> 4</a><a href="#state19"> 19</a> )
+<p>
+<a href="#rule29">braceQ1</a>->'{' .<a href="#digit">digit</a> '}' <p>
+<a href="#rule30">braceQ2</a>->'{' .<a href="#digit">digit</a> ',' '}' <p>
+<a href="#rule31">braceQ2</a>->'{' .<a href="#digit">digit</a> ',' <a href="#digit">digit</a> '}' <p>
+<a href="#digit">digit</a> Shift <a href="#state20">20</a><a name="state11"/>
+<h2>State 11</h2>
+(<a href="#state5"> 5</a> )
+<p>
+<a href="#rule24">rangeDef</a>->'[' <a href="#rs1">rs1</a> .']' <p>
+']' Sh/Rd <a href="#rule24">24</a><a name="state12"/>
+<h2>State 12</h2>
+(<a href="#state5"> 5</a><a href="#state14"> 14</a><a href="#state15"> 15</a><a href="#state24"> 24</a><a href="#state25"> 25</a><a href="#state29"> 29</a> )
+<p>
+<a href="#rule27">charRange</a>->'' .<a href="#characterClass">characterClass</a> <p>
+<a href="#rule28">charRange</a>->'' .'p' <a href="#posixCharacterClass">posixCharacterClass</a> <p>
+<a href="#rule44">character</a>->'' .<a href="#escaped">escaped</a> <p>
+<a href="#rule118">negativeCharRange</a>->'' .'P' <a href="#posixCharacterClass">posixCharacterClass</a> <p>
+'P' Shift <a href="#state21">21</a><p>
+'p' Shift <a href="#state16">16</a><p>
+<a href="#characterClass">characterClass</a> Sh/Rd <a href="#rule27">27</a><p>
+<a href="#hex">hex</a> Sh/Rd <a href="#rule80">80</a><p>
+<a href="#octal">octal</a> Sh/Rd <a href="#rule79">79</a><p>
+'c' Shift <a href="#state17">17</a><p>
+<a href="#alert">alert</a> Sh/Rd <a href="#rule77">77</a><p>
+<a href="#regexControlCharacter">regexControlCharacter</a> Sh/Rd <a href="#rule76">76</a><p>
+<a href="#cr">cr</a> Sh/Rd <a href="#rule75">75</a><p>
+<a href="#tab">tab</a> Sh/Rd <a href="#rule74">74</a><p>
+<a href="#hex2">hex2</a> Sh/Rd <a href="#rule73">73</a><p>
+<a href="#esc">esc</a> Sh/Rd <a href="#rule72">72</a><p>
+<a href="#ff">ff</a> Sh/Rd <a href="#rule71">71</a><p>
+<a href="#nl">nl</a> Sh/Rd <a href="#rule70">70</a><p>
+<a href="#escaped">escaped</a> Gt/Rd <a href="#rule44">44</a><a name="state13"/>
+<h2>State 13</h2>
+(<a href="#state5"> 5</a><a href="#state14"> 14</a><a href="#state15"> 15</a><a href="#state24"> 24</a><a href="#state25"> 25</a><a href="#state29"> 29</a> )
+<p>
+<a href="#rule26">charRange</a>-><a href="#character">character</a> .<a href="#rule26"> (26)</a><p>
+<a href="#rule119">dashRange</a>-><a href="#character">character</a> .'-' <a href="#character">character</a> <p>
+<a href="#rule26">charRange</a>-><a href="#character">character</a> .<a href="#rule26"> (26)</a><p>
+'-' Shift <a href="#state22">22</a><p>
+'[' Reduce <a href="#rule26">26</a><p>
+'&amp;&amp;' Reduce <a href="#rule26">26</a><p>
+'.' Reduce <a href="#rule26">26</a><p>
+'' Reduce <a href="#rule26">26</a><p>
+<a href="#notRegexControl">notRegexControl</a> Reduce <a href="#rule26">26</a><p>
+']' Reduce <a href="#rule26">26</a><a name="state14"/>
+<h2>State 14</h2>
+(<a href="#state5"> 5</a><a href="#state24"> 24</a><a href="#state29"> 29</a> )
+<p>
+<a href="#rule67">posRange</a>-><a href="#rangeList">rangeList</a> .<a href="#rule67"> (67)</a><p>
+<a href="#rule68">inclusiveRange</a>-><a href="#rangeList">rangeList</a> .'[' <a href="#rs1">rs1</a> ']' <p>
+<a href="#rule69">intersectRange</a>-><a href="#rangeList">rangeList</a> .'&amp;&amp;' '[' <a href="#rs1">rs1</a> ']' <p>
+<a href="#rule84">rangeList</a>-><a href="#rangeList">rangeList</a> .<a href="#rangeListEntry">rangeListEntry</a> <p>
+<a href="#rule67">posRange</a>-><a href="#rangeList">rangeList</a> .<a href="#rule67"> (67)</a><p>
+'&amp;&amp;' Shift <a href="#state23">23</a><p>
+'[' Shift <a href="#state24">24</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state12">12</a><p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#rangeListEntry">rangeListEntry</a> Gt/Rd <a href="#rule84">84</a><p>
+<a href="#dashRange">dashRange</a> Gt/Rd <a href="#rule117">117</a><p>
+<a href="#negativeCharRange">negativeCharRange</a> Gt/Rd <a href="#rule116">116</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule115">115</a><p>
+<a href="#character">character</a> Goto <a href="#state13">13</a><p>
+']' Reduce <a href="#rule67">67</a><a name="state15"/>
+<h2>State 15</h2>
+(<a href="#state5"> 5</a><a href="#state24"> 24</a><a href="#state29"> 29</a> )
+<p>
+<a href="#rule66">negRange</a>->'^' .<a href="#rangeList">rangeList</a> <p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state12">12</a><p>
+<a href="#rangeList">rangeList</a> Goto <a href="#state25">25</a><p>
+<a href="#rangeListEntry">rangeListEntry</a> Gt/Rd <a href="#rule83">83</a><p>
+<a href="#character">character</a> Goto <a href="#state13">13</a><p>
+<a href="#dashRange">dashRange</a> Gt/Rd <a href="#rule117">117</a><p>
+<a href="#negativeCharRange">negativeCharRange</a> Gt/Rd <a href="#rule116">116</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule115">115</a><a name="state16"/>
+<h2>State 16</h2>
+(<a href="#state6"> 6</a><a href="#state12"> 12</a> )
+<p>
+<a href="#rule28">charRange</a>->'' 'p' .<a href="#posixCharacterClass">posixCharacterClass</a> <p>
+<a href="#posixSpace">posixSpace</a> Sh/Rd <a href="#rule65">65</a><p>
+<a href="#posixXDigit">posixXDigit</a> Sh/Rd <a href="#rule64">64</a><p>
+<a href="#javaMirrored">javaMirrored</a> Sh/Rd <a href="#rule63">63</a><p>
+<a href="#javaUpperCase">javaUpperCase</a> Sh/Rd <a href="#rule61">61</a><p>
+<a href="#posixPrint">posixPrint</a> Sh/Rd <a href="#rule60">60</a><p>
+<a href="#posixAlpha">posixAlpha</a> Sh/Rd <a href="#rule59">59</a><p>
+<a href="#posixPunct">posixPunct</a> Sh/Rd <a href="#rule57">57</a><p>
+<a href="#posixBlank">posixBlank</a> Sh/Rd <a href="#rule56">56</a><p>
+<a href="#javaLowerCase">javaLowerCase</a> Sh/Rd <a href="#rule55">55</a><p>
+<a href="#posixUpper">posixUpper</a> Sh/Rd <a href="#rule54">54</a><p>
+<a href="#posixCntrl">posixCntrl</a> Sh/Rd <a href="#rule53">53</a><p>
+<a href="#posixASCII">posixASCII</a> Sh/Rd <a href="#rule52">52</a><p>
+<a href="#posixAlnum">posixAlnum</a> Sh/Rd <a href="#rule51">51</a><p>
+<a href="#javaWhitespace">javaWhitespace</a> Sh/Rd <a href="#rule50">50</a><p>
+<a href="#posixLower">posixLower</a> Sh/Rd <a href="#rule49">49</a><p>
+<a href="#posixGraph">posixGraph</a> Sh/Rd <a href="#rule48">48</a><p>
+<a href="#posixDigit">posixDigit</a> Sh/Rd <a href="#rule47">47</a><p>
+<a href="#unicodeLetter">unicodeLetter</a> Sh/Rd <a href="#rule46">46</a><p>
+<a href="#surrogate">surrogate</a> Sh/Rd <a href="#rule114">114</a><p>
+<a href="#connectorPunctuation">connectorPunctuation</a> Sh/Rd <a href="#rule113">113</a><p>
+<a href="#controlCategory">controlCategory</a> Sh/Rd <a href="#rule112">112</a><p>
+<a href="#spaceSeparator">spaceSeparator</a> Sh/Rd <a href="#rule111">111</a><p>
+<a href="#uppercaseLetter">uppercaseLetter</a> Sh/Rd <a href="#rule110">110</a><p>
+<a href="#modifierLetter">modifierLetter</a> Sh/Rd <a href="#rule109">109</a><p>
+<a href="#modifierSymbol">modifierSymbol</a> Sh/Rd <a href="#rule108">108</a><p>
+<a href="#otherSymbol">otherSymbol</a> Sh/Rd <a href="#rule107">107</a><p>
+<a href="#titleCaseLetter">titleCaseLetter</a> Sh/Rd <a href="#rule106">106</a><p>
+<a href="#otherLetter">otherLetter</a> Sh/Rd <a href="#rule105">105</a><p>
+<a href="#startPunctuation">startPunctuation</a> Sh/Rd <a href="#rule104">104</a><p>
+<a href="#lowercaseLetter">lowercaseLetter</a> Sh/Rd <a href="#rule103">103</a><p>
+<a href="#nonSpacingMark">nonSpacingMark</a> Sh/Rd <a href="#rule102">102</a><p>
+<a href="#paragraphSeparator">paragraphSeparator</a> Sh/Rd <a href="#rule101">101</a><p>
+<a href="#otherPunctuation">otherPunctuation</a> Sh/Rd <a href="#rule100">100</a><p>
+<a href="#endPunctuation">endPunctuation</a> Sh/Rd <a href="#rule99">99</a><p>
+<a href="#otherNumber">otherNumber</a> Sh/Rd <a href="#rule98">98</a><p>
+<a href="#decimalDigitNumber">decimalDigitNumber</a> Sh/Rd <a href="#rule97">97</a><p>
+<a href="#unassigned">unassigned</a> Sh/Rd <a href="#rule96">96</a><p>
+<a href="#lineSeparator">lineSeparator</a> Sh/Rd <a href="#rule95">95</a><p>
+<a href="#format">format</a> Sh/Rd <a href="#rule94">94</a><p>
+<a href="#finalQuotePunctuation">finalQuotePunctuation</a> Sh/Rd <a href="#rule93">93</a><p>
+<a href="#initialQuotePunctuation">initialQuotePunctuation</a> Sh/Rd <a href="#rule92">92</a><p>
+<a href="#privateUse">privateUse</a> Sh/Rd <a href="#rule91">91</a><p>
+<a href="#currencySymbol">currencySymbol</a> Sh/Rd <a href="#rule90">90</a><p>
+<a href="#letterNumber">letterNumber</a> Sh/Rd <a href="#rule89">89</a><p>
+<a href="#enclosingMark">enclosingMark</a> Sh/Rd <a href="#rule88">88</a><p>
+<a href="#dashPunctuation">dashPunctuation</a> Sh/Rd <a href="#rule87">87</a><p>
+<a href="#combiningSpacingMark">combiningSpacingMark</a> Sh/Rd <a href="#rule86">86</a><p>
+<a href="#mathSymbol">mathSymbol</a> Sh/Rd <a href="#rule85">85</a><p>
+'{In' Shift <a href="#state26">26</a><p>
+<a href="#posixCharacterClass">posixCharacterClass</a> Gt/Rd <a href="#rule28">28</a><p>
+<a href="#unicodeCategory">unicodeCategory</a> Gt/Rd <a href="#rule62">62</a><p>
+<a href="#unicodeBlock">unicodeBlock</a> Gt/Rd <a href="#rule58">58</a><p>
+<a href="#category">category</a> Gt/Rd <a href="#rule82">82</a><a name="state17"/>
+<h2>State 17</h2>
+(<a href="#state6"> 6</a><a href="#state12"> 12</a><a href="#state28"> 28</a> )
+<p>
+<a href="#rule78">escaped</a>->'c' .<a href="#control">control</a> <p>
+<a href="#control">control</a> Sh/Rd <a href="#rule78">78</a><a name="state18"/>
+<h2>State 18</h2>
+(<a href="#state8"> 8</a> )
+<p>
+<a href="#rule1">regexp</a>-><a href="#regexp">regexp</a> '|' <a href="#branch">branch</a> .<a href="#rule1"> (1)</a><p>
+<a href="#rule3">branch</a>-><a href="#branch">branch</a> .<a href="#piece">piece</a> <p>
+<a href="#rule1">regexp</a>-><a href="#regexp">regexp</a> '|' <a href="#branch">branch</a> .<a href="#rule1"> (1)</a><p>
+'(' Shift <a href="#state3">3</a><p>
+'$' Sh/Rd <a href="#rule36">36</a><p>
+'^' Sh/Rd <a href="#rule34">34</a><p>
+'[' Shift <a href="#state5">5</a><p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state6">6</a><p>
+<a href="#piece">piece</a> Gt/Rd <a href="#rule3">3</a><p>
+<a href="#atom">atom</a> Goto <a href="#state4">4</a><p>
+<a href="#nonWordBoundary">nonWordBoundary</a> Gt/Rd <a href="#rule23">23</a><p>
+<a href="#wordBoundary">wordBoundary</a> Gt/Rd <a href="#rule22">22</a><p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> Gt/Rd <a href="#rule21">21</a><p>
+<a href="#endOfLine">endOfLine</a> Gt/Rd <a href="#rule20">20</a><p>
+<a href="#beginningOfInput">beginningOfInput</a> Gt/Rd <a href="#rule19">19</a><p>
+<a href="#beginningOfLine">beginningOfLine</a> Gt/Rd <a href="#rule18">18</a><p>
+<a href="#endOfInput">endOfInput</a> Gt/Rd <a href="#rule17">17</a><p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> Gt/Rd <a href="#rule16">16</a><p>
+<a href="#character">character</a> Gt/Rd <a href="#rule26">26</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule9">9</a><p>
+<a href="#rangeDef">rangeDef</a> Gt/Rd <a href="#rule8">8</a><p>
+<a href="#boundaryMatcher">boundaryMatcher</a> Gt/Rd <a href="#rule7">7</a><p>
+'|' Reduce <a href="#rule1">1</a><p>
+')' Reduce <a href="#rule1">1</a><p>
+Eof Reduce <a href="#rule1">1</a><a name="state19"/>
+<h2>State 19</h2>
+(<a href="#state9"> 9</a> )
+<p>
+<a href="#rule6">piece</a>->'(' <a href="#regexp">regexp</a> ')' .<a href="#quantifier">quantifier</a> <p>
+<a href="#rule15">quantifier</a>->.<a href="#rule15"> (15)</a><p>
+<a href="#plus">plus</a> Sh/Rd <a href="#rule14">14</a><p>
+<a href="#star">star</a> Sh/Rd <a href="#rule11">11</a><p>
+<a href="#opt">opt</a> Sh/Rd <a href="#rule10">10</a><p>
+'{' Shift <a href="#state10">10</a><p>
+<a href="#quantifier">quantifier</a> Gt/Rd <a href="#rule6">6</a><p>
+<a href="#braceQ2">braceQ2</a> Gt/Rd <a href="#rule13">13</a><p>
+<a href="#braceQ1">braceQ1</a> Gt/Rd <a href="#rule12">12</a><p>
+'' Reduce <a href="#rule15">15</a><p>
+'^' Reduce <a href="#rule15">15</a><p>
+'$' Reduce <a href="#rule15">15</a><p>
+'[' Reduce <a href="#rule15">15</a><p>
+'.' Reduce <a href="#rule15">15</a><p>
+<a href="#notRegexControl">notRegexControl</a> Reduce <a href="#rule15">15</a><p>
+'(' Reduce <a href="#rule15">15</a><p>
+'|' Reduce <a href="#rule15">15</a><p>
+')' Reduce <a href="#rule15">15</a><p>
+Eof Reduce <a href="#rule15">15</a><a name="state20"/>
+<h2>State 20</h2>
+(<a href="#state10"> 10</a> )
+<p>
+<a href="#rule29">braceQ1</a>->'{' <a href="#digit">digit</a> .'}' <p>
+<a href="#rule30">braceQ2</a>->'{' <a href="#digit">digit</a> .',' '}' <p>
+<a href="#rule31">braceQ2</a>->'{' <a href="#digit">digit</a> .',' <a href="#digit">digit</a> '}' <p>
+',' Shift <a href="#state27">27</a><p>
+'}' Sh/Rd <a href="#rule29">29</a><a name="state21"/>
+<h2>State 21</h2>
+(<a href="#state12"> 12</a> )
+<p>
+<a href="#rule118">negativeCharRange</a>->'' 'P' .<a href="#posixCharacterClass">posixCharacterClass</a> <p>
+<a href="#posixSpace">posixSpace</a> Sh/Rd <a href="#rule65">65</a><p>
+<a href="#posixXDigit">posixXDigit</a> Sh/Rd <a href="#rule64">64</a><p>
+<a href="#javaMirrored">javaMirrored</a> Sh/Rd <a href="#rule63">63</a><p>
+<a href="#javaUpperCase">javaUpperCase</a> Sh/Rd <a href="#rule61">61</a><p>
+<a href="#posixPrint">posixPrint</a> Sh/Rd <a href="#rule60">60</a><p>
+<a href="#posixAlpha">posixAlpha</a> Sh/Rd <a href="#rule59">59</a><p>
+<a href="#posixPunct">posixPunct</a> Sh/Rd <a href="#rule57">57</a><p>
+<a href="#posixBlank">posixBlank</a> Sh/Rd <a href="#rule56">56</a><p>
+<a href="#javaLowerCase">javaLowerCase</a> Sh/Rd <a href="#rule55">55</a><p>
+<a href="#posixUpper">posixUpper</a> Sh/Rd <a href="#rule54">54</a><p>
+<a href="#posixCntrl">posixCntrl</a> Sh/Rd <a href="#rule53">53</a><p>
+<a href="#posixASCII">posixASCII</a> Sh/Rd <a href="#rule52">52</a><p>
+<a href="#posixAlnum">posixAlnum</a> Sh/Rd <a href="#rule51">51</a><p>
+<a href="#javaWhitespace">javaWhitespace</a> Sh/Rd <a href="#rule50">50</a><p>
+<a href="#posixLower">posixLower</a> Sh/Rd <a href="#rule49">49</a><p>
+<a href="#posixGraph">posixGraph</a> Sh/Rd <a href="#rule48">48</a><p>
+<a href="#posixDigit">posixDigit</a> Sh/Rd <a href="#rule47">47</a><p>
+<a href="#unicodeLetter">unicodeLetter</a> Sh/Rd <a href="#rule46">46</a><p>
+<a href="#surrogate">surrogate</a> Sh/Rd <a href="#rule114">114</a><p>
+<a href="#connectorPunctuation">connectorPunctuation</a> Sh/Rd <a href="#rule113">113</a><p>
+<a href="#controlCategory">controlCategory</a> Sh/Rd <a href="#rule112">112</a><p>
+<a href="#spaceSeparator">spaceSeparator</a> Sh/Rd <a href="#rule111">111</a><p>
+<a href="#uppercaseLetter">uppercaseLetter</a> Sh/Rd <a href="#rule110">110</a><p>
+<a href="#modifierLetter">modifierLetter</a> Sh/Rd <a href="#rule109">109</a><p>
+<a href="#modifierSymbol">modifierSymbol</a> Sh/Rd <a href="#rule108">108</a><p>
+<a href="#otherSymbol">otherSymbol</a> Sh/Rd <a href="#rule107">107</a><p>
+<a href="#titleCaseLetter">titleCaseLetter</a> Sh/Rd <a href="#rule106">106</a><p>
+<a href="#otherLetter">otherLetter</a> Sh/Rd <a href="#rule105">105</a><p>
+<a href="#startPunctuation">startPunctuation</a> Sh/Rd <a href="#rule104">104</a><p>
+<a href="#lowercaseLetter">lowercaseLetter</a> Sh/Rd <a href="#rule103">103</a><p>
+<a href="#nonSpacingMark">nonSpacingMark</a> Sh/Rd <a href="#rule102">102</a><p>
+<a href="#paragraphSeparator">paragraphSeparator</a> Sh/Rd <a href="#rule101">101</a><p>
+<a href="#otherPunctuation">otherPunctuation</a> Sh/Rd <a href="#rule100">100</a><p>
+<a href="#endPunctuation">endPunctuation</a> Sh/Rd <a href="#rule99">99</a><p>
+<a href="#otherNumber">otherNumber</a> Sh/Rd <a href="#rule98">98</a><p>
+<a href="#decimalDigitNumber">decimalDigitNumber</a> Sh/Rd <a href="#rule97">97</a><p>
+<a href="#unassigned">unassigned</a> Sh/Rd <a href="#rule96">96</a><p>
+<a href="#lineSeparator">lineSeparator</a> Sh/Rd <a href="#rule95">95</a><p>
+<a href="#format">format</a> Sh/Rd <a href="#rule94">94</a><p>
+<a href="#finalQuotePunctuation">finalQuotePunctuation</a> Sh/Rd <a href="#rule93">93</a><p>
+<a href="#initialQuotePunctuation">initialQuotePunctuation</a> Sh/Rd <a href="#rule92">92</a><p>
+<a href="#privateUse">privateUse</a> Sh/Rd <a href="#rule91">91</a><p>
+<a href="#currencySymbol">currencySymbol</a> Sh/Rd <a href="#rule90">90</a><p>
+<a href="#letterNumber">letterNumber</a> Sh/Rd <a href="#rule89">89</a><p>
+<a href="#enclosingMark">enclosingMark</a> Sh/Rd <a href="#rule88">88</a><p>
+<a href="#dashPunctuation">dashPunctuation</a> Sh/Rd <a href="#rule87">87</a><p>
+<a href="#combiningSpacingMark">combiningSpacingMark</a> Sh/Rd <a href="#rule86">86</a><p>
+<a href="#mathSymbol">mathSymbol</a> Sh/Rd <a href="#rule85">85</a><p>
+'{In' Shift <a href="#state26">26</a><p>
+<a href="#posixCharacterClass">posixCharacterClass</a> Gt/Rd <a href="#rule118">118</a><p>
+<a href="#unicodeCategory">unicodeCategory</a> Gt/Rd <a href="#rule62">62</a><p>
+<a href="#unicodeBlock">unicodeBlock</a> Gt/Rd <a href="#rule58">58</a><p>
+<a href="#category">category</a> Gt/Rd <a href="#rule82">82</a><a name="state22"/>
+<h2>State 22</h2>
+(<a href="#state13"> 13</a> )
+<p>
+<a href="#rule119">dashRange</a>-><a href="#character">character</a> '-' .<a href="#character">character</a> <p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state28">28</a><p>
+<a href="#character">character</a> Gt/Rd <a href="#rule119">119</a><a name="state23"/>
+<h2>State 23</h2>
+(<a href="#state14"> 14</a> )
+<p>
+<a href="#rule69">intersectRange</a>-><a href="#rangeList">rangeList</a> '&amp;&amp;' .'[' <a href="#rs1">rs1</a> ']' <p>
+'[' Shift <a href="#state29">29</a><a name="state24"/>
+<h2>State 24</h2>
+(<a href="#state14"> 14</a> )
+<p>
+<a href="#rule68">inclusiveRange</a>-><a href="#rangeList">rangeList</a> '[' .<a href="#rs1">rs1</a> ']' <p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state12">12</a><p>
+'^' Shift <a href="#state15">15</a><p>
+<a href="#rs1">rs1</a> Goto <a href="#state30">30</a><p>
+<a href="#intersectRange">intersectRange</a> Gt/Rd <a href="#rule43">43</a><p>
+<a href="#inclusiveRange">inclusiveRange</a> Gt/Rd <a href="#rule42">42</a><p>
+<a href="#posRange">posRange</a> Gt/Rd <a href="#rule41">41</a><p>
+<a href="#negRange">negRange</a> Gt/Rd <a href="#rule40">40</a><p>
+<a href="#rangeListEntry">rangeListEntry</a> Gt/Rd <a href="#rule83">83</a><p>
+<a href="#character">character</a> Goto <a href="#state13">13</a><p>
+<a href="#dashRange">dashRange</a> Gt/Rd <a href="#rule117">117</a><p>
+<a href="#negativeCharRange">negativeCharRange</a> Gt/Rd <a href="#rule116">116</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule115">115</a><p>
+<a href="#rangeList">rangeList</a> Goto <a href="#state14">14</a><a name="state25"/>
+<h2>State 25</h2>
+(<a href="#state15"> 15</a> )
+<p>
+<a href="#rule66">negRange</a>->'^' <a href="#rangeList">rangeList</a> .<a href="#rule66"> (66)</a><p>
+<a href="#rule84">rangeList</a>-><a href="#rangeList">rangeList</a> .<a href="#rangeListEntry">rangeListEntry</a> <p>
+<a href="#rule66">negRange</a>->'^' <a href="#rangeList">rangeList</a> .<a href="#rule66"> (66)</a><p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state12">12</a><p>
+<a href="#rangeListEntry">rangeListEntry</a> Gt/Rd <a href="#rule84">84</a><p>
+<a href="#dashRange">dashRange</a> Gt/Rd <a href="#rule117">117</a><p>
+<a href="#negativeCharRange">negativeCharRange</a> Gt/Rd <a href="#rule116">116</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule115">115</a><p>
+<a href="#character">character</a> Goto <a href="#state13">13</a><p>
+']' Reduce <a href="#rule66">66</a><a name="state26"/>
+<h2>State 26</h2>
+(<a href="#state16"> 16</a><a href="#state21"> 21</a> )
+<p>
+<a href="#rule81">unicodeBlock</a>->'{In' .<a href="#blockName">blockName</a> '}' <p>
+<a href="#blockName">blockName</a> Shift <a href="#state31">31</a><a name="state27"/>
+<h2>State 27</h2>
+(<a href="#state20"> 20</a> )
+<p>
+<a href="#rule30">braceQ2</a>->'{' <a href="#digit">digit</a> ',' .'}' <p>
+<a href="#rule31">braceQ2</a>->'{' <a href="#digit">digit</a> ',' .<a href="#digit">digit</a> '}' <p>
+<a href="#digit">digit</a> Shift <a href="#state32">32</a><p>
+'}' Sh/Rd <a href="#rule30">30</a><a name="state28"/>
+<h2>State 28</h2>
+(<a href="#state22"> 22</a> )
+<p>
+<a href="#rule44">character</a>->'' .<a href="#escaped">escaped</a> <p>
+<a href="#hex">hex</a> Sh/Rd <a href="#rule80">80</a><p>
+<a href="#octal">octal</a> Sh/Rd <a href="#rule79">79</a><p>
+'c' Shift <a href="#state17">17</a><p>
+<a href="#alert">alert</a> Sh/Rd <a href="#rule77">77</a><p>
+<a href="#regexControlCharacter">regexControlCharacter</a> Sh/Rd <a href="#rule76">76</a><p>
+<a href="#cr">cr</a> Sh/Rd <a href="#rule75">75</a><p>
+<a href="#tab">tab</a> Sh/Rd <a href="#rule74">74</a><p>
+<a href="#hex2">hex2</a> Sh/Rd <a href="#rule73">73</a><p>
+<a href="#esc">esc</a> Sh/Rd <a href="#rule72">72</a><p>
+<a href="#ff">ff</a> Sh/Rd <a href="#rule71">71</a><p>
+<a href="#nl">nl</a> Sh/Rd <a href="#rule70">70</a><p>
+<a href="#escaped">escaped</a> Gt/Rd <a href="#rule44">44</a><a name="state29"/>
+<h2>State 29</h2>
+(<a href="#state23"> 23</a> )
+<p>
+<a href="#rule69">intersectRange</a>-><a href="#rangeList">rangeList</a> '&amp;&amp;' '[' .<a href="#rs1">rs1</a> ']' <p>
+'.' Sh/Rd <a href="#rule25">25</a><p>
+<a href="#notRegexControl">notRegexControl</a> Sh/Rd <a href="#rule45">45</a><p>
+'' Shift <a href="#state12">12</a><p>
+'^' Shift <a href="#state15">15</a><p>
+<a href="#rs1">rs1</a> Goto <a href="#state33">33</a><p>
+<a href="#intersectRange">intersectRange</a> Gt/Rd <a href="#rule43">43</a><p>
+<a href="#inclusiveRange">inclusiveRange</a> Gt/Rd <a href="#rule42">42</a><p>
+<a href="#posRange">posRange</a> Gt/Rd <a href="#rule41">41</a><p>
+<a href="#negRange">negRange</a> Gt/Rd <a href="#rule40">40</a><p>
+<a href="#rangeListEntry">rangeListEntry</a> Gt/Rd <a href="#rule83">83</a><p>
+<a href="#character">character</a> Goto <a href="#state13">13</a><p>
+<a href="#dashRange">dashRange</a> Gt/Rd <a href="#rule117">117</a><p>
+<a href="#negativeCharRange">negativeCharRange</a> Gt/Rd <a href="#rule116">116</a><p>
+<a href="#charRange">charRange</a> Gt/Rd <a href="#rule115">115</a><p>
+<a href="#rangeList">rangeList</a> Goto <a href="#state14">14</a><a name="state30"/>
+<h2>State 30</h2>
+(<a href="#state24"> 24</a> )
+<p>
+<a href="#rule68">inclusiveRange</a>-><a href="#rangeList">rangeList</a> '[' <a href="#rs1">rs1</a> .']' <p>
+']' Sh/Rd <a href="#rule68">68</a><a name="state31"/>
+<h2>State 31</h2>
+(<a href="#state26"> 26</a> )
+<p>
+<a href="#rule81">unicodeBlock</a>->'{In' <a href="#blockName">blockName</a> .'}' <p>
+'}' Sh/Rd <a href="#rule81">81</a><a name="state32"/>
+<h2>State 32</h2>
+(<a href="#state27"> 27</a> )
+<p>
+<a href="#rule31">braceQ2</a>->'{' <a href="#digit">digit</a> ',' <a href="#digit">digit</a> .'}' <p>
+'}' Sh/Rd <a href="#rule31">31</a><a name="state33"/>
+<h2>State 33</h2>
+(<a href="#state29"> 29</a> )
+<p>
+<a href="#rule69">intersectRange</a>-><a href="#rangeList">rangeList</a> '&amp;&amp;' '[' <a href="#rs1">rs1</a> .']' <p>
+']' Sh/Rd <a href="#rule69">69</a><h1>First Map for Nonterminals</h1>
+<a name="FirstMap"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; { '\\' '\^' '\$' '\[' '\.' <a href="#notRegexControl">notRegexControl</a> '\('}
+<p>
+<a href="#regexp">regexp</a> ==&gt;&gt; { '\\' '\^' '\$' '\[' '\.' <a href="#notRegexControl">notRegexControl</a> '\('}
+<p>
+<a href="#branch">branch</a> ==&gt;&gt; { '\\' '\^' '\$' '\[' '\.' <a href="#notRegexControl">notRegexControl</a> '\('}
+<p>
+<a href="#piece">piece</a> ==&gt;&gt; { '\\' '\^' '\$' '\[' '\.' <a href="#notRegexControl">notRegexControl</a> '\('}
+<p>
+<a href="#atom">atom</a> ==&gt;&gt; { '\\' '\^' '\$' '\[' '\.' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#quantifier">quantifier</a> ==&gt;&gt; { <a href="#opt">opt</a> <a href="#star">star</a> '\{' <a href="#plus">plus</a> <a href="#Empty">Empty</a>}
+<p>
+<a href="#boundaryMatcher">boundaryMatcher</a> ==&gt;&gt; { '\\' '\^' '\$'}
+<p>
+<a href="#rangeDef">rangeDef</a> ==&gt;&gt; { '\['}
+<p>
+<a href="#charRange">charRange</a> ==&gt;&gt; { '\.' '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#braceQ1">braceQ1</a> ==&gt;&gt; { '\{'}
+<p>
+<a href="#braceQ2">braceQ2</a> ==&gt;&gt; { '\{'}
+<p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> ==&gt;&gt; { '\\'}
+<p>
+<a href="#endOfInput">endOfInput</a> ==&gt;&gt; { '\\'}
+<p>
+<a href="#beginningOfLine">beginningOfLine</a> ==&gt;&gt; { '\^'}
+<p>
+<a href="#beginningOfInput">beginningOfInput</a> ==&gt;&gt; { '\\'}
+<p>
+<a href="#endOfLine">endOfLine</a> ==&gt;&gt; { '\$'}
+<p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> ==&gt;&gt; { '\\'}
+<p>
+<a href="#wordBoundary">wordBoundary</a> ==&gt;&gt; { '\\'}
+<p>
+<a href="#nonWordBoundary">nonWordBoundary</a> ==&gt;&gt; { '\\'}
+<p>
+<a href="#rs1">rs1</a> ==&gt;&gt; { '\^' '\.' '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#character">character</a> ==&gt;&gt; { '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#posixCharacterClass">posixCharacterClass</a> ==&gt;&gt; { <a href="#unicodeLetter">unicodeLetter</a> <a href="#posixDigit">posixDigit</a> <a href="#posixGraph">posixGraph</a> <a href="#posixLower">posixLower</a> <a href="#javaWhitespace">javaWhitespace</a> <a href="#posixAlnum">posixAlnum</a> <a href="#posixASCII">posixASCII</a> <a href="#posixCntrl">posixCntrl</a> <a href="#posixUpper">posixUpper</a> <a href="#javaLowerCase">javaLowerCase</a> <a href="#posixBlank">posixBlank</a> <a href="#posixPunct">posixPunct</a> '\{In' <a href="#posixAlpha">posixAlpha</a> <a href="#posixPrint">posixPrint</a> <a href="#javaUpperCase">javaUpperCase</a> <a href="#mathSymbol">mathSymbol</a> <a href="#combiningSpacingMark">combiningSpacingMark</a> <a href="#dashPunctuation">dashPunctuation</a> <a href="#enclosingMark">enclosingMark</a> <a href="#letterNumber">letterNumber</a> <a href="#currencySymbol">currencySymbol</a> <a href="#privateUse">privateUse</a> <a href="#initialQuotePunctuation">initialQuotePunctuation</a> <a href="#finalQuotePunctuation">finalQuotePunctuation</a> <a href="#format">format</a> <a href="#lineSeparator">lineSeparator</a> <a href="#unassigned">unassigned</a> <a href="#decimalDigitNumber">decimalDigitNumber</a> <a href="#otherNumber">otherNumber</a> <a href="#endPunctuation">endPunctuation</a> <a href="#otherPunctuation">otherPunctuation</a> <a href="#paragraphSeparator">paragraphSeparator</a> <a href="#nonSpacingMark">nonSpacingMark</a> <a href="#lowercaseLetter">lowercaseLetter</a> <a href="#startPunctuation">startPunctuation</a> <a href="#otherLetter">otherLetter</a> <a href="#titleCaseLetter">titleCaseLetter</a> <a href="#otherSymbol">otherSymbol</a> <a href="#modifierSymbol">modifierSymbol</a> <a href="#modifierLetter">modifierLetter</a> <a href="#uppercaseLetter">uppercaseLetter</a> <a href="#spaceSeparator">spaceSeparator</a> <a href="#controlCategory">controlCategory</a> <a href="#connectorPunctuation">connectorPunctuation</a> <a href="#surrogate">surrogate</a> <a href="#javaMirrored">javaMirrored</a> <a href="#posixXDigit">posixXDigit</a> <a href="#posixSpace">posixSpace</a>}
+<p>
+<a href="#negRange">negRange</a> ==&gt;&gt; { '\^'}
+<p>
+<a href="#posRange">posRange</a> ==&gt;&gt; { '\.' '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#inclusiveRange">inclusiveRange</a> ==&gt;&gt; { '\.' '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#intersectRange">intersectRange</a> ==&gt;&gt; { '\.' '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#escaped">escaped</a> ==&gt;&gt; { <a href="#nl">nl</a> <a href="#ff">ff</a> <a href="#esc">esc</a> <a href="#hex2">hex2</a> <a href="#tab">tab</a> <a href="#cr">cr</a> <a href="#regexControlCharacter">regexControlCharacter</a> <a href="#alert">alert</a> 'c' <a href="#octal">octal</a> <a href="#hex">hex</a>}
+<p>
+<a href="#unicodeBlock">unicodeBlock</a> ==&gt;&gt; { '\{In'}
+<p>
+<a href="#unicodeCategory">unicodeCategory</a> ==&gt;&gt; { <a href="#mathSymbol">mathSymbol</a> <a href="#combiningSpacingMark">combiningSpacingMark</a> <a href="#dashPunctuation">dashPunctuation</a> <a href="#enclosingMark">enclosingMark</a> <a href="#letterNumber">letterNumber</a> <a href="#currencySymbol">currencySymbol</a> <a href="#privateUse">privateUse</a> <a href="#initialQuotePunctuation">initialQuotePunctuation</a> <a href="#finalQuotePunctuation">finalQuotePunctuation</a> <a href="#format">format</a> <a href="#lineSeparator">lineSeparator</a> <a href="#unassigned">unassigned</a> <a href="#decimalDigitNumber">decimalDigitNumber</a> <a href="#otherNumber">otherNumber</a> <a href="#endPunctuation">endPunctuation</a> <a href="#otherPunctuation">otherPunctuation</a> <a href="#paragraphSeparator">paragraphSeparator</a> <a href="#nonSpacingMark">nonSpacingMark</a> <a href="#lowercaseLetter">lowercaseLetter</a> <a href="#startPunctuation">startPunctuation</a> <a href="#otherLetter">otherLetter</a> <a href="#titleCaseLetter">titleCaseLetter</a> <a href="#otherSymbol">otherSymbol</a> <a href="#modifierSymbol">modifierSymbol</a> <a href="#modifierLetter">modifierLetter</a> <a href="#uppercaseLetter">uppercaseLetter</a> <a href="#spaceSeparator">spaceSeparator</a> <a href="#controlCategory">controlCategory</a> <a href="#connectorPunctuation">connectorPunctuation</a> <a href="#surrogate">surrogate</a>}
+<p>
+<a href="#rangeList">rangeList</a> ==&gt;&gt; { '\.' '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#category">category</a> ==&gt;&gt; { <a href="#mathSymbol">mathSymbol</a> <a href="#combiningSpacingMark">combiningSpacingMark</a> <a href="#dashPunctuation">dashPunctuation</a> <a href="#enclosingMark">enclosingMark</a> <a href="#letterNumber">letterNumber</a> <a href="#currencySymbol">currencySymbol</a> <a href="#privateUse">privateUse</a> <a href="#initialQuotePunctuation">initialQuotePunctuation</a> <a href="#finalQuotePunctuation">finalQuotePunctuation</a> <a href="#format">format</a> <a href="#lineSeparator">lineSeparator</a> <a href="#unassigned">unassigned</a> <a href="#decimalDigitNumber">decimalDigitNumber</a> <a href="#otherNumber">otherNumber</a> <a href="#endPunctuation">endPunctuation</a> <a href="#otherPunctuation">otherPunctuation</a> <a href="#paragraphSeparator">paragraphSeparator</a> <a href="#nonSpacingMark">nonSpacingMark</a> <a href="#lowercaseLetter">lowercaseLetter</a> <a href="#startPunctuation">startPunctuation</a> <a href="#otherLetter">otherLetter</a> <a href="#titleCaseLetter">titleCaseLetter</a> <a href="#otherSymbol">otherSymbol</a> <a href="#modifierSymbol">modifierSymbol</a> <a href="#modifierLetter">modifierLetter</a> <a href="#uppercaseLetter">uppercaseLetter</a> <a href="#spaceSeparator">spaceSeparator</a> <a href="#controlCategory">controlCategory</a> <a href="#connectorPunctuation">connectorPunctuation</a> <a href="#surrogate">surrogate</a>}
+<p>
+<a href="#rangeListEntry">rangeListEntry</a> ==&gt;&gt; { '\.' '\\' <a href="#notRegexControl">notRegexControl</a>}
+<p>
+<a href="#negativeCharRange">negativeCharRange</a> ==&gt;&gt; { '\\'}
+<p>
+<a href="#dashRange">dashRange</a> ==&gt;&gt; { '\\' <a href="#notRegexControl">notRegexControl</a>}
+<h1>Closure for Nonterminals</h1>
+<a name="Closure"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; { <a href="#branch">branch</a> <a href="#atom">atom</a> <a href="#character">character</a> <a href="#charRange">charRange</a> <a href="#rangeDef">rangeDef</a> <a href="#endOfPreviousMatch">endOfPreviousMatch</a> <a href="#endOfInput">endOfInput</a> <a href="#beginningOfLine">beginningOfLine</a> <a href="#beginningOfInput">beginningOfInput</a> <a href="#endOfLine">endOfLine</a> <a href="#endOfInputOrLine">endOfInputOrLine</a> <a href="#wordBoundary">wordBoundary</a> <a href="#nonWordBoundary">nonWordBoundary</a> <a href="#boundaryMatcher">boundaryMatcher</a> <a href="#piece">piece</a> <a href="#regexp">regexp</a>}
+<p>
+<a href="#regexp">regexp</a> ==&gt;&gt; { <a href="#piece">piece</a> <a href="#boundaryMatcher">boundaryMatcher</a> <a href="#nonWordBoundary">nonWordBoundary</a> <a href="#wordBoundary">wordBoundary</a> <a href="#endOfInputOrLine">endOfInputOrLine</a> <a href="#endOfLine">endOfLine</a> <a href="#beginningOfInput">beginningOfInput</a> <a href="#beginningOfLine">beginningOfLine</a> <a href="#endOfInput">endOfInput</a> <a href="#endOfPreviousMatch">endOfPreviousMatch</a> <a href="#rangeDef">rangeDef</a> <a href="#charRange">charRange</a> <a href="#character">character</a> <a href="#atom">atom</a> <a href="#branch">branch</a>}
+<p>
+<a href="#branch">branch</a> ==&gt;&gt; { <a href="#atom">atom</a> <a href="#character">character</a> <a href="#charRange">charRange</a> <a href="#rangeDef">rangeDef</a> <a href="#endOfPreviousMatch">endOfPreviousMatch</a> <a href="#endOfInput">endOfInput</a> <a href="#beginningOfLine">beginningOfLine</a> <a href="#beginningOfInput">beginningOfInput</a> <a href="#endOfLine">endOfLine</a> <a href="#endOfInputOrLine">endOfInputOrLine</a> <a href="#wordBoundary">wordBoundary</a> <a href="#nonWordBoundary">nonWordBoundary</a> <a href="#boundaryMatcher">boundaryMatcher</a> <a href="#piece">piece</a>}
+<p>
+<a href="#piece">piece</a> ==&gt;&gt; { <a href="#boundaryMatcher">boundaryMatcher</a> <a href="#nonWordBoundary">nonWordBoundary</a> <a href="#wordBoundary">wordBoundary</a> <a href="#endOfInputOrLine">endOfInputOrLine</a> <a href="#endOfLine">endOfLine</a> <a href="#beginningOfInput">beginningOfInput</a> <a href="#beginningOfLine">beginningOfLine</a> <a href="#endOfInput">endOfInput</a> <a href="#endOfPreviousMatch">endOfPreviousMatch</a> <a href="#rangeDef">rangeDef</a> <a href="#charRange">charRange</a> <a href="#character">character</a> <a href="#atom">atom</a>}
+<p>
+<a href="#atom">atom</a> ==&gt;&gt; { <a href="#character">character</a> <a href="#charRange">charRange</a> <a href="#rangeDef">rangeDef</a> <a href="#endOfPreviousMatch">endOfPreviousMatch</a> <a href="#endOfInput">endOfInput</a> <a href="#beginningOfLine">beginningOfLine</a> <a href="#beginningOfInput">beginningOfInput</a> <a href="#endOfLine">endOfLine</a> <a href="#endOfInputOrLine">endOfInputOrLine</a> <a href="#wordBoundary">wordBoundary</a> <a href="#nonWordBoundary">nonWordBoundary</a> <a href="#boundaryMatcher">boundaryMatcher</a>}
+<p>
+<a href="#quantifier">quantifier</a> ==&gt;&gt; { <a href="#braceQ2">braceQ2</a> <a href="#braceQ1">braceQ1</a>}
+<p>
+<a href="#boundaryMatcher">boundaryMatcher</a> ==&gt;&gt; { <a href="#nonWordBoundary">nonWordBoundary</a> <a href="#wordBoundary">wordBoundary</a> <a href="#endOfInputOrLine">endOfInputOrLine</a> <a href="#endOfLine">endOfLine</a> <a href="#beginningOfInput">beginningOfInput</a> <a href="#beginningOfLine">beginningOfLine</a> <a href="#endOfInput">endOfInput</a> <a href="#endOfPreviousMatch">endOfPreviousMatch</a>}
+<p>
+<a href="#rangeDef">rangeDef</a> ==&gt;&gt; {}
+<p>
+<a href="#charRange">charRange</a> ==&gt;&gt; { <a href="#character">character</a>}
+<p>
+<a href="#braceQ1">braceQ1</a> ==&gt;&gt; {}
+<p>
+<a href="#braceQ2">braceQ2</a> ==&gt;&gt; {}
+<p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> ==&gt;&gt; {}
+<p>
+<a href="#endOfInput">endOfInput</a> ==&gt;&gt; {}
+<p>
+<a href="#beginningOfLine">beginningOfLine</a> ==&gt;&gt; {}
+<p>
+<a href="#beginningOfInput">beginningOfInput</a> ==&gt;&gt; {}
+<p>
+<a href="#endOfLine">endOfLine</a> ==&gt;&gt; {}
+<p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> ==&gt;&gt; {}
+<p>
+<a href="#wordBoundary">wordBoundary</a> ==&gt;&gt; {}
+<p>
+<a href="#nonWordBoundary">nonWordBoundary</a> ==&gt;&gt; {}
+<p>
+<a href="#rs1">rs1</a> ==&gt;&gt; { <a href="#intersectRange">intersectRange</a> <a href="#inclusiveRange">inclusiveRange</a> <a href="#rangeList">rangeList</a> <a href="#charRange">charRange</a> <a href="#character">character</a> <a href="#negativeCharRange">negativeCharRange</a> <a href="#dashRange">dashRange</a> <a href="#rangeListEntry">rangeListEntry</a> <a href="#posRange">posRange</a> <a href="#negRange">negRange</a>}
+<p>
+<a href="#character">character</a> ==&gt;&gt; {}
+<p>
+<a href="#posixCharacterClass">posixCharacterClass</a> ==&gt;&gt; { <a href="#category">category</a> <a href="#unicodeCategory">unicodeCategory</a> <a href="#unicodeBlock">unicodeBlock</a>}
+<p>
+<a href="#negRange">negRange</a> ==&gt;&gt; {}
+<p>
+<a href="#posRange">posRange</a> ==&gt;&gt; { <a href="#rangeListEntry">rangeListEntry</a> <a href="#dashRange">dashRange</a> <a href="#negativeCharRange">negativeCharRange</a> <a href="#character">character</a> <a href="#charRange">charRange</a> <a href="#rangeList">rangeList</a>}
+<p>
+<a href="#inclusiveRange">inclusiveRange</a> ==&gt;&gt; { <a href="#rangeListEntry">rangeListEntry</a> <a href="#dashRange">dashRange</a> <a href="#negativeCharRange">negativeCharRange</a> <a href="#character">character</a> <a href="#charRange">charRange</a> <a href="#rangeList">rangeList</a>}
+<p>
+<a href="#intersectRange">intersectRange</a> ==&gt;&gt; { <a href="#rangeListEntry">rangeListEntry</a> <a href="#dashRange">dashRange</a> <a href="#negativeCharRange">negativeCharRange</a> <a href="#character">character</a> <a href="#charRange">charRange</a> <a href="#rangeList">rangeList</a>}
+<p>
+<a href="#escaped">escaped</a> ==&gt;&gt; {}
+<p>
+<a href="#unicodeBlock">unicodeBlock</a> ==&gt;&gt; {}
+<p>
+<a href="#unicodeCategory">unicodeCategory</a> ==&gt;&gt; { <a href="#category">category</a>}
+<p>
+<a href="#rangeList">rangeList</a> ==&gt;&gt; { <a href="#charRange">charRange</a> <a href="#character">character</a> <a href="#negativeCharRange">negativeCharRange</a> <a href="#dashRange">dashRange</a> <a href="#rangeListEntry">rangeListEntry</a>}
+<p>
+<a href="#category">category</a> ==&gt;&gt; {}
+<p>
+<a href="#rangeListEntry">rangeListEntry</a> ==&gt;&gt; { <a href="#dashRange">dashRange</a> <a href="#negativeCharRange">negativeCharRange</a> <a href="#character">character</a> <a href="#charRange">charRange</a>}
+<p>
+<a href="#negativeCharRange">negativeCharRange</a> ==&gt;&gt; {}
+<p>
+<a href="#dashRange">dashRange</a> ==&gt;&gt; { <a href="#character">character</a>}
+<h1>Nullable Nonterminals</h1>
+<a name="Nullable"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; false
+<p>
+<a href="#regexp">regexp</a> ==&gt;&gt; false
+<p>
+<a href="#branch">branch</a> ==&gt;&gt; false
+<p>
+<a href="#piece">piece</a> ==&gt;&gt; false
+<p>
+<a href="#atom">atom</a> ==&gt;&gt; false
+<p>
+<a href="#quantifier">quantifier</a> ==&gt;&gt; true
+<p>
+<a href="#boundaryMatcher">boundaryMatcher</a> ==&gt;&gt; false
+<p>
+<a href="#rangeDef">rangeDef</a> ==&gt;&gt; false
+<p>
+<a href="#charRange">charRange</a> ==&gt;&gt; false
+<p>
+<a href="#braceQ1">braceQ1</a> ==&gt;&gt; false
+<p>
+<a href="#braceQ2">braceQ2</a> ==&gt;&gt; false
+<p>
+<a href="#endOfPreviousMatch">endOfPreviousMatch</a> ==&gt;&gt; false
+<p>
+<a href="#endOfInput">endOfInput</a> ==&gt;&gt; false
+<p>
+<a href="#beginningOfLine">beginningOfLine</a> ==&gt;&gt; false
+<p>
+<a href="#beginningOfInput">beginningOfInput</a> ==&gt;&gt; false
+<p>
+<a href="#endOfLine">endOfLine</a> ==&gt;&gt; false
+<p>
+<a href="#endOfInputOrLine">endOfInputOrLine</a> ==&gt;&gt; false
+<p>
+<a href="#wordBoundary">wordBoundary</a> ==&gt;&gt; false
+<p>
+<a href="#nonWordBoundary">nonWordBoundary</a> ==&gt;&gt; false
+<p>
+<a href="#rs1">rs1</a> ==&gt;&gt; false
+<p>
+<a href="#character">character</a> ==&gt;&gt; false
+<p>
+<a href="#posixCharacterClass">posixCharacterClass</a> ==&gt;&gt; false
+<p>
+<a href="#negRange">negRange</a> ==&gt;&gt; false
+<p>
+<a href="#posRange">posRange</a> ==&gt;&gt; false
+<p>
+<a href="#inclusiveRange">inclusiveRange</a> ==&gt;&gt; false
+<p>
+<a href="#intersectRange">intersectRange</a> ==&gt;&gt; false
+<p>
+<a href="#escaped">escaped</a> ==&gt;&gt; false
+<p>
+<a href="#unicodeBlock">unicodeBlock</a> ==&gt;&gt; false
+<p>
+<a href="#unicodeCategory">unicodeCategory</a> ==&gt;&gt; false
+<p>
+<a href="#rangeList">rangeList</a> ==&gt;&gt; false
+<p>
+<a href="#category">category</a> ==&gt;&gt; false
+<p>
+<a href="#rangeListEntry">rangeListEntry</a> ==&gt;&gt; false
+<p>
+<a href="#negativeCharRange">negativeCharRange</a> ==&gt;&gt; false
+<p>
+<a href="#dashRange">dashRange</a> ==&gt;&gt; false
+</body>
+</html>

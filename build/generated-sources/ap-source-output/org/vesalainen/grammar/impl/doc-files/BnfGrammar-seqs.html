@@ -1,0 +1,313 @@
+<html>
+<body>
+<h1>Grammar seqs</h1>
+<p>
+This grammar is LALR(1)
+<p>
+Number of Rules 17
+<p>
+Number of Terminals 7
+<p>
+Number of Lr0 States11
+<p>
+Number of La States0
+<h1>BNF</h1>
+<a name="BNF"/>
+<a name="Accept"/>
+<p>
+<a name="rule0"/>
+Accept ::= <a href="#seqs">seqs</a><blockquote></blockquote>
+<a name="seqs"/>
+<p>
+<a name="rule1"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#seqs(seqs, symbol)">1: seqs</a> ::= <a href="#seqs">seqs</a> <a href="#part">part</a><blockquote></blockquote>
+<p>
+<a name="rule2"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#seqs(symbol)">2: seqs</a> ::= <a href="#part">part</a><blockquote></blockquote>
+<a name="part"/>
+<p>
+<a name="rule3"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#part(nt, quantifier, g)">3: part</a> ::= <a href="#seq">seq</a> <a href="#quantifier">quantifier</a><blockquote></blockquote>
+<p>
+<a name="rule4"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#part(nt, quantifier, g)">4: part</a> ::= <a href="#symbol">symbol</a> <a href="#quantifier">quantifier</a><blockquote></blockquote>
+<p>
+<a name="rule5"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#part(nt, quantifier, g)">5: part</a> ::= <a href="#choice">choice</a> <a href="#quantifier">quantifier</a><blockquote></blockquote>
+<a name="seq"/>
+<p>
+<a name="rule6"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#seq(seq, g)">6: seq</a> ::= <a href="#seqPart">seqPart</a><blockquote></blockquote>
+<a name="quantifier"/>
+<p>
+<a name="rule7"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#quantifier()">7: quantifier</a> ::=<blockquote></blockquote>
+<p>
+<a name="rule8"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#quantifier(quantifier)">8: quantifier</a> ::= <a href="#quantifierChar">quantifierChar</a><blockquote></blockquote>
+<a name="symbol"/>
+<p>
+<a name="rule9"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#symbol(name)">9: symbol</a> ::= <a href="#symbolName">symbolName</a><blockquote></blockquote>
+<p>
+<a name="rule10"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#symbol(name)">10: symbol</a> ::= <a href="#anonymousTerminal">anonymousTerminal</a><blockquote></blockquote>
+<a name="choice"/>
+<p>
+<a name="rule11"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#choice(choice, g)">11: choice</a> ::= <a href="#choicePart">choicePart</a><blockquote></blockquote>
+<a name="seqPart"/>
+<p>
+<a name="rule12"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#seqPart(seqs)">12: seqPart</a> ::= '(' <a href="#seqs">seqs</a> ')'<blockquote></blockquote>
+<a name="choicePart"/>
+<p>
+<a name="rule13"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#choicePart(choices)">13: choicePart</a> ::= '(' <a href="#choices">choices</a> ')'<blockquote></blockquote>
+<a name="choices"/>
+<p>
+<a name="rule14"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#choices(choices, symbol)">14: choices</a> ::= <a href="#choices">choices</a> <a href="#or">or</a> <a href="#part">part</a><blockquote></blockquote>
+<p>
+<a name="rule15"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#choices(cp1, cp2)">15: choices</a> ::= <a href="#part">part</a> <a href="#or">or</a> <a href="#part">part</a><blockquote></blockquote>
+<a name="or"/>
+<p>
+<a name="rule16"/>
+<a href="../../../../../org/vesalainen/grammar/impl/BnfGrammar.html#or()">16: or</a> ::= '|'<blockquote></blockquote>
+<h1>Terminals</h1>
+<a name="Terminals"/>
+<a name="quantifierChar"/>
+<p>
+quantifierChar = '[\+\*\?]'<blockquote></blockquote>
+<a name="anonymousTerminal"/>
+<p>
+anonymousTerminal = ''[^']+'|`[^´]+´'<blockquote></blockquote>
+<a name="symbolName"/>
+<p>
+symbolName = '[\x21-\x26\x2d-\x3e\x40-\x5f\x61-\x7b\x7e-\x7f\xC0-\xD6\xD8-\xF6]+'<blockquote></blockquote>
+<a name="s"/>
+<p>
+s = '[ \t]+'<blockquote></blockquote>
+<h1>States</h1>
+<a name="States"/>
+<a name="state1"/>
+<h2>State 1</h2>
+( )
+<p>
+<a href="#rule0">Accept</a>->.<a href="#seqs">seqs</a> <p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+'(' Shift <a href="#state3">3</a><p>
+<a href="#part">part</a> Gt/Rd <a href="#rule2">2</a><p>
+<a href="#seqs">seqs</a> Goto <a href="#state2">2</a><p>
+<a href="#seqPart">seqPart</a> Gt/Rd <a href="#rule6">6</a><p>
+<a href="#choicePart">choicePart</a> Gt/Rd <a href="#rule11">11</a><p>
+<a href="#choice">choice</a> Goto <a href="#state4">4</a><p>
+<a href="#symbol">symbol</a> Goto <a href="#state5">5</a><p>
+<a href="#seq">seq</a> Goto <a href="#state6">6</a><a name="state2"/>
+<h2>State 2</h2>
+(<a href="#state1"> 1</a> )
+<p>
+<a href="#rule0">Accept</a>-><a href="#seqs">seqs</a> .<a href="#rule0"> (0)</a><p>
+<a href="#rule1">seqs</a>-><a href="#seqs">seqs</a> .<a href="#part">part</a> <p>
+<a href="#rule0">Accept</a>-><a href="#seqs">seqs</a> .<a href="#rule0"> (0)</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+'(' Shift <a href="#state3">3</a><p>
+<a href="#part">part</a> Gt/Rd <a href="#rule1">1</a><p>
+<a href="#choice">choice</a> Goto <a href="#state4">4</a><p>
+<a href="#symbol">symbol</a> Goto <a href="#state5">5</a><p>
+<a href="#seq">seq</a> Goto <a href="#state6">6</a><p>
+<a href="#choicePart">choicePart</a> Gt/Rd <a href="#rule11">11</a><p>
+<a href="#seqPart">seqPart</a> Gt/Rd <a href="#rule6">6</a><p>
+Eof Reduce <a href="#rule0">0</a><a name="state3"/>
+<h2>State 3</h2>
+(<a href="#state1"> 1</a><a href="#state2"> 2</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state10"> 10</a><a href="#state11"> 11</a> )
+<p>
+<a href="#rule12">seqPart</a>->'(' .<a href="#seqs">seqs</a> ')' <p>
+<a href="#rule13">choicePart</a>->'(' .<a href="#choices">choices</a> ')' <p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+'(' Shift <a href="#state3">3</a><p>
+<a href="#seqs">seqs</a> Goto <a href="#state7">7</a><p>
+<a href="#seqPart">seqPart</a> Gt/Rd <a href="#rule6">6</a><p>
+<a href="#choicePart">choicePart</a> Gt/Rd <a href="#rule11">11</a><p>
+<a href="#choice">choice</a> Goto <a href="#state4">4</a><p>
+<a href="#symbol">symbol</a> Goto <a href="#state5">5</a><p>
+<a href="#seq">seq</a> Goto <a href="#state6">6</a><p>
+<a href="#part">part</a> Goto <a href="#state8">8</a><p>
+<a href="#choices">choices</a> Goto <a href="#state9">9</a><a name="state4"/>
+<h2>State 4</h2>
+(<a href="#state1"> 1</a><a href="#state2"> 2</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state10"> 10</a><a href="#state11"> 11</a> )
+<p>
+<a href="#rule5">part</a>-><a href="#choice">choice</a> .<a href="#quantifier">quantifier</a> <p>
+<a href="#rule7">quantifier</a>->.<a href="#rule7"> (7)</a><p>
+<a href="#quantifierChar">quantifierChar</a> Sh/Rd <a href="#rule8">8</a><p>
+<a href="#quantifier">quantifier</a> Gt/Rd <a href="#rule5">5</a><p>
+')' Reduce <a href="#rule7">7</a><p>
+'|' Reduce <a href="#rule7">7</a><p>
+'(' Reduce <a href="#rule7">7</a><p>
+<a href="#symbolName">symbolName</a> Reduce <a href="#rule7">7</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Reduce <a href="#rule7">7</a><p>
+Eof Reduce <a href="#rule7">7</a><a name="state5"/>
+<h2>State 5</h2>
+(<a href="#state1"> 1</a><a href="#state2"> 2</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state10"> 10</a><a href="#state11"> 11</a> )
+<p>
+<a href="#rule4">part</a>-><a href="#symbol">symbol</a> .<a href="#quantifier">quantifier</a> <p>
+<a href="#rule7">quantifier</a>->.<a href="#rule7"> (7)</a><p>
+<a href="#quantifierChar">quantifierChar</a> Sh/Rd <a href="#rule8">8</a><p>
+<a href="#quantifier">quantifier</a> Gt/Rd <a href="#rule4">4</a><p>
+')' Reduce <a href="#rule7">7</a><p>
+'|' Reduce <a href="#rule7">7</a><p>
+'(' Reduce <a href="#rule7">7</a><p>
+<a href="#symbolName">symbolName</a> Reduce <a href="#rule7">7</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Reduce <a href="#rule7">7</a><p>
+Eof Reduce <a href="#rule7">7</a><a name="state6"/>
+<h2>State 6</h2>
+(<a href="#state1"> 1</a><a href="#state2"> 2</a><a href="#state3"> 3</a><a href="#state7"> 7</a><a href="#state10"> 10</a><a href="#state11"> 11</a> )
+<p>
+<a href="#rule3">part</a>-><a href="#seq">seq</a> .<a href="#quantifier">quantifier</a> <p>
+<a href="#rule7">quantifier</a>->.<a href="#rule7"> (7)</a><p>
+<a href="#quantifierChar">quantifierChar</a> Sh/Rd <a href="#rule8">8</a><p>
+<a href="#quantifier">quantifier</a> Gt/Rd <a href="#rule3">3</a><p>
+')' Reduce <a href="#rule7">7</a><p>
+'|' Reduce <a href="#rule7">7</a><p>
+'(' Reduce <a href="#rule7">7</a><p>
+<a href="#symbolName">symbolName</a> Reduce <a href="#rule7">7</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Reduce <a href="#rule7">7</a><p>
+Eof Reduce <a href="#rule7">7</a><a name="state7"/>
+<h2>State 7</h2>
+(<a href="#state3"> 3</a> )
+<p>
+<a href="#rule1">seqs</a>-><a href="#seqs">seqs</a> .<a href="#part">part</a> <p>
+<a href="#rule12">seqPart</a>->'(' <a href="#seqs">seqs</a> .')' <p>
+')' Sh/Rd <a href="#rule12">12</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+'(' Shift <a href="#state3">3</a><p>
+<a href="#part">part</a> Gt/Rd <a href="#rule1">1</a><p>
+<a href="#choice">choice</a> Goto <a href="#state4">4</a><p>
+<a href="#symbol">symbol</a> Goto <a href="#state5">5</a><p>
+<a href="#seq">seq</a> Goto <a href="#state6">6</a><p>
+<a href="#choicePart">choicePart</a> Gt/Rd <a href="#rule11">11</a><p>
+<a href="#seqPart">seqPart</a> Gt/Rd <a href="#rule6">6</a><a name="state8"/>
+<h2>State 8</h2>
+(<a href="#state3"> 3</a> )
+<p>
+<a href="#rule2">seqs</a>-><a href="#part">part</a> .<a href="#rule2"> (2)</a><p>
+<a href="#rule15">choices</a>-><a href="#part">part</a> .<a href="#or">or</a> <a href="#part">part</a> <p>
+<a href="#rule2">seqs</a>-><a href="#part">part</a> .<a href="#rule2"> (2)</a><p>
+'|' Sh/Rd <a href="#rule16">16</a><p>
+<a href="#or">or</a> Goto <a href="#state10">10</a><p>
+'(' Reduce <a href="#rule2">2</a><p>
+<a href="#symbolName">symbolName</a> Reduce <a href="#rule2">2</a><p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Reduce <a href="#rule2">2</a><p>
+')' Reduce <a href="#rule2">2</a><a name="state9"/>
+<h2>State 9</h2>
+(<a href="#state3"> 3</a> )
+<p>
+<a href="#rule13">choicePart</a>->'(' <a href="#choices">choices</a> .')' <p>
+<a href="#rule14">choices</a>-><a href="#choices">choices</a> .<a href="#or">or</a> <a href="#part">part</a> <p>
+')' Sh/Rd <a href="#rule13">13</a><p>
+'|' Sh/Rd <a href="#rule16">16</a><p>
+<a href="#or">or</a> Goto <a href="#state11">11</a><a name="state10"/>
+<h2>State 10</h2>
+(<a href="#state8"> 8</a> )
+<p>
+<a href="#rule15">choices</a>-><a href="#part">part</a> <a href="#or">or</a> .<a href="#part">part</a> <p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+'(' Shift <a href="#state3">3</a><p>
+<a href="#part">part</a> Gt/Rd <a href="#rule15">15</a><p>
+<a href="#choice">choice</a> Goto <a href="#state4">4</a><p>
+<a href="#symbol">symbol</a> Goto <a href="#state5">5</a><p>
+<a href="#seq">seq</a> Goto <a href="#state6">6</a><p>
+<a href="#choicePart">choicePart</a> Gt/Rd <a href="#rule11">11</a><p>
+<a href="#seqPart">seqPart</a> Gt/Rd <a href="#rule6">6</a><a name="state11"/>
+<h2>State 11</h2>
+(<a href="#state9"> 9</a> )
+<p>
+<a href="#rule14">choices</a>-><a href="#choices">choices</a> <a href="#or">or</a> .<a href="#part">part</a> <p>
+<a href="#anonymousTerminal">anonymousTerminal</a> Sh/Rd <a href="#rule10">10</a><p>
+<a href="#symbolName">symbolName</a> Sh/Rd <a href="#rule9">9</a><p>
+'(' Shift <a href="#state3">3</a><p>
+<a href="#part">part</a> Gt/Rd <a href="#rule14">14</a><p>
+<a href="#choice">choice</a> Goto <a href="#state4">4</a><p>
+<a href="#symbol">symbol</a> Goto <a href="#state5">5</a><p>
+<a href="#seq">seq</a> Goto <a href="#state6">6</a><p>
+<a href="#choicePart">choicePart</a> Gt/Rd <a href="#rule11">11</a><p>
+<a href="#seqPart">seqPart</a> Gt/Rd <a href="#rule6">6</a><h1>First Map for Nonterminals</h1>
+<a name="FirstMap"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; { '\(' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a>}
+<p>
+<a href="#seqs">seqs</a> ==&gt;&gt; { '\(' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a>}
+<p>
+<a href="#part">part</a> ==&gt;&gt; { '\(' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a>}
+<p>
+<a href="#seq">seq</a> ==&gt;&gt; { '\('}
+<p>
+<a href="#quantifier">quantifier</a> ==&gt;&gt; { <a href="#Empty">Empty</a> <a href="#quantifierChar">quantifierChar</a>}
+<p>
+<a href="#symbol">symbol</a> ==&gt;&gt; { <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a>}
+<p>
+<a href="#choice">choice</a> ==&gt;&gt; { '\('}
+<p>
+<a href="#seqPart">seqPart</a> ==&gt;&gt; { '\('}
+<p>
+<a href="#choicePart">choicePart</a> ==&gt;&gt; { '\('}
+<p>
+<a href="#choices">choices</a> ==&gt;&gt; { '\(' <a href="#symbolName">symbolName</a> <a href="#anonymousTerminal">anonymousTerminal</a>}
+<p>
+<a href="#or">or</a> ==&gt;&gt; { '\|'}
+<h1>Closure for Nonterminals</h1>
+<a name="Closure"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; { <a href="#part">part</a> <a href="#choicePart">choicePart</a> <a href="#choice">choice</a> <a href="#symbol">symbol</a> <a href="#seqPart">seqPart</a> <a href="#seq">seq</a> <a href="#seqs">seqs</a>}
+<p>
+<a href="#seqs">seqs</a> ==&gt;&gt; { <a href="#seq">seq</a> <a href="#seqPart">seqPart</a> <a href="#symbol">symbol</a> <a href="#choice">choice</a> <a href="#choicePart">choicePart</a> <a href="#part">part</a>}
+<p>
+<a href="#part">part</a> ==&gt;&gt; { <a href="#choicePart">choicePart</a> <a href="#choice">choice</a> <a href="#symbol">symbol</a> <a href="#seqPart">seqPart</a> <a href="#seq">seq</a>}
+<p>
+<a href="#seq">seq</a> ==&gt;&gt; { <a href="#seqPart">seqPart</a>}
+<p>
+<a href="#quantifier">quantifier</a> ==&gt;&gt; {}
+<p>
+<a href="#symbol">symbol</a> ==&gt;&gt; {}
+<p>
+<a href="#choice">choice</a> ==&gt;&gt; { <a href="#choicePart">choicePart</a>}
+<p>
+<a href="#seqPart">seqPart</a> ==&gt;&gt; {}
+<p>
+<a href="#choicePart">choicePart</a> ==&gt;&gt; {}
+<p>
+<a href="#choices">choices</a> ==&gt;&gt; { <a href="#seq">seq</a> <a href="#seqPart">seqPart</a> <a href="#symbol">symbol</a> <a href="#choice">choice</a> <a href="#choicePart">choicePart</a> <a href="#part">part</a>}
+<p>
+<a href="#or">or</a> ==&gt;&gt; {}
+<h1>Nullable Nonterminals</h1>
+<a name="Nullable"/>
+<p>
+<a href="#Accept">Accept</a> ==&gt;&gt; false
+<p>
+<a href="#seqs">seqs</a> ==&gt;&gt; false
+<p>
+<a href="#part">part</a> ==&gt;&gt; false
+<p>
+<a href="#seq">seq</a> ==&gt;&gt; false
+<p>
+<a href="#quantifier">quantifier</a> ==&gt;&gt; true
+<p>
+<a href="#symbol">symbol</a> ==&gt;&gt; false
+<p>
+<a href="#choice">choice</a> ==&gt;&gt; false
+<p>
+<a href="#seqPart">seqPart</a> ==&gt;&gt; false
+<p>
+<a href="#choicePart">choicePart</a> ==&gt;&gt; false
+<p>
+<a href="#choices">choices</a> ==&gt;&gt; false
+<p>
+<a href="#or">or</a> ==&gt;&gt; false
+</body>
+</html>
