@@ -13,7 +13,6 @@ import org.vesalainen.parser.annotation.MathExpression;
  * @author Timo Vesalainen
  */
 @GenClassname("org.vesalainen.grammar.math.ExampleImpl")
-@GrammarDef
 public class Example 
 {
     @MathExpression("i+1")
