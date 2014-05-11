@@ -38,7 +38,6 @@ import org.vesalainen.grammar.state.DFAState;
 import org.vesalainen.grammar.state.NFA;
 import org.vesalainen.grammar.state.NFAState;
 import org.vesalainen.grammar.state.Scope;
-import org.vesalainen.parser.util.InputReader;
 import org.vesalainen.parser.util.NumMap;
 import org.vesalainen.parser.util.NumSet;
 import org.vesalainen.regex.Regex.Option;
@@ -2473,12 +2472,12 @@ public class LPGTest
     {
         try
         {
-            Scope<NFAState<Integer>> nfaScope = new Scope<NFAState<Integer>>("test");
-            Scope<DFAState<Integer>> dfaScope = new Scope<DFAState<Integer>>("test");
+            Scope<NFAState<Integer>> nfaScope = new Scope<>("test");
+            Scope<DFAState<Integer>> dfaScope = new Scope<>("test");
 
             NFA<Integer> nfa1 = Regex.createNFA(nfaScope, "GMT|EGFT", 1);
             NFA<Integer> nfa2 = Regex.createNFA(nfaScope, "GMT", 2);
-            NFA<Integer> nfau = new NFA<Integer>(nfaScope, nfa1, nfa2);
+            NFA<Integer> nfau = new NFA<>(nfaScope, nfa1, nfa2);
             try
             {
                 DFA<Integer> dfa = nfau.constructDFA(dfaScope);
@@ -2491,65 +2490,6 @@ public class LPGTest
         catch (SyntaxErrorException ex)
         {
             fail(ex.getMessage());
-        }
-    }
-    @Test
-    public void test81()
-    {
-        try
-        {
-            InputReader input = new InputReader("abcdefg");
-            input.read();
-            for (int count=0;count < 1000;count++)
-            {
-                input.read();
-                input.read();
-                input.read();
-                input.clear();
-                assertEquals("efg", input.buffered());
-                input.insert("1".toCharArray());
-                assertEquals("1efg", input.buffered());
-                input.insert("23".toCharArray());
-                assertEquals("231efg", input.buffered());
-                input.insert("".toCharArray());
-                assertEquals("231efg", input.buffered());
-            }
-        }
-        catch (Exception ex)
-        {
-            fail();
-        }
-    }
-    @Test
-    public void test82()
-    {
-        try
-        {
-            File temp = File.createTempFile("test", null);
-            FileOutputStream fos = new FileOutputStream(temp);
-            for (int ii=0;ii<4000;ii++)
-            {
-                fos.write("qwerty".getBytes());
-            }
-            fos.close();
-            
-            InputReader input = new InputReader(temp, 100);
-            int index=0;
-            int rc = input.read();
-            while (rc != -1)
-            {
-                if (index % 6 == 0)
-                {
-                    input.clear();
-                }
-                rc = input.read();
-                index++;
-            }
-            fos.close();
-        }
-        catch (IOException ex)
-        {
-            fail();
         }
     }
     @Test
