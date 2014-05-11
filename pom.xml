@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
-        <version>7</version>
+        <version>9</version>
     </parent>    
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.vesalainen.lpg</groupId>
@@ -55,9 +55,9 @@
             <version>4.11</version>
         </dependency>
         <dependency>
-            <groupId>org.vesalainen.lpg</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>lpg</artifactId>
-            <version>1.1.0</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
