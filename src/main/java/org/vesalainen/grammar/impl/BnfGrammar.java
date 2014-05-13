@@ -25,7 +25,6 @@ import static org.vesalainen.grammar.BnfGrammarFactory.BnfGrammarClass;
 import org.vesalainen.grammar.BnfGrammarIntf;
 import org.vesalainen.grammar.Grammar;
 import static org.vesalainen.grammar.GrammarConstants.*;
-import org.vesalainen.parser.GenClassFactory;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.GenRegex;
 import org.vesalainen.parser.annotation.GrammarDef;
