@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 import static junit.framework.Assert.*;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.vesalainen.grammar.state.AmbiguousExpressionException;
@@ -2148,9 +2149,9 @@ public class LPGTest
 
             Regex r = Regex.compile(exp);
 
-            PushbackReader reader = new PushbackReader(new StringReader("asdasd sadasd \t adasdas asdda"));
-            String[] expected = new String[] {"asdasd", "sadasd", "adasdas", "asdda"};
-            assertTrue(Arrays.equals(expected, r.split(reader, 10)));
+            PushbackReader reader = new PushbackReader(new StringReader("qwerty 12345 \t abcdefg hijklmn"));
+            String[] expected = new String[] {"qwerty", "12345", "abcdefg", "hijklmn"};
+            Assert.assertArrayEquals(expected, r.split(reader, 10));
         }
         catch (IOException ex)
         {
