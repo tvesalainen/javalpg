@@ -99,10 +99,10 @@ public abstract class BnfGrammar implements BnfGrammarIntf
     protected String choice(List<String> choice, @ParserContext("GRAMMAR") Grammar g) throws IOException
     {
         String nt = makeName(choice, SIGMA, '|');
-        ExecutableElement reducer = El.getMethod(Reducers.class, "get", Object.class);
+        ExecutableElement reducer = El.getAssignableMethod(Reducers.class, "get", Object.class);
         if (reducer == null)
         {
-            throw new IllegalArgumentException("???");
+            throw new IllegalArgumentException(Reducers.class.getCanonicalName()+".get() not found");
         }
         for (String c : choice)
         {
@@ -114,10 +114,10 @@ public abstract class BnfGrammar implements BnfGrammarIntf
     protected String seq(List<String> seq, @ParserContext("GRAMMAR") Grammar g) throws IOException
     {
         String nt = makeName(seq, PHI, ',');
-        ExecutableElement reducer = El.getMethod(Reducers.class, "get", Object.class);
+        ExecutableElement reducer = El.getAssignableMethod(Reducers.class, "get", Object.class);
         if (reducer == null)
         {
-            throw new IllegalArgumentException("???");
+            throw new IllegalArgumentException(Reducers.class.getCanonicalName()+".get() not found");
         }
         g.addSyntheticRule(reducer, nt, seq);
         return nt;
