@@ -40,8 +40,11 @@ import org.vesalainen.parser.annotation.Terminals;
 })
 public abstract class Parser extends BaseParser
 {
-    @ParseMethod(start="Goal", whiteSpace="hex", size=256)
+    @ParseMethod(start="Goal", whiteSpace={"whiteSpace", "hex", "bin"}, size=256)
     public abstract long parseExt(String txt);
+    
+    @Terminal(expression="[ \t\r\n]+")
+    protected abstract void whiteSpace();
     
     @Terminal(expression="0[xX][0-9abcdefABCDEF]+")
     protected String hex(String h)
@@ -49,6 +52,13 @@ public abstract class Parser extends BaseParser
         String s = h.substring(2);
         int hi = Integer.parseInt(s, 16);
         return String.valueOf(hi);
+    }
+    @Terminal(expression="0[bB][01]+")
+    protected char[] bin(String h)
+    {
+        String s = h.substring(2);
+        int hi = Integer.parseInt(s, 2);
+        return String.valueOf(hi).toCharArray();
     }
     public static Parser getInstance()
     {

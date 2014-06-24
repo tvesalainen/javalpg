@@ -36,6 +36,10 @@ public class ParserTest
         Parser parser = Parser.getInstance();
         assertNotNull(parser);
         assertEquals(2, parser.parse("1+1"));
-        assertEquals(2, parser.parseExt("0x1+0x1"));
+        System.err.println("White-space terminals\n" +
+        "can have reducer. Reducers are called when white-space input is read. If such \n" +
+        "reducer returns value, that value is inserted in input. Return type must match\n" +
+        "one of InputReader.input method parameter.");
+        assertEquals(3*255, parser.parseExt("0b11 * 0xff"));
     }
 }
