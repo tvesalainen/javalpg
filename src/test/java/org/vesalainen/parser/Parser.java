@@ -17,6 +17,7 @@
 
 package org.vesalainen.parser;
 
+import static org.vesalainen.parser.ParserFeature.*;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.GrammarDef;
 import org.vesalainen.parser.annotation.ParseMethod;
@@ -40,7 +41,11 @@ import org.vesalainen.parser.annotation.Terminals;
 })
 public abstract class Parser extends BaseParser
 {
-    @ParseMethod(start="Goal", whiteSpace={"whiteSpace", "hex", "bin"}, size=256)
+    @ParseMethod(
+            start="Goal", 
+            whiteSpace={"whiteSpace", "hex", "bin"},
+            features={AutoClose}    // useless here, just for testing
+    )
     public abstract long parseExt(String txt);
     
     @Terminal(expression="[ \t\r\n]+")
