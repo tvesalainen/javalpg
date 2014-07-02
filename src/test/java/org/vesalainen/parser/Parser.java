@@ -42,6 +42,8 @@ import org.vesalainen.parser.util.ParserInputObserver;
 })
 public abstract class Parser extends BaseParser implements ParserInputObserver
 {
+    private StringBuilder trace = new StringBuilder();
+    
     @ParseMethod(
             start="Goal", 
             whiteSpace={"whiteSpace", "hex", "bin"},
@@ -124,5 +126,12 @@ public abstract class Parser extends BaseParser implements ParserInputObserver
     @Override
     public void parserInput(int input)
     {
+        trace.append((char)input);
     }
+
+    public String getTrace()
+    {
+        return trace.toString();
+    }
+    
 }
