@@ -24,6 +24,7 @@ import org.vesalainen.parser.annotation.ParseMethod;
 import org.vesalainen.parser.annotation.Rule;
 import org.vesalainen.parser.annotation.Terminal;
 import org.vesalainen.parser.annotation.Terminals;
+import org.vesalainen.parser.util.ParserInputObserver;
 
 /**
  *
@@ -39,7 +40,7 @@ import org.vesalainen.parser.annotation.Terminals;
     @Terminal(left="LPAREN", expression="\\("),
     @Terminal(left="RPAREN", expression="\\)")
 })
-public abstract class Parser extends BaseParser
+public abstract class Parser extends BaseParser implements ParserInputObserver
 {
     @ParseMethod(
             start="Goal", 
@@ -118,5 +119,10 @@ public abstract class Parser extends BaseParser
     public long minusFactor(long term)
     {
         return -term;
+    }
+
+    @Override
+    public void parserInput(int input)
+    {
     }
 }
