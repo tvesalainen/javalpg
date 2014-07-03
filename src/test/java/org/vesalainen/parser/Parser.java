@@ -17,6 +17,8 @@
 
 package org.vesalainen.parser;
 
+import java.util.zip.CRC32;
+import java.util.zip.Checksum;
 import static org.vesalainen.parser.ParserFeature.*;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.GrammarDef;
@@ -24,7 +26,7 @@ import org.vesalainen.parser.annotation.ParseMethod;
 import org.vesalainen.parser.annotation.Rule;
 import org.vesalainen.parser.annotation.Terminal;
 import org.vesalainen.parser.annotation.Terminals;
-import org.vesalainen.parser.util.ParserInputObserver;
+import org.vesalainen.parser.util.ChecksumProvider;
 
 /**
  *
@@ -40,15 +42,14 @@ import org.vesalainen.parser.util.ParserInputObserver;
     @Terminal(left="LPAREN", expression="\\("),
     @Terminal(left="RPAREN", expression="\\)")
 })
-public abstract class Parser extends BaseParser implements ParserInputObserver
+public abstract class Parser extends BaseParser implements ChecksumProvider
 {
-    private StringBuilder trace = new StringBuilder();
+    private Checksum checksum;
     
     @ParseMethod(
             start="Goal", 
             whiteSpace={"whiteSpace", "hex", "bin"},
-            features={AutoClose}    // useless here, just for testing
-    )
+            features={UseAutoClose}        )
     public abstract long parseExt(String txt);
     
     @Terminal(expression="[ \t\r\n]+")
@@ -124,14 +125,13 @@ public abstract class Parser extends BaseParser implements ParserInputObserver
     }
 
     @Override
-    public void parserInput(int input)
+    public Checksum getChecksum()
     {
-        trace.append((char)input);
+        return checksum;
     }
 
-    public String getTrace()
+    public void setChecksum(Checksum checksum)
     {
-        return trace.toString();
+        this.checksum = checksum;
     }
-    
 }

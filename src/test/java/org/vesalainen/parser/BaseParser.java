@@ -17,6 +17,7 @@
 
 package org.vesalainen.parser;
 
+import static org.vesalainen.parser.ParserFeature.*;
 import org.vesalainen.parser.annotation.ParseMethod;
 import org.vesalainen.parser.annotation.Rule;
 
@@ -27,7 +28,7 @@ import org.vesalainen.parser.annotation.Rule;
 public abstract class BaseParser
 {
 
-    @ParseMethod(start="Goal")
+    @ParseMethod(start="Goal", features={UseChecksum})
     public abstract long parse(String txt);
     
     @Rule(left = "Term", value =

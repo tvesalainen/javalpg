@@ -17,8 +17,10 @@
 
 package org.vesalainen.parser;
 
-import org.junit.Test;
+import java.nio.charset.StandardCharsets;
+import java.util.zip.CRC32;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -35,13 +37,18 @@ public class ParserTest
     {
         Parser parser = Parser.getInstance();
         assertNotNull(parser);
-        assertEquals(2, parser.parse("1+1"));
-        assertEquals("1+1", parser.getTrace());
+        String expr = "1+1";
+        CRC32 crc = new CRC32();
+        crc.update(expr.getBytes(StandardCharsets.US_ASCII));
+        long expCRC = crc.getValue();
+        crc.reset();
+        parser.setChecksum(crc);
+        assertEquals(2, parser.parse(expr));
+        assertEquals(expCRC, parser.getChecksum().getValue());
         System.err.println("White-space terminals\n" +
         "can have reducer. Reducers are called when white-space input is read. If such \n" +
         "reducer returns value, that value is inserted in input. Return type must match\n" +
         "one of InputReader.input method parameter.");
         assertEquals(3*255, parser.parseExt("0b11 * 0xff"));
-        assertEquals("1+10b113 * 0xff255", parser.getTrace());
     }
 }
