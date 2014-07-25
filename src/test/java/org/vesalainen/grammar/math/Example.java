@@ -6,7 +6,6 @@
 package org.vesalainen.grammar.math;
 
 import org.vesalainen.parser.annotation.GenClassname;
-import org.vesalainen.parser.annotation.GrammarDef;
 import org.vesalainen.parser.annotation.MathExpression;
 
 /**
