@@ -17,6 +17,9 @@
 package org.vesalainen.regex;
 
 import java.io.IOException;
+import java.io.PushbackReader;
+import java.io.StringReader;
+import java.io.StringWriter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -109,4 +112,21 @@ public class RegExTest
         assertEquals(expResult, result);
     }
 
+    @Test
+    public void testIssue4() throws Exception
+    {
+        Regex instance = Regex.compile("[0-9]+");
+        String exp = "asdfgh qwerty zxcvbn hgfdsa";
+        PushbackReader sr = new PushbackReader(new StringReader(exp));
+        StringWriter sw = new StringWriter();
+        try
+        {
+            instance.replace(sr, 8, sw, "foo");
+            assertEquals(exp, sw.toString());
+        }
+        catch (Throwable thr)
+        {
+            fail(thr.getMessage());
+        }
+    }
 }
