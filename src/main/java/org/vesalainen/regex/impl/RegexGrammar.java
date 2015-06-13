@@ -29,8 +29,8 @@ import org.vesalainen.regex.Regex.Option;
 import java.lang.Character.UnicodeBlock;
 import java.util.HashSet;
 import java.util.Set;
+import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
-import org.vesalainen.parser.util.VisitSet;
 import org.vesalainen.regex.Quantifier;
 import org.vesalainen.regex.Range;
 import org.vesalainen.regex.RangeSet;
@@ -76,7 +76,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
         }
         return nfa;
     }
-    @ParseMethod(start="regexp")
+    @ParseMethod(start="regexp", features={SingleThread})
     protected abstract NFA parse(
             String expression,
             @ParserContext("FACTORY") Scope<NFAState<T>> factory,

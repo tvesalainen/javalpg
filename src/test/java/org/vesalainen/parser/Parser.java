@@ -17,7 +17,6 @@
 
 package org.vesalainen.parser;
 
-import java.util.zip.CRC32;
 import java.util.zip.Checksum;
 import static org.vesalainen.parser.ParserFeature.*;
 import org.vesalainen.parser.annotation.GenClassname;
@@ -49,7 +48,7 @@ public abstract class Parser extends BaseParser implements ChecksumProvider
     @ParseMethod(
             start="Goal", 
             whiteSpace={"whiteSpace", "hex", "bin"},
-            features={UseAutoClose}        )
+            features={UseAutoClose, SingleThread}        )
     public abstract long parseExt(String txt);
     
     @Terminal(expression="[ \t\r\n]+")
