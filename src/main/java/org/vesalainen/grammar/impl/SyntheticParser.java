@@ -26,7 +26,7 @@ import org.vesalainen.grammar.Grammar;
 import static org.vesalainen.grammar.GrammarConstants.*;
 import static org.vesalainen.grammar.SyntheticParserFactory.SyntheticParserClass;
 import org.vesalainen.grammar.SyntheticParserIntf;
-import org.vesalainen.parser.GenClassFactory;
+import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.GrammarDef;
 import org.vesalainen.parser.annotation.ParseMethod;
@@ -63,7 +63,7 @@ public abstract class SyntheticParser implements SyntheticParserIntf
      * @return 
      * @see <a href="doc-files/SyntheticParser-expression.html#BNF">BNF Syntax for synthetic expression</a>
      */
-    @ParseMethod(start="expression")
+    @ParseMethod(start="expression", features={SingleThread})
     protected abstract TypeMirror parseIt(String text, @ParserContext("GRAMMAR") Grammar g);
     
     @Rule(left="expression", value="symbol")

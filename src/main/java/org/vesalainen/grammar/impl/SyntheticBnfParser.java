@@ -22,7 +22,7 @@ import java.util.List;
 import static org.vesalainen.grammar.GrammarConstants.*;
 import static org.vesalainen.grammar.SyntheticBnfParserFactory.SyntheticBnfParserClass;
 import org.vesalainen.grammar.SyntheticBnfParserIntf;
-import org.vesalainen.parser.GenClassFactory;
+import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.GrammarDef;
 import org.vesalainen.parser.annotation.ParseMethod;
@@ -40,7 +40,7 @@ import org.vesalainen.parser.annotation.Terminal;
 @GrammarDef()
 public abstract class SyntheticBnfParser implements SyntheticBnfParserIntf
 {
-    @ParseMethod(start="expression")
+    @ParseMethod(start="expression", features={SingleThread})
     @Override
     public abstract String parse(String text);
     

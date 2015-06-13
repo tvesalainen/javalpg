@@ -27,6 +27,7 @@ import javax.lang.model.element.VariableElement;
 import org.vesalainen.bcc.model.El;
 import static org.vesalainen.grammar.math.MathExpressionParserFactory.MathExpressionParserClass;
 import org.vesalainen.parser.GenClassFactory;
+import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.Terminal;
 import org.vesalainen.parser.annotation.Terminals;
@@ -80,7 +81,7 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
         DEH expression = parse(me.value(), me.degrees(), handler);
         expression.execute(handler);
     }
-    @ParseMethod(start="expression",  size=1024, whiteSpace={"whiteSpace"})
+    @ParseMethod(start="expression",  size=1024, whiteSpace={"whiteSpace"}, features={SingleThread})
     protected abstract DEH parse(
             String expression, 
             @ParserContext("degrees") boolean degrees,
