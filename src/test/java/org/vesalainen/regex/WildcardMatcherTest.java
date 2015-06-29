@@ -39,6 +39,7 @@ public class WildcardMatcherTest
         WildcardMatcher<String> wm = new WildcardMatcher<>();
         wm.addExpression("$??RMC", "rmc");
         wm.addExpression("$??GLL", "gll");
+        wm.addExpression("$GPGLL", "gpgll");
         wm.addExpression("$HCHDT", "hdt");
         wm.compile();
         assertEquals(Status.Ok, wm.match('$'));
@@ -47,6 +48,24 @@ public class WildcardMatcherTest
         assertEquals(Status.Ok, wm.match('G'));
         assertEquals(Status.Ok, wm.match('L'));
         assertEquals(Status.Match, wm.match('L'));
+        assertEquals("gpgll", wm.getMatched());
+    }
+    @Test
+    public void test2()
+    {
+        WildcardMatcher<String> wm = new WildcardMatcher<>();
+        wm.addExpression("$??RMC", "rmc");
+        wm.addExpression("$??GLL", "gll");
+        wm.addExpression("$GPGLL", "gpgll");
+        wm.addExpression("$HCHDT", "hdt");
+        wm.compile();
+        assertEquals(Status.Ok, wm.match('$'));
+        assertEquals(Status.Ok, wm.match('g'));
+        assertEquals(Status.Ok, wm.match('P'));
+        assertEquals(Status.Ok, wm.match('G'));
+        assertEquals(Status.Ok, wm.match('L'));
+        assertEquals(Status.Match, wm.match('L'));
+        assertEquals("gll", wm.getMatched());
     }
     
 }
