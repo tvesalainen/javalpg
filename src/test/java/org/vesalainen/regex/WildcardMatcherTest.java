@@ -38,7 +38,6 @@ public class WildcardMatcherTest
     {
         WildcardMatcher<String> wm = new WildcardMatcher<>();
         wm.addExpression("$??RMC", "rmc");
-        wm.addExpression("$??GLL", "gll");
         wm.addExpression("$GPGLL", "gpgll");
         wm.addExpression("$HCHDT", "hdt");
         wm.compile();
@@ -56,7 +55,6 @@ public class WildcardMatcherTest
         WildcardMatcher<String> wm = new WildcardMatcher<>();
         wm.addExpression("$??RMC", "rmc");
         wm.addExpression("$??GLL", "gll");
-        wm.addExpression("$GPGLL", "gpgll");
         wm.addExpression("$HCHDT", "hdt");
         wm.compile();
         assertEquals(Status.Ok, wm.match('$'));
