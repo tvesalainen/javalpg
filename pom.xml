@@ -3,18 +3,31 @@
     <parent>
         <groupId>org.vesalainen</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.8</version>
+        <version>1.8.0</version>
     </parent>    
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.vesalainen.lpg</groupId>
     <artifactId>javalpg</artifactId>
-    <version>1.1.5</version>
+    <version>1.8.0</version>
     <packaging>jar</packaging>
 
     <name>Java Lookahead Parser Generator Extension</name>
     <description>
         Syntactically extended parsers for regex, bnf, ...grammars
     </description>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>org.apache.ant</groupId>
