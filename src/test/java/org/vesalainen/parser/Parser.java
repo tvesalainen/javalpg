@@ -24,7 +24,6 @@ import org.vesalainen.parser.annotation.GrammarDef;
 import org.vesalainen.parser.annotation.ParseMethod;
 import org.vesalainen.parser.annotation.Rule;
 import org.vesalainen.parser.annotation.Terminal;
-import org.vesalainen.parser.annotation.Terminals;
 import org.vesalainen.parser.util.ChecksumProvider;
 
 /**
@@ -33,14 +32,12 @@ import org.vesalainen.parser.util.ChecksumProvider;
  */
 @GenClassname("org.vesalainen.parser.ParserImpl")
 @GrammarDef()
-@Terminals({
-    @Terminal(left="PLUS", expression="\\+"),
-    @Terminal(left="MINUS", expression="\\-"),
-    @Terminal(left="STAR", expression="\\*"),
-    @Terminal(left="SLASH", expression="/"),
-    @Terminal(left="LPAREN", expression="\\("),
-    @Terminal(left="RPAREN", expression="\\)")
-})
+@Terminal(left="PLUS", expression="\\+")
+@Terminal(left="MINUS", expression="\\-")
+@Terminal(left="STAR", expression="\\*")
+@Terminal(left="SLASH", expression="/")
+@Terminal(left="LPAREN", expression="\\(")
+@Terminal(left="RPAREN", expression="\\)")
 public abstract class Parser extends BaseParser implements ChecksumProvider
 {
     private Checksum checksum;
