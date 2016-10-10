@@ -33,6 +33,9 @@ import org.vesalainen.parser.annotation.Rule;
 
 /**
  * @author tkv
+ * @param <T>
+ * @param <M>
+ * @param <V>
  */
 @GenClassname(MathExpressionParserClass)
 @GrammarDef()
@@ -64,6 +67,13 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
         DEH expression = parse(me.value(), me.degrees(), handler);
         expression.execute(handler);
     }
+
+    @Override
+    public DEH parse(String me, ExpressionHandler<T, M, V> handler) throws IOException
+    {
+        return parse(me, true, handler);
+    }
+    
     @ParseMethod(start="expression",  size=1024, whiteSpace={"whiteSpace"}, features={SingleThread})
     protected abstract DEH parse(
             String expression, 
