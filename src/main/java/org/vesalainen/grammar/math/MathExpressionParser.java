@@ -18,15 +18,9 @@ package org.vesalainen.grammar.math;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.VariableElement;
-import org.vesalainen.bcc.model.El;
 import static org.vesalainen.grammar.math.MathExpressionParserFactory.MathExpressionParserClass;
-import org.vesalainen.parser.GenClassFactory;
 import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.Terminal;
@@ -62,21 +56,10 @@ import org.vesalainen.parser.annotation.Rule;
     @Terminal(left="LPAREN", expression="\\("),
     @Terminal(left="RPAREN", expression="\\)")
 })
-public abstract class MathExpressionParser implements MathExpressionParserIntf
+public abstract class MathExpressionParser<T,M,V> implements MathExpressionParserIntf<T,M,V>
 {
-    private static final Set<ExecutableElement> degreeArgs = new HashSet<>();
-    private static final Set<ExecutableElement> degreeReturns = new HashSet<>();
-    static
-    {
-        degreeArgs.add(El.getMethod(Math.class, "sin", double.class));
-        degreeArgs.add(El.getMethod(Math.class, "cos", double.class));
-        degreeArgs.add(El.getMethod(Math.class, "tan", double.class));
-        degreeReturns.add(El.getMethod(Math.class, "asin", double.class));
-        degreeReturns.add(El.getMethod(Math.class, "acos", double.class));
-        degreeReturns.add(El.getMethod(Math.class, "atan", double.class));
-    }
     @Override
-    public void parse(MathExpression me, MethodExpressionHandler handler) throws ReflectiveOperationException
+    public void parse(MathExpression me, ExpressionHandler<T,M,V> handler)
     {
         DEH expression = parse(me.value(), me.degrees(), handler);
         expression.execute(handler);
@@ -85,7 +68,7 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
     protected abstract DEH parse(
             String expression, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") MethodExpressionHandler handler
+            @ParserContext("handler") ExpressionHandler<T,M,V> handler
             );
     
     @Rule("term")
@@ -172,7 +155,7 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
     protected DEH abs(
             DEH expression, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") MethodExpressionHandler handler
+            @ParserContext("handler") ExpressionHandler<T,M,V> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -184,7 +167,7 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
             DEH atom, 
             DEH factor, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") MethodExpressionHandler handler
+            @ParserContext("handler") ExpressionHandler<T,M,V> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -196,7 +179,7 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
     protected DEH factorial(
             DEH atom, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") MethodExpressionHandler handler
+            @ParserContext("handler") ExpressionHandler<T,M,V> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -218,7 +201,7 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
     @Rule(left="factor", value={"SQRT", "atom"})
     protected DEH sqrt(
             DEH atom,
-            @ParserContext("handler") MethodExpressionHandler handler
+            @ParserContext("handler") ExpressionHandler<T,M,V> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -228,7 +211,7 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
     @Rule(left="factor", value={"CBRT", "atom"})
     protected DEH cbrt(
             DEH atom,
-            @ParserContext("handler") MethodExpressionHandler handler
+            @ParserContext("handler") ExpressionHandler<T,M,V> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -236,10 +219,10 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
         return func("cbrt", args, false, handler);
     }
     @Rule(left="atom", value={"PI"})
-    protected DEH pi() throws IOException
+    protected DEH pi(@ParserContext("handler") ExpressionHandler<T,M,V> handler) throws IOException
     {
         DEH atom = new DEH();
-        atom.getProxy().loadField(El.getField(Math.class, "PI"));
+        atom.getProxy().loadField(handler.getField(Math.class, "PI"));
         return atom;
     }
     @Rule(left="neg")
@@ -299,29 +282,29 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
             String identifier, 
             List<DEH> funcArgs, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") MethodExpressionHandler handler
+            @ParserContext("handler") ExpressionHandler<T,M,V> handler
             ) throws IOException
     {
         DEH atom = new DEH();
         ExpressionHandler proxy = atom.getProxy();
-        ExecutableElement method = handler.findMethod(identifier, funcArgs.size());
-        List<? extends VariableElement> parameters = method.getParameters();
+        M method = handler.findMethod(identifier, funcArgs.size());
+        List<? extends V> parameters = handler.getParameters(method);
         assert funcArgs.size() == parameters.size();
         int index = 0;
         for (DEH expr : funcArgs)
         {
             atom.append(expr);
-            proxy.convertTo(parameters.get(index++).asType());
-            if (degrees && degreeArgs.contains(method))
+            proxy.convertTo(handler.asType(parameters.get(index++)));
+            if (degrees && handler.isDegreeArgs(method))
             {
-                proxy.invoke(El.getMethod(Math.class, "toRadians", double.class));
+                proxy.invoke(handler.getMethod(Math.class, "toRadians", double.class));
             }
         }
         proxy.invoke(method);
-        proxy.convertFrom(method.getReturnType());
-        if (degrees && degreeReturns.contains(method))
+        proxy.convertFrom(handler.getReturnType(method));
+        if (degrees && handler.isDegreeReturn(method))
         {
-            proxy.invoke(El.getMethod(Math.class, "toDegrees", double.class));
+            proxy.invoke(handler.getMethod(Math.class, "toDegrees", double.class));
         }
         return atom;
     }
@@ -338,18 +321,5 @@ public abstract class MathExpressionParser implements MathExpressionParserIntf
     @Terminal(expression="[ \t\r\n]+")
     protected abstract void whiteSpace();
     
-    public static void main(String[] args)
-    {
-        try
-        {
-            El.getTypeElement(MathExpressionParser.class.getCanonicalName());
-            MathExpressionParser rp = (MathExpressionParser) GenClassFactory.getGenInstance(MathExpressionParser.class);
-            //rp.parse("1 + (1-2)^n+max(1, 2)+|x| - 1.23e-12 + n! + min(1+2,2,3,4,5)", new PrintingHandler());
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }
 
 }
