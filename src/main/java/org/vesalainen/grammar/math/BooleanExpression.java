@@ -23,7 +23,7 @@ import java.lang.reflect.Field;
  *
  * @author tkv
  */
-public abstract class DoubleMathExpression extends DoubleMathStack
+public abstract class BooleanExpression extends DoubleMathStack
 {
     private String expression;
     private boolean degrees;
@@ -37,20 +37,20 @@ public abstract class DoubleMathExpression extends DoubleMathStack
      * @param expression
      * @param degrees 
      */
-    public DoubleMathExpression(String expression, boolean degrees)
+    public BooleanExpression(String expression, boolean degrees)
     {
         this.expression = expression;
         this.degrees = degrees;
     }
     
-    public double calculate()
+    public boolean calculate()
     {
         if (stack == null)
         {
             MathExpressionParserIntf<Class<?>,String,Field,Class<?>> parser = MathExpressionParserFactory.getInstance();
             try
             {
-                stack = parser.parse(expression, degrees, this);
+                stack = parser.parseBoolean(expression, degrees, this);
             }
             catch (IOException ex)
             {
@@ -59,6 +59,6 @@ public abstract class DoubleMathExpression extends DoubleMathStack
         }
         clear();
         stack.execute(this);
-        return pop();
+        return pop() == TRUE;
     }
 }

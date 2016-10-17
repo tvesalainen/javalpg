@@ -24,41 +24,49 @@ import static org.vesalainen.grammar.math.MathExpressionParserFactory.MathExpres
 import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.parser.annotation.Terminal;
-import org.vesalainen.parser.annotation.Terminals;
 import org.vesalainen.parser.annotation.GrammarDef;
 import org.vesalainen.parser.annotation.MathExpression;
 import org.vesalainen.parser.annotation.ParseMethod;
 import org.vesalainen.parser.annotation.ParserContext;
 import org.vesalainen.parser.annotation.Rule;
+import org.vesalainen.regex.Regex.Option;
 
 /**
  * @author tkv
  * @param <T>
  * @param <M>
- * @param <V>
+ * @param <F>
+ * @param <P>
  */
 @GenClassname(MathExpressionParserClass)
 @GrammarDef()
-@Terminals({
-    @Terminal(left="SQUARE", expression="[\u00b2\u2072]"),
-    @Terminal(left="CUBE", expression="[\u00b3\u2073]"),
-    @Terminal(left="PI", expression="\u03c0"),
-    @Terminal(left="SQRT", expression="\u221a"),
-    @Terminal(left="CBRT", expression="\u2218"),
-    @Terminal(left="PLUS", expression="\\+"),
-    @Terminal(left="MINUS", expression="\\-"),
-    @Terminal(left="STAR", expression="\\*"),
-    @Terminal(left="SLASH", expression="/"),
-    @Terminal(left="PERCENT", expression="%"),
-    @Terminal(left="EXP", expression="\\^"),
-    @Terminal(left="COMMA", expression="\\,"),
-    @Terminal(left="PIPE", expression="\\|"),
-    @Terminal(left="EXCL", expression="!"),
-    @Terminal(left="LBRACKET", expression="\\["),
-    @Terminal(left="RBRACKET", expression="\\]"),
-    @Terminal(left="LPAREN", expression="\\("),
-    @Terminal(left="RPAREN", expression="\\)")
-})
+@Terminal(left="SQUARE", expression="[\u00b2\u2072]")
+@Terminal(left="CUBE", expression="[\u00b3\u2073]")
+@Terminal(left="PI", expression="\u03c0")
+@Terminal(left="SQRT", expression="\u221a")
+@Terminal(left="CBRT", expression="\u2218")
+@Terminal(left="PLUS", expression="\\+")
+@Terminal(left="MINUS", expression="\\-")
+@Terminal(left="STAR", expression="\\*")
+@Terminal(left="SLASH", expression="/")
+@Terminal(left="PERCENT", expression="%")
+@Terminal(left="EXP", expression="\\^")
+@Terminal(left="COMMA", expression="\\,")
+@Terminal(left="PIPE", expression="\\|")
+@Terminal(left="EXCL", expression="!")
+@Terminal(left="LBRACKET", expression="\\[")
+@Terminal(left="RBRACKET", expression="\\]")
+@Terminal(left="LPAREN", expression="\\(")
+@Terminal(left="RPAREN", expression="\\)")
+@Terminal(left="AND", expression="[aA][nN][dD]")
+@Terminal(left="OR", expression="[oO][rR]")
+@Terminal(left="NOT", expression="!")
+@Terminal(left="EQ", expression="==?")
+@Terminal(left="NE", expression="!=")
+@Terminal(left="LT", expression="<")
+@Terminal(left="LE", expression="<=")
+@Terminal(left="GT", expression=">")
+@Terminal(left="GE", expression=">=")
 public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionParserIntf<T,M,F,P>
 {
     /**
@@ -85,9 +93,21 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
     {
         return doParse(expression, degrees, handler);
     }
+    @Override
+    public DEH parseBoolean(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws IOException
+    {
+        return doParseBoolean(expression, degrees, handler);
+    }
     
-    @ParseMethod(start="expression",  size=1024, whiteSpace={"whiteSpace"}, features={SingleThread})
+    @ParseMethod(start="expression",  whiteSpace={"whiteSpace"}, features={SingleThread})
     protected abstract DEH doParse(
+            String expression, 
+            @ParserContext("degrees") boolean degrees,
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
+            );
+    
+    @ParseMethod(start="conditionalExpression",  whiteSpace={"whiteSpace"}, features={SingleThread})
+    protected abstract DEH doParseBoolean(
             String expression, 
             @ParserContext("degrees") boolean degrees,
             @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
@@ -329,6 +349,91 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
             proxy.invoke(handler.getMethod(Math.class, "toDegrees", double.class));
         }
         return atom;
+    }
+    
+    // Conditional
+
+    @Rule("andExpression")
+    protected DEH conditionalExpression(DEH andExpression)
+    {
+        return andExpression;
+    }
+    @Rule(value={"conditionalExpression", "OR", "andExpression"})
+    protected DEH conditionalExpression(DEH conditionalExpression, DEH andExpression) throws IOException
+    {
+        conditionalExpression.append(andExpression);
+        conditionalExpression.getProxy().or();
+        return conditionalExpression;
+    }
+    @Rule("orExpression")
+    protected DEH andExpression(DEH orExpression)
+    {
+        return orExpression;
+    }
+    @Rule(value={"andExpression", "AND", "orExpression"})
+    protected DEH andExpression(DEH andExpression, DEH orExpression) throws IOException
+    {
+        andExpression.append(orExpression);
+        andExpression.getProxy().and();
+        return andExpression;
+    }
+    @Rule("conditionalAtom")
+    protected DEH orExpression(DEH conditionalAtom)
+    {
+        return conditionalAtom;
+    }
+    @Rule(left="conditionalAtom", value={"LPAREN", "conditionalExpression", "RPAREN"})
+    protected DEH parenConditional(DEH conditionalExpression)
+    {
+        return conditionalExpression;
+    }
+    @Rule(left="conditionalAtom", value={"NOT", "conditionalAtom"})
+    protected DEH notConditional(DEH conditionalExpression) throws IOException
+    {
+        conditionalExpression.getProxy().not();
+        return conditionalExpression;
+    }
+    @Rule(left="conditionalAtom", value={"expression", "EQ", "expression"})
+    protected DEH eqConditional(DEH exp1, DEH exp2) throws IOException
+    {
+        exp1.append(exp2);
+        exp1.getProxy().eq();
+        return exp1;
+    }
+    @Rule(left="conditionalAtom", value={"expression", "NE", "expression"})
+    protected DEH neConditional(DEH exp1, DEH exp2) throws IOException
+    {
+        exp1.append(exp2);
+        exp1.getProxy().ne();
+        return exp1;
+    }
+    @Rule(left="conditionalAtom", value={"expression", "LT", "expression"})
+    protected DEH ltConditional(DEH exp1, DEH exp2) throws IOException
+    {
+        exp1.append(exp2);
+        exp1.getProxy().lt();
+        return exp1;
+    }
+    @Rule(left="conditionalAtom", value={"expression", "LE", "expression"})
+    protected DEH leConditional(DEH exp1, DEH exp2) throws IOException
+    {
+        exp1.append(exp2);
+        exp1.getProxy().le();
+        return exp1;
+    }
+    @Rule(left="conditionalAtom", value={"expression", "GT", "expression"})
+    protected DEH gtConditional(DEH exp1, DEH exp2) throws IOException
+    {
+        exp1.append(exp2);
+        exp1.getProxy().gt();
+        return exp1;
+    }
+    @Rule(left="conditionalAtom", value={"expression", "GE", "expression"})
+    protected DEH geConditional(DEH exp1, DEH exp2) throws IOException
+    {
+        exp1.append(exp2);
+        exp1.getProxy().ge();
+        return exp1;
     }
     // -------------------
     @Terminal(expression="[a-zA-Z][a-zA-Z0-9_]*")
