@@ -59,26 +59,38 @@ import org.vesalainen.parser.annotation.Rule;
     @Terminal(left="LPAREN", expression="\\("),
     @Terminal(left="RPAREN", expression="\\)")
 })
-public abstract class MathExpressionParser<T,M,V> implements MathExpressionParserIntf<T,M,V>
+public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionParserIntf<T,M,F,P>
 {
+    /**
+     * Parse and execute MathExpression
+     * @param me
+     * @param handler 
+     */
     @Override
-    public void parse(MathExpression me, ExpressionHandler<T,M,V> handler)
+    public void parse(MathExpression me, ExpressionHandler<T,M,F,P> handler)
     {
-        DEH expression = parse(me.value(), me.degrees(), handler);
+        DEH expression = doParse(me.value(), me.degrees(), handler);
         expression.execute(handler);
     }
-
+    /**
+     * Parse and return expression.
+     * @param expression
+     * @param degrees
+     * @param handler
+     * @return
+     * @throws IOException 
+     */
     @Override
-    public DEH parse(String me, ExpressionHandler<T, M, V> handler) throws IOException
+    public DEH parse(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws IOException
     {
-        return parse(me, true, handler);
+        return doParse(expression, degrees, handler);
     }
     
     @ParseMethod(start="expression",  size=1024, whiteSpace={"whiteSpace"}, features={SingleThread})
-    protected abstract DEH parse(
+    protected abstract DEH doParse(
             String expression, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") ExpressionHandler<T,M,V> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
             );
     
     @Rule("term")
@@ -165,7 +177,7 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
     protected DEH abs(
             DEH expression, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") ExpressionHandler<T,M,V> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -177,7 +189,7 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
             DEH atom, 
             DEH factor, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") ExpressionHandler<T,M,V> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -189,7 +201,7 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
     protected DEH factorial(
             DEH atom, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") ExpressionHandler<T,M,V> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -211,7 +223,7 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
     @Rule(left="factor", value={"SQRT", "atom"})
     protected DEH sqrt(
             DEH atom,
-            @ParserContext("handler") ExpressionHandler<T,M,V> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -221,7 +233,7 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
     @Rule(left="factor", value={"CBRT", "atom"})
     protected DEH cbrt(
             DEH atom,
-            @ParserContext("handler") ExpressionHandler<T,M,V> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
             ) throws IOException
     {
         List<DEH> args = new ArrayList<>();
@@ -229,7 +241,7 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
         return func("cbrt", args, false, handler);
     }
     @Rule(left="atom", value={"PI"})
-    protected DEH pi(@ParserContext("handler") ExpressionHandler<T,M,V> handler) throws IOException
+    protected DEH pi(@ParserContext("handler") ExpressionHandler<T,M,F,P> handler) throws IOException
     {
         DEH atom = new DEH();
         atom.getProxy().loadField(handler.getField(Math.class, "PI"));
@@ -292,27 +304,27 @@ public abstract class MathExpressionParser<T,M,V> implements MathExpressionParse
             String identifier, 
             List<DEH> funcArgs, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") ExpressionHandler<T,M,V> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
             ) throws IOException
     {
         DEH atom = new DEH();
         ExpressionHandler proxy = atom.getProxy();
         M method = handler.findMethod(identifier, funcArgs.size());
-        List<? extends V> parameters = handler.getParameters(method);
+        List<? extends P> parameters = handler.getParameters(method);
         assert funcArgs.size() == parameters.size();
         int index = 0;
         for (DEH expr : funcArgs)
         {
             atom.append(expr);
             proxy.convertTo(handler.asType(parameters.get(index++)));
-            if (degrees && handler.isDegreeArgs(method))
+            if (degrees && handler.isRadianArgs(method))
             {
                 proxy.invoke(handler.getMethod(Math.class, "toRadians", double.class));
             }
         }
         proxy.invoke(method);
         proxy.convertFrom(handler.getReturnType(method));
-        if (degrees && handler.isDegreeReturn(method))
+        if (degrees && handler.isRadianReturn(method))
         {
             proxy.invoke(handler.getMethod(Math.class, "toDegrees", double.class));
         }
