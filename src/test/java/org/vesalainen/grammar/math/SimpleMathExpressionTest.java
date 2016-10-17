@@ -39,6 +39,9 @@ public class SimpleMathExpressionTest
         sme.setVariable("x", 1);
         sme.setVariable("y", 2);
         assertEquals(4, sme.calculate(), Epsilon);
+        sme.setVariable("x", 10);
+        sme.setVariable("y", 3);
+        assertEquals(33, sme.calculate(), Epsilon);
     }
     @Test
     public void test2()
