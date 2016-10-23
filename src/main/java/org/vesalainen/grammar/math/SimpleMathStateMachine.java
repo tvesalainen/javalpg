@@ -18,6 +18,7 @@ package org.vesalainen.grammar.math;
 
 import java.io.IOException;
 import java.time.Clock;
+import java.util.Set;
 import org.vesalainen.util.DoubleMap;
 
 /**
@@ -52,6 +53,23 @@ public class SimpleMathStateMachine extends AbstractMathStateMachine
     protected double getVariable(String identifier)
     {
         return map.getDouble(identifier);
+    }
+
+    @Override
+    protected void register(Set<String> variables)
+    {
+        for (String v : variables)
+        {
+            if (!map.containsKey(v))
+            {
+                throw new IllegalArgumentException("variable "+v+" not set");
+            }
+        }
+    }
+
+    @Override
+    protected void unregister(Set<String> variables)
+    {
     }
     
 }

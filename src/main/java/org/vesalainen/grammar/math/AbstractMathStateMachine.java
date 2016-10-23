@@ -32,6 +32,8 @@ public abstract class AbstractMathStateMachine extends AbstractStateMachine<Bool
 {
     private boolean useDegrees;
     private Set<String> variables = new HashSet<>();
+    private Set<String> active = new HashSet<>();
+    private Set<String> reg = new HashSet<>();
 
     public AbstractMathStateMachine(String start)
     {
@@ -58,7 +60,7 @@ public abstract class AbstractMathStateMachine extends AbstractStateMachine<Bool
      * Returns a set of variables used in current state.
      * @return 
      */
-    public Set<String> getCurrentVariables()
+    public Set<String> getCurrentVariables() throws Exception
     {
         variables.clear();
         getCurrentConditions().stream().forEach((bme) ->
@@ -74,6 +76,39 @@ public abstract class AbstractMathStateMachine extends AbstractStateMachine<Bool
      * @throws IOException 
      */
     protected abstract double getVariable(String identifier) throws IOException;
+
+    @Override
+    public void evaluate() throws Exception
+    {
+        Set<String> cur = getCurrentVariables();
+        reg.clear();
+        reg.addAll(cur);
+        reg.removeAll(active);
+        register(reg);
+        active.addAll(reg);
+        super.evaluate();
+        cur = getCurrentVariables();
+        reg.clear();
+        reg.addAll(active);
+        reg.removeAll(cur);
+        unregister(reg);
+        active.removeAll(reg);
+    }
+    
+    /**
+     * This method is called before evaluation for information of variables
+     * that may need to be registered. Set content is valid only during this
+     * method call.
+     * @param variables 
+     */
+    protected abstract void register(Set<String> variables);
+    /**
+     * This method is called after evaluation for information of variables
+     * that can be unregistered. Set content is valid only during this
+     * method call.
+     * @param variables 
+     */
+    protected abstract void unregister(Set<String> variables);
  
     private class Expression extends BooleanMathExpression
     {
