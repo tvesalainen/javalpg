@@ -18,6 +18,7 @@ package org.vesalainen.grammar.math;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Set;
 
 /**
  *
@@ -47,18 +48,34 @@ public abstract class DoubleMathExpression extends DoubleMathStack
     {
         if (stack == null)
         {
-            MathExpressionParserIntf<Class<?>,String,Field,Class<?>> parser = MathExpressionParserFactory.getInstance();
-            try
-            {
-                stack = parser.parse(expression, degrees, this);
-            }
-            catch (IOException ex)
-            {
-                throw new RuntimeException(ex);
-            }
+            parse();
         }
         clear();
         stack.execute(this);
         return pop();
+    }
+    /**
+     * Returns immutable set of variable identifiers.
+     * @return 
+     */
+    public Set<String> getVariables()
+    {
+        if (stack == null)
+        {
+            parse();
+        }
+        return stack.getVariables();
+    }
+    private void parse()
+    {
+        MathExpressionParserIntf<Class<?>,String,Field,Class<?>> parser = MathExpressionParserFactory.getInstance();
+        try
+        {
+            stack = parser.parse(expression, degrees, this);
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException(ex);
+        }
     }
 }

@@ -18,8 +18,10 @@ package org.vesalainen.grammar.math;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import static org.vesalainen.grammar.math.MathExpressionParserFactory.MathExpressionParserClass;
 import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
@@ -77,7 +79,8 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
     @Override
     public void parse(MathExpression me, ExpressionHandler<T,M,F,P> handler)
     {
-        DEH expression = doParse(me.value(), me.degrees(), handler);
+        Set<String> variables = new HashSet<>();
+        DEH expression = doParse(me.value(), me.degrees(), handler, variables);
         expression.execute(handler);
     }
     /**
@@ -91,26 +94,34 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
     @Override
     public DEH parse(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws IOException
     {
-        return doParse(expression, degrees, handler);
+        Set<String> variables = new HashSet<>();
+        DEH deh = doParse(expression, degrees, handler, variables);
+        deh.setVariables(variables);
+        return deh;
     }
     @Override
     public DEH parseBoolean(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws IOException
     {
-        return doParseBoolean(expression, degrees, handler);
+        Set<String> variables = new HashSet<>();
+        DEH deh = doParseBoolean(expression, degrees, handler, variables);
+        deh.setVariables(variables);
+        return deh;
     }
     
     @ParseMethod(start="expression",  whiteSpace={"whiteSpace"}, features={SingleThread})
     protected abstract DEH doParse(
             String expression, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler,
+            @ParserContext("variables") Set<String> variables
             );
     
     @ParseMethod(start="conditionalExpression",  whiteSpace={"whiteSpace"}, features={SingleThread})
     protected abstract DEH doParseBoolean(
             String expression, 
             @ParserContext("degrees") boolean degrees,
-            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
+            @ParserContext("handler") ExpressionHandler<T,M,F,P> handler,
+            @ParserContext("variables") Set<String> variables
             );
     
     @Rule("term")
@@ -289,8 +300,9 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return list;
     }
     @Rule(left="atom", value={"neg", "identifier", "indexList"})
-    protected DEH variable(boolean neg, String identifier, List<DEH> indexList) throws IOException
+    protected DEH variable(boolean neg, String identifier, List<DEH> indexList, @ParserContext("variables") Set<String> variables) throws IOException
     {
+        variables.add(identifier);
         DEH atom = new DEH();
         ExpressionHandler proxy = atom.getProxy();
         proxy.loadVariable(identifier);

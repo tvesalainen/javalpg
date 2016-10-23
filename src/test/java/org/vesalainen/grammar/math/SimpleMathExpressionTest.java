@@ -16,6 +16,7 @@
  */
 package org.vesalainen.grammar.math;
 
+import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -42,6 +43,10 @@ public class SimpleMathExpressionTest
         sme.setVariable("x", 10);
         sme.setVariable("y", 3);
         assertEquals(33, sme.calculate(), Epsilon);
+        Set<String> variables = sme.getVariables();
+        assertEquals(2, variables.size());
+        assertTrue(variables.contains("x"));
+        assertTrue(variables.contains("y"));
     }
     @Test
     public void test2()
