@@ -18,12 +18,14 @@ package org.vesalainen.grammar.math;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Set;
+import java.util.function.BooleanSupplier;
 
 /**
  *
  * @author tkv
  */
-public abstract class BooleanExpression extends DoubleMathStack
+public abstract class BooleanMathExpression extends DoubleMathStack implements BooleanSupplier
 {
     private String expression;
     private boolean degrees;
@@ -37,28 +39,46 @@ public abstract class BooleanExpression extends DoubleMathStack
      * @param expression
      * @param degrees 
      */
-    public BooleanExpression(String expression, boolean degrees)
+    public BooleanMathExpression(String expression, boolean degrees)
     {
         this.expression = expression;
         this.degrees = degrees;
     }
     
-    public boolean calculate()
+    @Override
+    public boolean getAsBoolean()
     {
         if (stack == null)
         {
-            MathExpressionParserIntf<Class<?>,String,Field,Class<?>> parser = MathExpressionParserFactory.getInstance();
-            try
-            {
-                stack = parser.parseBoolean(expression, degrees, this);
-            }
-            catch (IOException ex)
-            {
-                throw new RuntimeException(ex);
-            }
+            parse();
         }
         clear();
         stack.execute(this);
         return pop() == TRUE;
+    }
+    /**
+     * Returns immutable set of variable identifiers.
+     * @return 
+     */
+    public Set<String> getVariables()
+    {
+        if (stack == null)
+        {
+            parse();
+        }
+        return stack.getVariables();
+    }
+
+    private void parse()
+    {
+        MathExpressionParserIntf<Class<?>,String,Field,Class<?>> parser = MathExpressionParserFactory.getInstance();
+        try
+        {
+            stack = parser.parseBoolean(expression, degrees, this);
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException(ex);
+        }
     }
 }

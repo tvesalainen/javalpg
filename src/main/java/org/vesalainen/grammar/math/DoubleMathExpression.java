@@ -19,12 +19,13 @@ package org.vesalainen.grammar.math;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Set;
+import java.util.function.DoubleSupplier;
 
 /**
  *
  * @author tkv
  */
-public abstract class DoubleMathExpression extends DoubleMathStack
+public abstract class DoubleMathExpression extends DoubleMathStack implements DoubleSupplier
 {
     private String expression;
     private boolean degrees;
@@ -44,7 +45,8 @@ public abstract class DoubleMathExpression extends DoubleMathStack
         this.degrees = degrees;
     }
     
-    public double calculate()
+    @Override
+    public double getAsDouble()
     {
         if (stack == null)
         {

@@ -16,30 +16,42 @@
  */
 package org.vesalainen.grammar.math;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import java.io.IOException;
+import java.time.Clock;
+import org.vesalainen.util.DoubleMap;
 
 /**
  *
  * @author tkv
  */
-public class SimpleBooleanExpressionTest
+public class SimpleMathStateMachine extends AbstractMathStateMachine
 {
-    
-    public SimpleBooleanExpressionTest()
+    private DoubleMap<String> map = new DoubleMap<>();
+
+    public SimpleMathStateMachine(String start)
     {
+        super(start);
     }
 
-    @Test
-    public void test1()
+    public SimpleMathStateMachine(String start, boolean useDegrees)
     {
-        SimpleBooleanExpression sbe = new SimpleBooleanExpression("x+1>y-2");
-        sbe.setVariable("x", 2);
-        sbe.setVariable("y", 1);
-        assertTrue(sbe.getAsBoolean());
-        sbe.setVariable("x", -2);
-        sbe.setVariable("y", 1);
-        assertFalse(sbe.getAsBoolean());
+        super(start, useDegrees);
+    }
+
+    public SimpleMathStateMachine(String start, Clock clock, boolean useDegrees)
+    {
+        super(start, clock, useDegrees);
+    }
+
+    public void setVariable(String identifier, double value)
+    {
+        map.put(identifier, value);
+    }
+    
+    @Override
+    protected double getVariable(String identifier)
+    {
+        return map.getDouble(identifier);
     }
     
 }

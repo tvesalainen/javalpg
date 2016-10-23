@@ -39,10 +39,10 @@ public class SimpleMathExpressionTest
         SimpleMathExpression sme = new SimpleMathExpression("(x+1)*y");
         sme.setVariable("x", 1);
         sme.setVariable("y", 2);
-        assertEquals(4, sme.calculate(), Epsilon);
+        assertEquals(4, sme.getAsDouble(), Epsilon);
         sme.setVariable("x", 10);
         sme.setVariable("y", 3);
-        assertEquals(33, sme.calculate(), Epsilon);
+        assertEquals(33, sme.getAsDouble(), Epsilon);
         Set<String> variables = sme.getVariables();
         assertEquals(2, variables.size());
         assertTrue(variables.contains("x"));
@@ -54,7 +54,7 @@ public class SimpleMathExpressionTest
         SimpleMathExpression sme = new SimpleMathExpression("cos(a)*c");
         sme.setVariable("a", 60);
         sme.setVariable("c", 2);
-        assertEquals(1, sme.calculate(), Epsilon);
+        assertEquals(1, sme.getAsDouble(), Epsilon);
     }
     
 }

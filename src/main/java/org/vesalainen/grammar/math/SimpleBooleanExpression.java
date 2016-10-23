@@ -23,7 +23,7 @@ import org.vesalainen.util.DoubleMap;
  *
  * @author tkv
  */
-public class SimpleBooleanExpression extends BooleanExpression
+public class SimpleBooleanExpression extends BooleanMathExpression
 {
     private DoubleMap<String> map = new DoubleMap<>();
 
