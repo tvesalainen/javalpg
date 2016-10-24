@@ -31,14 +31,23 @@ import org.vesalainen.parser.annotation.MathExpression;
 import org.vesalainen.parser.annotation.ParseMethod;
 import org.vesalainen.parser.annotation.ParserContext;
 import org.vesalainen.parser.annotation.Rule;
-import org.vesalainen.regex.Regex.Option;
+import org.vesalainen.regex.Regex;
 
 /**
+ * MathExpressionParser parses math expression written in java style with some 
+ * exceptions. Expressions are number or boolean valued. Most java.lang.Math
+ * methods can be used in expression.
+ * <p>Example:
+ * <code>1.2 * cos(x1)</code>
+ * <p>Variable names follow java identifier ruling. Variables starting with '$'
+ * are reserved.
+ * <p>Boolean valued example:
+ * <code>x > y && sin(z) > 0</code>
  * @author tkv
- * @param <T>
- * @param <M>
- * @param <F>
- * @param <P>
+ * @param <T> Type type
+ * @param <M> Method type
+ * @param <F> Field type
+ * @param <P> Parameter type
  */
 @GenClassname(MathExpressionParserClass)
 @GrammarDef()
@@ -60,8 +69,8 @@ import org.vesalainen.regex.Regex.Option;
 @Terminal(left="RBRACKET", expression="\\]")
 @Terminal(left="LPAREN", expression="\\(")
 @Terminal(left="RPAREN", expression="\\)")
-@Terminal(left="AND", expression="[aA][nN][dD]")
-@Terminal(left="OR", expression="[oO][rR]")
+@Terminal(left="AND", expression="&&")
+@Terminal(left="OR", expression="\\|\\|")
 @Terminal(left="NOT", expression="!")
 @Terminal(left="EQ", expression="==?")
 @Terminal(left="NE", expression="!=")
@@ -108,7 +117,7 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return deh;
     }
     
-    @ParseMethod(start="expression",  whiteSpace={"whiteSpace"}, features={SingleThread})
+    @ParseMethod(start="expression",  whiteSpace={"whiteSpace", "doubleSlashComment", "hashComment", "cComment"}, features={SingleThread})
     protected abstract DEH doParse(
             String expression, 
             @ParserContext("degrees") boolean degrees,
@@ -116,7 +125,7 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
             @ParserContext("variables") Set<String> variables
             );
     
-    @ParseMethod(start="conditionalExpression",  whiteSpace={"whiteSpace"}, features={SingleThread})
+    @ParseMethod(start="conditionalExpression",  whiteSpace={"whiteSpace", "doubleSlashComment", "hashComment", "cComment"}, features={SingleThread})
     protected abstract DEH doParseBoolean(
             String expression, 
             @ParserContext("degrees") boolean degrees,
@@ -448,17 +457,25 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return exp1;
     }
     // -------------------
-    @Terminal(expression="[a-zA-Z][a-zA-Z0-9_]*")
+    @Terminal(expression="[a-zA-Z\\$_][a-zA-Z0-9\\$_]*")
     protected abstract String identifier(String value);
 
-    @Terminal(expression="[\\+\\-]?[0-9]+")
+    @Terminal(expression="(0x|0b)?[\\+\\-]?[0-9]+")
     protected abstract String integer(String value);
 
-    @Terminal(expression="[\\+\\-]?[0-9]+(\\.[0-9]+)?([eE][\\+\\-]?[0-9]+)?")
+    @Terminal(expression="(0x|0b)?[\\+\\-]?[0-9]+(\\.[0-9]+)?([eE][\\+\\-]?[0-9]+)?")
     protected abstract String number(String value);
 
     @Terminal(expression="[ \t\r\n]+")
     protected abstract void whiteSpace();
     
+    @Terminal(expression = "\\-\\-[^\n]*\n")
+    protected abstract void doubleSlashComment();
+
+    @Terminal(expression = "#[^\n]*\n")
+    protected abstract void hashComment();
+
+    @Terminal(expression = "/\\*.*\\*/", options = {Regex.Option.FIXED_ENDER})
+    protected abstract void cComment();
 
 }

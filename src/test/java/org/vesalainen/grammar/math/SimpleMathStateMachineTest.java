@@ -16,6 +16,10 @@
  */
 package org.vesalainen.grammar.math;
 
+import java.time.Clock;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneOffset;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,6 +29,7 @@ import static org.junit.Assert.*;
  */
 public class SimpleMathStateMachineTest
 {
+    Clock clock = Clock.fixed(Instant.now(), ZoneOffset.UTC);
     
     public SimpleMathStateMachineTest()
     {
@@ -33,7 +38,7 @@ public class SimpleMathStateMachineTest
     @Test
     public void test1() throws Exception
     {
-        SimpleMathStateMachine smsm = new SimpleMathStateMachine("bulk");
+        SimpleMathStateMachine smsm = new SimpleMathStateMachine("bulk", ()->{return clock;}, true);
         final StringBuilder state = new StringBuilder();
         
         smsm.addState("bulk", ()->{state.setLength(0);state.append("bulk");});
@@ -41,7 +46,7 @@ public class SimpleMathStateMachineTest
         smsm.addState("float", ()->{state.setLength(0);state.append("float");});
         
         smsm.addTransition("bulk", "v >= 14.1", "abs");
-        smsm.addTransition("abs", "c < 1", "float");
+        smsm.addTransition("abs", "c < 1 && $stateElapsedTime > 20000", "float");
         smsm.addTransition("float", "v < 13", "bulk");
         
         smsm.setVariable("v", 12.5);
@@ -59,6 +64,12 @@ public class SimpleMathStateMachineTest
         smsm.evaluate();
         assertEquals("abs", state.toString());
         
+        smsm.setVariable("v", 14.1);
+        smsm.setVariable("c", 0.5);
+        smsm.evaluate();
+        assertEquals("abs", state.toString());
+
+        clock = Clock.offset(clock, Duration.ofSeconds(30));
         smsm.setVariable("v", 14.1);
         smsm.setVariable("c", 0.5);
         smsm.evaluate();

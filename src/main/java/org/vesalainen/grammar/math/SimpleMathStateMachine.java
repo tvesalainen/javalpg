@@ -19,6 +19,7 @@ package org.vesalainen.grammar.math;
 import java.io.IOException;
 import java.time.Clock;
 import java.util.Set;
+import java.util.function.Supplier;
 import org.vesalainen.util.DoubleMap;
 
 /**
@@ -39,9 +40,9 @@ public class SimpleMathStateMachine extends AbstractMathStateMachine
         super(start, useDegrees);
     }
 
-    public SimpleMathStateMachine(String start, Clock clock, boolean useDegrees)
+    public SimpleMathStateMachine(String start, Supplier<Clock> clockSupplier, boolean useDegrees)
     {
-        super(start, clock, useDegrees);
+        super(start, clockSupplier, useDegrees);
     }
 
     public void setVariable(String identifier, double value)
@@ -60,7 +61,7 @@ public class SimpleMathStateMachine extends AbstractMathStateMachine
     {
         for (String v : variables)
         {
-            if (!map.containsKey(v))
+            if (!map.containsKey(v) && !v.startsWith("$"))
             {
                 throw new IllegalArgumentException("variable "+v+" not set");
             }

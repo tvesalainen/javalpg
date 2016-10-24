@@ -20,16 +20,28 @@ import java.io.IOException;
 import java.time.Clock;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Supplier;
 import org.vesalainen.util.AbstractStateMachine;
 import org.vesalainen.util.AbstractStateMachine.State;
 
 /**
  * AbstractMathStateMachine extends AbstractStateMachine by using boolean
  * math expressions as conditions.
+ * <p>Implementing class defines variables except $startTime, $elapsedTime, 
+ * $stateStartTime and $stateElapsedTime which are defined by this class.
  * @author tkv
+ * @see org.vesalainen.grammar.math.MathExpressionParser
+ * @see org.vesalainen.grammar.math.AbstractMathStateMachine#getStartTime() 
+ * @see org.vesalainen.grammar.math.AbstractMathStateMachine#getElapsedTime() 
+ * @see org.vesalainen.grammar.math.AbstractMathStateMachine#getStateStartTime() 
+ * @see org.vesalainen.grammar.math.AbstractMathStateMachine#getStateElapsedTime() 
  */
 public abstract class AbstractMathStateMachine extends AbstractStateMachine<BooleanMathExpression,State>
 {
+    public static final String START_TIME = "$startTime";
+    public static final String ELAPSED_TIME = "$elapsedTime";
+    public static final String STATE_START_TIME = "$stateStartTime";
+    public static final String STATE_ELAPSED_TIME = "$stateElapsedTime";
     private boolean useDegrees;
     private Set<String> variables = new HashSet<>();
     private Set<String> active = new HashSet<>();
@@ -42,12 +54,12 @@ public abstract class AbstractMathStateMachine extends AbstractStateMachine<Bool
     
     public AbstractMathStateMachine(String start, boolean useDegrees)
     {
-        this(start, Clock.systemDefaultZone(), useDegrees);
+        this(start, Clock::systemDefaultZone, useDegrees);
     }
 
-    public AbstractMathStateMachine(String start, Clock clock, boolean useDegrees)
+    public AbstractMathStateMachine(String start, Supplier<Clock> clockSupplier, boolean useDegrees)
     {
-        super(start, clock);
+        super(start, clockSupplier);
         this.useDegrees = useDegrees;
     }
 
@@ -121,7 +133,19 @@ public abstract class AbstractMathStateMachine extends AbstractStateMachine<Bool
         @Override
         protected double getVariable(String identifier) throws IOException
         {
-            return AbstractMathStateMachine.this.getVariable(identifier);
+            switch (identifier)
+            {
+                case START_TIME:
+                    return getStartTime();
+                case ELAPSED_TIME:
+                    return getElapsedTime();
+                case STATE_START_TIME:
+                    return getStateStartTime();
+                case STATE_ELAPSED_TIME:
+                    return getStateElapsedTime();
+                default:
+                return AbstractMathStateMachine.this.getVariable(identifier);
+            }
         }
         
     }
