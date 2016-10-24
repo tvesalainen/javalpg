@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.function.DoubleSupplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,7 +55,14 @@ public abstract class DoubleMathExpression extends DoubleMathStack implements Do
             parse();
         }
         clear();
-        stack.execute(this);
+        try
+        {
+            stack.execute(this);
+        }
+        catch (Throwable ex)
+        {
+            throw new RuntimeException(ex);
+        }
         return pop();
     }
     /**
@@ -75,7 +84,7 @@ public abstract class DoubleMathExpression extends DoubleMathStack implements Do
         {
             stack = parser.parse(expression, degrees, this);
         }
-        catch (IOException ex)
+        catch (Exception ex)
         {
             throw new RuntimeException(ex);
         }

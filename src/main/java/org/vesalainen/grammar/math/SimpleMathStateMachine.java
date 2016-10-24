@@ -16,15 +16,15 @@
  */
 package org.vesalainen.grammar.math;
 
-import java.io.IOException;
 import java.time.Clock;
 import java.util.Set;
 import java.util.function.Supplier;
 import org.vesalainen.util.DoubleMap;
 
 /**
- *
+ * SimpleMathStateMachine implements variables by using DoubleMap.
  * @author tkv
+ * @see org.vesalainen.util.DoubleMap
  */
 public class SimpleMathStateMachine extends AbstractMathStateMachine
 {
@@ -44,7 +44,11 @@ public class SimpleMathStateMachine extends AbstractMathStateMachine
     {
         super(start, clockSupplier, useDegrees);
     }
-
+    /**
+     * Assign value to named variable.
+     * @param identifier
+     * @param value 
+     */
     public void setVariable(String identifier, double value)
     {
         map.put(identifier, value);

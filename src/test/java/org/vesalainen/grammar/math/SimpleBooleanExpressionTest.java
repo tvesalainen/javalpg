@@ -41,5 +41,16 @@ public class SimpleBooleanExpressionTest
         sbe.setVariable("y", 1);
         assertFalse(sbe.getAsBoolean());
     }
-    
+    @Test
+    public void test2()
+    {
+        SimpleBooleanExpression sbe = new SimpleBooleanExpression("1>0||x<0");  // x is not set
+        assertTrue(sbe.getAsBoolean());
+    }
+    @Test
+    public void test3()
+    {
+        SimpleBooleanExpression sbe = new SimpleBooleanExpression("1<0&&x<0");  // x is not set
+        assertFalse(sbe.getAsBoolean());
+    }
 }

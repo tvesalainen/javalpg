@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.function.BooleanSupplier;
+import org.vesalainen.util.NoNeedToContinueException;
 
 /**
  *
@@ -53,7 +54,18 @@ public abstract class BooleanMathExpression extends DoubleMathStack implements B
             parse();
         }
         clear();
-        stack.execute(this);
+        try
+        {
+            stack.execute(this);
+        }
+        catch (NoNeedToContinueException ex)
+        {
+            return get(0) == TRUE;
+        }
+        catch (Throwable th)
+        {
+            throw new RuntimeException(th);
+        }
         return pop() == TRUE;
     }
     /**
@@ -76,7 +88,7 @@ public abstract class BooleanMathExpression extends DoubleMathStack implements B
         {
             stack = parser.parseBoolean(expression, degrees, this);
         }
-        catch (IOException ex)
+        catch (Exception ex)
         {
             throw new RuntimeException(ex);
         }

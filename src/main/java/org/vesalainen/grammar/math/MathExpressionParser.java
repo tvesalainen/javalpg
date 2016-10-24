@@ -16,7 +16,6 @@
  */
 package org.vesalainen.grammar.math;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -90,7 +89,14 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
     {
         Set<String> variables = new HashSet<>();
         DEH expression = doParse(me.value(), me.degrees(), handler, variables);
-        expression.execute(handler);
+        try
+        {
+            expression.execute(handler);
+        }
+        catch (Throwable ex)
+        {
+            throw new RuntimeException(ex);
+        }
     }
     /**
      * Parse and return expression.
@@ -98,10 +104,10 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
      * @param degrees
      * @param handler
      * @return
-     * @throws IOException 
+     * @throws Exception 
      */
     @Override
-    public DEH parse(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws IOException
+    public DEH parse(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws Exception
     {
         Set<String> variables = new HashSet<>();
         DEH deh = doParse(expression, degrees, handler, variables);
@@ -109,7 +115,7 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return deh;
     }
     @Override
-    public DEH parseBoolean(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws IOException
+    public DEH parseBoolean(String expression, boolean degrees, ExpressionHandler<T,M,F,P> handler) throws Exception
     {
         Set<String> variables = new HashSet<>();
         DEH deh = doParseBoolean(expression, degrees, handler, variables);
@@ -172,42 +178,42 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return list;
     }
     @Rule(left="expression", value={"expression", "PLUS", "term"})
-    protected DEH add(DEH expression, DEH term) throws IOException
+    protected DEH add(DEH expression, DEH term) throws Exception
     {
         expression.append(term);
         expression.getProxy().add();
         return expression;
     }
     @Rule(left="expression", value={"expression", "MINUS", "term"})
-    protected DEH subtract(DEH expression, DEH term) throws IOException
+    protected DEH subtract(DEH expression, DEH term) throws Exception
     {
         expression.append(term);
         expression.getProxy().subtract();
         return expression;
     }
     @Rule(left="term", value={"term", "STAR", "factor"})
-    protected DEH mul(DEH term, DEH factor) throws IOException
+    protected DEH mul(DEH term, DEH factor) throws Exception
     {
         term.append(factor);
         term.getProxy().mul();
         return term;
     }
     @Rule(left="term", value={"term", "SLASH", "factor"})
-    protected DEH div(DEH term, DEH factor) throws IOException
+    protected DEH div(DEH term, DEH factor) throws Exception
     {
         term.append(factor);
         term.getProxy().div();
         return term;
     }
     @Rule(left="term", value={"term", "PERCENT", "factor"})
-    protected DEH mod(DEH term, DEH factor) throws IOException
+    protected DEH mod(DEH term, DEH factor) throws Exception
     {
         term.append(factor);
         term.getProxy().mod();
         return term;
     }
     @Rule(left="atom", value={"number"})
-    protected DEH num(String number) throws IOException
+    protected DEH num(String number) throws Exception
     {
         DEH atom = new DEH();
         atom.getProxy().number(number);
@@ -218,7 +224,7 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
             DEH expression, 
             @ParserContext("degrees") boolean degrees,
             @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
-            ) throws IOException
+            ) throws Exception
     {
         List<DEH> args = new ArrayList<>();
         args.add(expression);
@@ -230,7 +236,7 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
             DEH factor, 
             @ParserContext("degrees") boolean degrees,
             @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
-            ) throws IOException
+            ) throws Exception
     {
         List<DEH> args = new ArrayList<>();
         args.add(atom);
@@ -242,20 +248,20 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
             DEH atom, 
             @ParserContext("degrees") boolean degrees,
             @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
-            ) throws IOException
+            ) throws Exception
     {
         List<DEH> args = new ArrayList<>();
         args.add(atom);
         return func("factorial", args, degrees, handler);
     }
     @Rule(left="atom", value={"atom", "SQUARE"})
-    protected DEH square(DEH atom) throws IOException
+    protected DEH square(DEH atom) throws Exception
     {
         atom.getProxy().pow(2);
         return atom;
     }
     @Rule(left="atom", value={"atom", "CUBE"})
-    protected DEH cube(DEH atom) throws IOException
+    protected DEH cube(DEH atom) throws Exception
     {
         atom.getProxy().pow(3);
         return atom;
@@ -264,7 +270,7 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
     protected DEH sqrt(
             DEH atom,
             @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
-            ) throws IOException
+            ) throws Exception
     {
         List<DEH> args = new ArrayList<>();
         args.add(atom);
@@ -274,14 +280,14 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
     protected DEH cbrt(
             DEH atom,
             @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
-            ) throws IOException
+            ) throws Exception
     {
         List<DEH> args = new ArrayList<>();
         args.add(atom);
         return func("cbrt", args, false, handler);
     }
     @Rule(left="atom", value={"PI"})
-    protected DEH pi(@ParserContext("handler") ExpressionHandler<T,M,F,P> handler) throws IOException
+    protected DEH pi(@ParserContext("handler") ExpressionHandler<T,M,F,P> handler) throws Exception
     {
         DEH atom = new DEH();
         atom.getProxy().loadField(handler.getField(Math.class, "PI"));
@@ -298,18 +304,18 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return true;
     }
     @Rule
-    protected List<DEH> indexList() throws IOException
+    protected List<DEH> indexList() throws Exception
     {
         return new ArrayList<>();
     }
     @Rule({"indexList", "LBRACKET", "expression", "RBRACKET"})
-    protected List<DEH> indexList(List<DEH> list, DEH expression) throws IOException
+    protected List<DEH> indexList(List<DEH> list, DEH expression) throws Exception
     {
         list.add(expression);
         return list;
     }
     @Rule(left="atom", value={"neg", "identifier", "indexList"})
-    protected DEH variable(boolean neg, String identifier, List<DEH> indexList, @ParserContext("variables") Set<String> variables) throws IOException
+    protected DEH variable(boolean neg, String identifier, List<DEH> indexList, @ParserContext("variables") Set<String> variables) throws Exception
     {
         variables.add(identifier);
         DEH atom = new DEH();
@@ -346,7 +352,7 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
             List<DEH> funcArgs, 
             @ParserContext("degrees") boolean degrees,
             @ParserContext("handler") ExpressionHandler<T,M,F,P> handler
-            ) throws IOException
+            ) throws Exception
     {
         DEH atom = new DEH();
         ExpressionHandler proxy = atom.getProxy();
@@ -380,8 +386,9 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return andExpression;
     }
     @Rule(value={"conditionalExpression", "OR", "andExpression"})
-    protected DEH conditionalExpression(DEH conditionalExpression, DEH andExpression) throws IOException
+    protected DEH conditionalExpression(DEH conditionalExpression, DEH andExpression) throws Exception
     {
+        conditionalExpression.getProxy().checkOr();
         conditionalExpression.append(andExpression);
         conditionalExpression.getProxy().or();
         return conditionalExpression;
@@ -392,8 +399,9 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return orExpression;
     }
     @Rule(value={"andExpression", "AND", "orExpression"})
-    protected DEH andExpression(DEH andExpression, DEH orExpression) throws IOException
+    protected DEH andExpression(DEH andExpression, DEH orExpression) throws Exception
     {
+        andExpression.getProxy().checkAnd();
         andExpression.append(orExpression);
         andExpression.getProxy().and();
         return andExpression;
@@ -409,48 +417,48 @@ public abstract class MathExpressionParser<T,M,F,P> implements MathExpressionPar
         return conditionalExpression;
     }
     @Rule(left="conditionalAtom", value={"NOT", "conditionalAtom"})
-    protected DEH notConditional(DEH conditionalExpression) throws IOException
+    protected DEH notConditional(DEH conditionalExpression) throws Exception
     {
         conditionalExpression.getProxy().not();
         return conditionalExpression;
     }
     @Rule(left="conditionalAtom", value={"expression", "EQ", "expression"})
-    protected DEH eqConditional(DEH exp1, DEH exp2) throws IOException
+    protected DEH eqConditional(DEH exp1, DEH exp2) throws Exception
     {
         exp1.append(exp2);
         exp1.getProxy().eq();
         return exp1;
     }
     @Rule(left="conditionalAtom", value={"expression", "NE", "expression"})
-    protected DEH neConditional(DEH exp1, DEH exp2) throws IOException
+    protected DEH neConditional(DEH exp1, DEH exp2) throws Exception
     {
         exp1.append(exp2);
         exp1.getProxy().ne();
         return exp1;
     }
     @Rule(left="conditionalAtom", value={"expression", "LT", "expression"})
-    protected DEH ltConditional(DEH exp1, DEH exp2) throws IOException
+    protected DEH ltConditional(DEH exp1, DEH exp2) throws Exception
     {
         exp1.append(exp2);
         exp1.getProxy().lt();
         return exp1;
     }
     @Rule(left="conditionalAtom", value={"expression", "LE", "expression"})
-    protected DEH leConditional(DEH exp1, DEH exp2) throws IOException
+    protected DEH leConditional(DEH exp1, DEH exp2) throws Exception
     {
         exp1.append(exp2);
         exp1.getProxy().le();
         return exp1;
     }
     @Rule(left="conditionalAtom", value={"expression", "GT", "expression"})
-    protected DEH gtConditional(DEH exp1, DEH exp2) throws IOException
+    protected DEH gtConditional(DEH exp1, DEH exp2) throws Exception
     {
         exp1.append(exp2);
         exp1.getProxy().gt();
         return exp1;
     }
     @Rule(left="conditionalAtom", value={"expression", "GE", "expression"})
-    protected DEH geConditional(DEH exp1, DEH exp2) throws IOException
+    protected DEH geConditional(DEH exp1, DEH exp2) throws Exception
     {
         exp1.append(exp2);
         exp1.getProxy().ge();
