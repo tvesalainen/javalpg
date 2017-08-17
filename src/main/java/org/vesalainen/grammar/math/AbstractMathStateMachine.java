@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 tkv
+ * Copyright (C) 2016 Timo Vesalainen <timo.vesalainen@iki.fi>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ import org.vesalainen.util.AbstractStateMachine.State;
  * math expressions as conditions.
  * <p>Implementing class defines variables except $startTime, $elapsedTime, 
  * $stateStartTime and $stateElapsedTime which are defined by this class.
- * @author tkv
+ * @author Timo Vesalainen <timo.vesalainen@iki.fi>
  * @see org.vesalainen.grammar.math.MathExpressionParser
  * @see org.vesalainen.grammar.math.AbstractMathStateMachine#getStartTime() 
  * @see org.vesalainen.grammar.math.AbstractMathStateMachine#getElapsedTime() 

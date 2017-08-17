@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 tkv
+ * Copyright (C) 2016 Timo Vesalainen <timo.vesalainen@iki.fi>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ package org.vesalainen.grammar.impl;
 
 /**
  * 
- * @author tkv
+ * @author Timo Vesalainen <timo.vesalainen@iki.fi>
  * @see <a href="https://tools.ietf.org/html/rfc5234#appendix-B">Appendix B.  Core ABNF of ABNF</a>
  */
 public class ABNFCore

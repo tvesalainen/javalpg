@@ -39,7 +39,7 @@ import org.vesalainen.regex.RegexParserIntf;
 
 /**
  * This Parser class parses regular expression making an NFA
- * @author tkv
+ * @author Timo Vesalainen <timo.vesalainen@iki.fi>
  * @see <a href="doc-files/RegexParser-regexp.html#BNF">BNF Syntax for Regular expression</a>
  */
 @GrammarDef()

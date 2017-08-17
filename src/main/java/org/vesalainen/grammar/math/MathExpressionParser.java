@@ -42,7 +42,7 @@ import org.vesalainen.regex.Regex;
  * are reserved.
  * <p>Boolean valued example:
  * <code>x > y && sin(z) > 0</code>
- * @author tkv
+ * @author Timo Vesalainen <timo.vesalainen@iki.fi>
  * @param <T> Type type
  * @param <M> Method type
  * @param <F> Field type
