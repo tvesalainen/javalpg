@@ -32,7 +32,7 @@ import java.util.Set;
 import static org.vesalainen.parser.ParserFeature.SingleThread;
 import org.vesalainen.parser.annotation.GenClassname;
 import org.vesalainen.regex.Quantifier;
-import org.vesalainen.regex.Range;
+import org.vesalainen.regex.CharRange;
 import org.vesalainen.regex.RangeSet;
 import static org.vesalainen.regex.RegexParserFactory.RegexParserClass;
 import org.vesalainen.regex.RegexParserIntf;
@@ -400,51 +400,51 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
     @Rule("endOfInputOrLine"),
     @Rule("endOfInput")
     })
-    protected RangeSet boundaryMatcher(Range range)
+    protected RangeSet boundaryMatcher(CharRange range)
     {
         RangeSet rs = new RangeSet();
         rs.add(range);
         return rs;
     }
     @Rule({"'\\^'"})
-    protected Range beginningOfLine()
+    protected CharRange beginningOfLine()
     {
-        return new Range(Range.BoundaryType.BOL);
+        return new CharRange(CharRange.BoundaryType.BOL);
     }
     @Rule({"'\\$'"})
-    protected Range endOfLine()
+    protected CharRange endOfLine()
     {
-        return new Range(Range.BoundaryType.EOL);
+        return new CharRange(CharRange.BoundaryType.EOL);
     }
     @Rule({"'\\\\'", "'b'"})
-    protected Range wordBoundary()
+    protected CharRange wordBoundary()
     {
-        return new Range(Range.BoundaryType.WB);
+        return new CharRange(CharRange.BoundaryType.WB);
     }
     @Rule({"'\\\\'", "'B'"})
-    protected Range nonWordBoundary()
+    protected CharRange nonWordBoundary()
     {
-        return new Range(Range.BoundaryType.NWB);
+        return new CharRange(CharRange.BoundaryType.NWB);
     }
     @Rule({"'\\\\'", "'A'"})
-    protected Range beginningOfInput()
+    protected CharRange beginningOfInput()
     {
-        return new Range(Range.BoundaryType.BOI);
+        return new CharRange(CharRange.BoundaryType.BOI);
     }
     @Rule({"'\\\\'", "'G'"})
-    protected Range endOfPreviousMatch()
+    protected CharRange endOfPreviousMatch()
     {
-        return new Range(Range.BoundaryType.EOPM);
+        return new CharRange(CharRange.BoundaryType.EOPM);
     }
     @Rule({"'\\\\'", "'Z'"})
-    protected Range endOfInputOrLine()
+    protected CharRange endOfInputOrLine()
     {
-        return new Range(Range.BoundaryType.EOIL);
+        return new CharRange(CharRange.BoundaryType.EOIL);
     }
     @Rule({"'\\\\'", "'z'"})
-    protected Range endOfInput()
+    protected CharRange endOfInput()
     {
-        return new Range(Range.BoundaryType.EOI);
+        return new CharRange(CharRange.BoundaryType.EOI);
     }
     @Terminal(expression = "\\*")
     protected Quantifier star()
@@ -504,43 +504,43 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
         {
             case 'd':
                 rs = new RangeSet();
-                rs.add(new Range('0', '9'+1));
+                rs.add(new CharRange('0', '9'+1));
                 return rs;
             case 'D':
                 rs = new RangeSet();
-                rs.add(new Range('0', '9'+1));
+                rs.add(new CharRange('0', '9'+1));
                 return rs.complement();
             case 's':
                 rs = new RangeSet();
-                rs.add(new Range(' '));
-                rs.add(new Range('\t'));
-                rs.add(new Range('\n'));
-                rs.add(new Range(0x0B));
-                rs.add(new Range('\f'));
-                rs.add(new Range('\r'));
+                rs.add(new CharRange(' '));
+                rs.add(new CharRange('\t'));
+                rs.add(new CharRange('\n'));
+                rs.add(new CharRange(0x0B));
+                rs.add(new CharRange('\f'));
+                rs.add(new CharRange('\r'));
                 return rs;
             case 'S':
                 rs = new RangeSet();
-                rs.add(new Range(' '));
-                rs.add(new Range('\t'));
-                rs.add(new Range('\n'));
-                rs.add(new Range(0x0B));
-                rs.add(new Range('\f'));
-                rs.add(new Range('\r'));
+                rs.add(new CharRange(' '));
+                rs.add(new CharRange('\t'));
+                rs.add(new CharRange('\n'));
+                rs.add(new CharRange(0x0B));
+                rs.add(new CharRange('\f'));
+                rs.add(new CharRange('\r'));
                 return rs.complement();
             case 'w':
                 rs = new RangeSet();
-                rs.add(new Range('a', 'z'+1));
-                rs.add(new Range('A', 'Z'+1));
-                rs.add(new Range('0', '9'+1));
-                rs.add(new Range('_'));
+                rs.add(new CharRange('a', 'z'+1));
+                rs.add(new CharRange('A', 'Z'+1));
+                rs.add(new CharRange('0', '9'+1));
+                rs.add(new CharRange('_'));
                 return rs;
             case 'W':
                 rs = new RangeSet();
-                rs.add(new Range('a', 'z'+1));
-                rs.add(new Range('A', 'Z'+1));
-                rs.add(new Range('0', '9'+1));
-                rs.add(new Range('_'));
+                rs.add(new CharRange('a', 'z'+1));
+                rs.add(new CharRange('A', 'Z'+1));
+                rs.add(new CharRange('0', '9'+1));
+                rs.add(new CharRange('_'));
                 return rs.complement();
             default:
                 throw new IllegalArgumentException(cc+ "unexpected");
@@ -576,7 +576,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
     protected RangeSet posixLower()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range('a', 'z'+1));
+        rs.add(new CharRange('a', 'z'+1));
         return rs;
     }
     @Terminal(expression =  "\\{Upper\\}")
@@ -587,38 +587,38 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             return posixLower();
         }
         RangeSet rs = new RangeSet();
-        rs.add(new Range('A', 'Z'+1));
+        rs.add(new CharRange('A', 'Z'+1));
         return rs;
     }
     @Terminal(expression =  "\\{ASCII\\}")
     protected RangeSet posixASCII()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range(0, 0x80));
+        rs.add(new CharRange(0, 0x80));
         return rs;
     }
     @Terminal(expression =  "\\{Alpha\\}")
     protected RangeSet posixAlpha()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range('a', 'z'+1));
-        rs.add(new Range('A', 'Z'+1));
+        rs.add(new CharRange('a', 'z'+1));
+        rs.add(new CharRange('A', 'Z'+1));
         return rs;
     }
     @Terminal(expression =  "\\{Digit\\}")
     protected RangeSet posixDigit()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range('0', '9'+1));
+        rs.add(new CharRange('0', '9'+1));
         return rs;
     }
     @Terminal(expression =  "\\{Alnum\\}")
     protected RangeSet posixAlnum()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range('a', 'z'+1));
-        rs.add(new Range('A', 'Z'+1));
-        rs.add(new Range('0', '9'+1));
+        rs.add(new CharRange('a', 'z'+1));
+        rs.add(new CharRange('A', 'Z'+1));
+        rs.add(new CharRange('0', '9'+1));
         return rs;
     }
     @Terminal(expression =  "\\{Punct\\}")
@@ -632,9 +632,9 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
     protected RangeSet posixGraph()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range('a', 'z'+1));
-        rs.add(new Range('A', 'Z'+1));
-        rs.add(new Range('0', '9'+1));
+        rs.add(new CharRange('a', 'z'+1));
+        rs.add(new CharRange('A', 'Z'+1));
+        rs.add(new CharRange('0', '9'+1));
         rs.add("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".toCharArray());
         return rs;
     }
@@ -642,9 +642,9 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
     protected RangeSet posixPrint()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range('a', 'z'+1));
-        rs.add(new Range('A', 'Z'+1));
-        rs.add(new Range('0', '9'+1));
+        rs.add(new CharRange('a', 'z'+1));
+        rs.add(new CharRange('A', 'Z'+1));
+        rs.add(new CharRange('0', '9'+1));
         rs.add("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".toCharArray());
         rs.add(' ');
         return rs;
@@ -661,7 +661,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
     protected RangeSet posixCntrl()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range(0, 0x20));
+        rs.add(new CharRange(0, 0x20));
         rs.add(0x7f);
         return rs;
     }
@@ -669,21 +669,21 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
     protected RangeSet posixXDigit()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range('0', '9'+1));
-        rs.add(new Range('a', 'f'+1));
-        rs.add(new Range('A', 'F'+1));
+        rs.add(new CharRange('0', '9'+1));
+        rs.add(new CharRange('a', 'f'+1));
+        rs.add(new CharRange('A', 'F'+1));
         return rs;
     }
     @Terminal(expression =  "\\{Space\\}")
     protected RangeSet posixSpace()
     {
         RangeSet rs = new RangeSet();
-        rs.add(new Range(' '));
-        rs.add(new Range('\t'));
-        rs.add(new Range('\n'));
-        rs.add(new Range(0x0B));
-        rs.add(new Range('\f'));
-        rs.add(new Range('\r'));
+        rs.add(new CharRange(' '));
+        rs.add(new CharRange('\t'));
+        rs.add(new CharRange('\n'));
+        rs.add(new CharRange(0x0B));
+        rs.add(new CharRange('\f'));
+        rs.add(new CharRange('\r'));
         return rs;
     }
     @Terminal(expression =  "\\{javaLowerCase\\}")
@@ -695,7 +695,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             char cc = (char) ii;
             if (Character.isLowerCase(cc))
             {
-                rs.add(new Range(cc));
+                rs.add(new CharRange(cc));
             }
         }
         return rs;
@@ -713,7 +713,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             char cc = (char) ii;
             if (Character.isUpperCase(cc))
             {
-                rs.add(new Range(cc));
+                rs.add(new CharRange(cc));
             }
         }
         return rs;
@@ -727,7 +727,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             char cc = (char) ii;
             if (Character.isWhitespace(cc))
             {
-                rs.add(new Range(cc));
+                rs.add(new CharRange(cc));
             }
         }
         return rs;
@@ -741,7 +741,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             char cc = (char) ii;
             if (Character.isMirrored(cc))
             {
-                rs.add(new Range(cc));
+                rs.add(new CharRange(cc));
             }
         }
         return rs;
@@ -755,7 +755,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             char cc = (char) ii;
             if (Character.isLetter(cc))
             {
-                rs.add(new Range(cc));
+                rs.add(new CharRange(cc));
             }
         }
         return rs;
@@ -770,7 +770,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             char cc = (char) ii;
             if (b.equals(UnicodeBlock.of(cc)))
             {
-                rs.add(new Range(cc));
+                rs.add(new CharRange(cc));
             }
         }
         return rs;
@@ -784,7 +784,7 @@ public abstract class RegexGrammar<T> implements RegexParserIntf<T>
             char cc = (char) ii;
             if (Character.getType(cc) == category)
             {
-                rs.add(new Range(cc));
+                rs.add(new CharRange(cc));
             }
         }
         return rs;
