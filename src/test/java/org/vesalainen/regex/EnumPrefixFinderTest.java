@@ -50,5 +50,6 @@ public class EnumPrefixFinderTest
         EnumPrefixFinder em = new EnumPrefixFinder(false, SATURDAY, SUNDAY);
         assertEquals(SUNDAY, em.find("SUN"));
         assertNull(em.find("MONDAY"));
+        assertNull(em.find("Sun"));
     }    
 }
