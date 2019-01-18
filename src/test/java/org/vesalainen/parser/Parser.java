@@ -120,14 +120,21 @@ public abstract class Parser extends BaseParser implements ChecksumProvider
         return -term;
     }
 
+    public void setChecksum(Checksum checksum)
+    {
+        this.checksum = checksum;
+    }
+
+    @Override
+    public Checksum createChecksum()
+    {
+        return checksum;
+    }
+
     @Override
     public Checksum getChecksum()
     {
         return checksum;
     }
-
-    public void setChecksum(Checksum checksum)
-    {
-        this.checksum = checksum;
-    }
+    
 }
